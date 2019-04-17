@@ -2,7 +2,6 @@
 A simple webapp to schedule meetings with time and location constraints using constraint programming techniques.
 
 ## Case study
----
 An estate agent needs a tool to automatically schedule next week appointments based on his and his clients' constraints.
 
 Each appointment will be characterized by:
