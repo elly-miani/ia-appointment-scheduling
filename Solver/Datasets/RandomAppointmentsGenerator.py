@@ -71,7 +71,7 @@ for k in datasetDimensions:
         for key in appointments.keys():
             f.write("%s,%s\n"%(key, appointments[key]))
     """
-    with open('Datasets/RandomAppointments'+str(k)+'.csv', 'w') as f:
+    with open('RandomAppointments'+str(k)+'.csv', 'w') as f:
         writer = csv.writer(f)
         for key, values in appointments.items():
             row = [key] + [value for item in values.items() for value in item]
