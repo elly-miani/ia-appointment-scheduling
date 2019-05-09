@@ -75,7 +75,7 @@ def backtracking(assegnamento, assegnate, csp, iteration):
 	'''
 	Se l'assegnamento è completo mi fermo
 	'''
-	print("Assegnamento corrente = ", assegnamento," Iterazione numero = ", iteration)
+	#print("Assegnamento corrente = ", assegnamento," Iterazione numero = ", iteration)
 	iteration += 1
 
 	if assCompleto(assegnamento, csp):
@@ -103,15 +103,16 @@ def backtracking(assegnamento, assegnate, csp, iteration):
 	return None
 
 
+
 def backjump(assegnamento, assegnate, conflictSet):
 	assIndex = len(assegnate)-1
-	print("AssegnamentoL = ", assegnamentoL)
-	print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
-	print("assegnamento[assIndex] = ", assegnamento[0])
-	while( not(assegnamento[assIndex] in conflictSet)):
-		del(assegnamento[assIndex])
+	#print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
+	while( not(assegnate[assIndex] in conflictSet)):
+		del(assegnamento[assegnate[assIndex]])
+		del(assegnate[assIndex])
 		assIndex -= 1
-	del(assegnamento[assIndex])
+	del(assegnamento[assegnate[assIndex]])
+	del(assegnate[assIndex])
 
 
 

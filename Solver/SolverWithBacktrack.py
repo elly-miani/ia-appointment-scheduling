@@ -13,6 +13,7 @@ current_milli_time = lambda: int(round(time.time() * 1000))
 
 
 
+
 """Data per il dominio"""
 days = ["mon", "tue", "wed", "thu", "fri", "sat"]
 
