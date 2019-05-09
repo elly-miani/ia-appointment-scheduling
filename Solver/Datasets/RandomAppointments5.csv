@@ -1,0 +1,5 @@
+0,Name,Olivia,Surname,Evans,House,C,Day,"[['tue', 'fri', 'thu']]",Pref,['Morning']
+1,Name,Sophia,Surname,King,House,C,Day,"[['tue', 'sat', 'wed']]",Pref,['Morning']
+2,Name,Isabella,Surname,Robinson,House,D,Day,"[['mon', 'fri', 'tue']]",Pref,['Afternoon']
+3,Name,Noah,Surname,Morgan,House,B,Day,"[['wed', 'fri', 'tue']]",Pref,['Morning']
+4,Name,Mason,Surname,Thomas,House,A,Day,"[['fri', 'mon', 'sat']]",Pref,['Morning']

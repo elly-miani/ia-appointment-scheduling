@@ -1,5 +1,13 @@
 from constraint import *
 import random
+import csv
+import time
+import sys
+
+
+
+current_milli_time = lambda: int(round(time.time() * 1000))
+
 
 
 def constraintFunction():
@@ -10,7 +18,7 @@ def constraintFunction():
         #print("x = ", x, "   y = ", y)
         if (x[2] != y[2] and abs(float(x[1])-float(y[1])) < distance(x[2], y[2])*0.5 + 1):
             return False
-        if (x[2] == y[2] and abs(float(x[1])-float(y[1])) < 1):
+        if (x[2] == y[2] and abs(float(x[1])-float(y[1])) != 1):
             return False
         else:
             return True
@@ -21,7 +29,7 @@ def takeSecond(elem):
 
 def distance(a, b):
     if (a=='A' and b=='B') or (b=='A' and a=='B'):
-        return 2
+        return 1
     if (a=='A' and b=='C') or (b=='A' and a=='C'):
         return 1
     if (a=='A' and b=='D') or (b=='A' and a=='D'):
@@ -83,7 +91,7 @@ names = ["Liam", "Emma", "Noah", "Olivia", "William", "Ava", "James",
 "Sofia"]
 
 prefs = ["Morning", "Afternoon"]
-
+"""
 for i in range(30):
     appointment = {
       "Name": names[random.randint(0, len(names)-1)],
@@ -93,6 +101,15 @@ for i in range(30):
       "Pref" : [prefs[random.randint(0, len(prefs)-1)]]
     }
     appointments[str(i)] = appointment
+"""
+appointments = {}
+with open(sys.argv[1], 'r') as f:
+    reader = csv.reader(f)
+    for row in reader:
+        a = iter(row[1:])
+        appointments[row[0]] = dict(zip(a, a))
+print(appointments);
+
 
 dominio = []
 count = 0
@@ -128,16 +145,21 @@ for x in appointments:
     #print(dom)
     problem.addVariable(x, dom)
 
+
 for x in appointments:
     for y in appointments:
         if(x != y):
             #print("Aggiungo un constraint")
             problem.addConstraint(constraintFunction(), (x, y))
 
+start = current_milli_time()
 solution = problem.getSolution()
+end = current_milli_time()
+print("\n\n###########Time spent to find the first solution = ", end-start," ms.\n\n")
 print(solution)
 
 ordApp = [[],[],[],[],[],[]]
+
 for x in solution:
     if solution[x][0]==days[0]:
         ordApp[0].append([x, solution[x]])
