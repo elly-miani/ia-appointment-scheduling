@@ -28,13 +28,28 @@ def isSafe(v, var, assegnamento, csp):
 	return True
 
 
-def varNonAsssegnata(assegnamento, csp):
+def varNonAssegnata(assegnamento, csp):
+	'''
+	Restituisco la variabile del csp non assegnata che ha dominio più piccolo
+	implementazione della euristica first fail.
+	'''
+
+	minimumLength = 10000
+	chosenVar = "-1"
+	for n in csp.nodes():
+		if n not in assegnamento and len(csp.nodes[n]['domain']) < minimumLength:
+			chosenVar = n
+	return chosenVar
+
 	'''
 	Restituisco la prima variabile del csp che non compare nell'assegnamento
 	'''
+	''''
 	for n in csp.nodes():
 		if n not in assegnamento:
+			print(type(n))
 			return n
+	'''
 
 def ordinaValori(var,assegnamento,csp):
 	'''
@@ -55,7 +70,7 @@ def backtracking(assegnamento, csp):
 	if assCompleto(assegnamento, csp):
 		return assegnamento
 
-	var=varNonAsssegnata(assegnamento, csp)
+	var=varNonAssegnata(assegnamento, csp)
 
 	for v in ordinaValori(var,assegnamento,csp):
 		if isSafe(v, var, assegnamento, csp):
