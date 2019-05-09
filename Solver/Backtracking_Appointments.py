@@ -75,7 +75,7 @@ def backtracking(assegnamento, assegnate, csp, iteration):
 	'''
 	Se l'assegnamento è completo mi fermo
 	'''
-	#print("Assegnamento corrente = ", assegnamento," Iterazione numero = ", iteration)
+	print("Iterazione numero = ", iteration, "\nAssegnamento corrente = ", assegnamento)
 	iteration += 1
 
 	if assCompleto(assegnamento, csp):
@@ -89,30 +89,37 @@ def backtracking(assegnamento, assegnate, csp, iteration):
 		if safe:
 			assegnamento[var] = v
 			assegnate.append(var)
+			assLength = len(assegnate)
 			ris = backtracking(assegnamento, assegnate, csp, iteration)
+			#Significa che è successo un backjump e sta tagliando il ramo attuale
+			if assLength > len(assegnate)+1:
+				return None
 			if ris!=None:
 				return ris
 		else:
 			conflictSet.append(conflict)
-
-
 			# Se arrivo a questo punto sono sicuro di essere tornato alla radice
 			# del sottoalbero che potevo analizzare e di non aver trovato una soluzione.
-	backjump(assegnamento, assegnate, conflictSet)
 
+	backjump(assegnamento, assegnate, conflictSet)
 	return None
 
 
 
 def backjump(assegnamento, assegnate, conflictSet):
 	assIndex = len(assegnate)-1
-	#print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
+	print("\n\n####BACKJUMP####\n")
+	print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
 	while( not(assegnate[assIndex] in conflictSet)):
 		del(assegnamento[assegnate[assIndex]])
 		del(assegnate[assIndex])
 		assIndex -= 1
+		print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
 	del(assegnamento[assegnate[assIndex]])
 	del(assegnate[assIndex])
+	print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
+	print("\n####BACKJUMP_FINE####\n")
+
 
 
 
