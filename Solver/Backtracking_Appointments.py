@@ -4,7 +4,7 @@ from copy import deepcopy
 def assCompleto(assegnamento,csp):
 	'''
 	Verifico se l'assegnamento è completo verificando se tutte le variabili del csp
-	hannoo un assegnamento
+	hanno un assegnamento
 	'''
 	return len(assegnamento)==len(csp.nodes())
 
@@ -24,9 +24,8 @@ def isSafe(v, var, assegnamento, csp):
 
 			#print("stampa assegnamento corrente ", y)
 			if (v[0] == y[0] and ((v[2] != y[2] and abs(float(v[1])-float(y[1])) < distance(v[2], y[2])*0.5 + 1) or (v[2] == y[2] and abs(float(v[1])-float(y[1])) != 1))):
-				return False
-	return True
-
+				return (False, n)
+	return (True, "-1")
 
 def varNonAssegnata(assegnamento, csp):
 	'''
@@ -51,38 +50,73 @@ def varNonAssegnata(assegnamento, csp):
 			return n
 	'''
 
-def ordinaValori(var,assegnamento,csp):
+def ordinaValori(var, assegnamento, csp):
 	'''
 	Restituisco tutti i valori del dominio di var che non sono assegnati
 	'''
-	list=deepcopy(csp.nodes[var]['domain'])
+	list = deepcopy(csp.nodes[var]['domain'])
 	if var in assegnamento:
 		list.pop(list.index(assegnamento[var]))
 	return list
 
-def backtrackingSearch(csp):
-	return backtracking({},csp)
 
-def backtracking(assegnamento, csp):
+
+"""
+Funzione solver che viene chiamata dal programma principale
+Per implementare il backjump è necessario tenere una lista delle variabili in
+ordine che sono state assegnate
+"""
+def backtrackingSearch(csp):
+	return backtracking({},[],csp,0)
+
+
+
+def backtracking(assegnamento, assegnate, csp, iteration):
 	'''
-	Se l'assegnamentp è completo mi fermo
+	Se l'assegnamento è completo mi fermo
 	'''
+	print("Assegnamento corrente = ", assegnamento," Iterazione numero = ", iteration)
+	iteration += 1
+
 	if assCompleto(assegnamento, csp):
 		return assegnamento
 
-	var=varNonAssegnata(assegnamento, csp)
-
-	for v in ordinaValori(var,assegnamento,csp):
-		if isSafe(v, var, assegnamento, csp):
-			assegnamento[var]=v
-
-			ris=backtracking(assegnamento,csp)
+	var = varNonAssegnata(assegnamento, csp)
+	conflictSet = []
+	#print("Variabile scelta ", var)
+	for v in ordinaValori(var, assegnamento, csp):
+		(safe, conflict) = isSafe(v, var, assegnamento, csp)
+		if safe:
+			assegnamento[var] = v
+			assegnate.append(var)
+			ris = backtracking(assegnamento, assegnate, csp, iteration)
 			if ris!=None:
 				return ris
+		else:
+			conflictSet.append(conflict)
 
-			del(assegnamento[var])
+
+			# Se arrivo a questo punto sono sicuro di essere tornato alla radice
+			# del sottoalbero che potevo analizzare e di non aver trovato una soluzione.
+	backjump(assegnamento, assegnate, conflictSet)
 
 	return None
+
+
+def backjump(assegnamento, assegnate, conflictSet):
+	assIndex = len(assegnate)-1
+	print("AssegnamentoL = ", assegnamentoL)
+	print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
+	print("assegnamento[assIndex] = ", assegnamento[0])
+	while( not(assegnamento[assIndex] in conflictSet)):
+		del(assegnamento[assIndex])
+		assIndex -= 1
+	del(assegnamento[assIndex])
+
+
+
+
+
 
 
 def distance(a, b):
