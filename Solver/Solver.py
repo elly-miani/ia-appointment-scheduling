@@ -24,6 +24,7 @@ def constraintFunction():
             return True
     return innerFunction
 
+
 def takeSecond(elem):
     return elem[1]
 
@@ -108,7 +109,7 @@ with open(sys.argv[1], 'r') as f:
     for row in reader:
         a = iter(row[1:])
         appointments[row[0]] = dict(zip(a, a))
-print(appointments);
+print(appointments)
 
 
 dominio = []
