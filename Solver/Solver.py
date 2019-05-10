@@ -18,12 +18,6 @@ def constraintFunction():
         # else: they are the same day
         # [1] is 'Hour', [2] is 'House'
         # if the houses are different, the distance 
-        # print(x[1])
-        # print(y[1])
-        # print(float(x[1])-float(y[1]))
-        # print(abs(float(x[1])-float(y[1])))
-        # print(distance(x[2], y[2]))
-        # print(distance(x[2], y[2])*0.5 + 1)
         
         if (x[2] != y[2] and abs(float(x[1])-float(y[1])) < distance(x[2], y[2])*0.5 + 1):
             return False

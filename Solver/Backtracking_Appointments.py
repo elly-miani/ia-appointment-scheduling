@@ -12,7 +12,7 @@ def isSafe(v, var, assegnamento, csp):
 	'''
 	Verifico se l'assegnamento è consistente.
 	'''
-	#print("Verifico vincoli con i vicini alla variabile ", var, " con assegnato il valore ", v)
+	print("Verifico vincoli con i vicini alla variabile ", var, " con assegnato il valore ", v)
 	for n in csp.neighbors(var):
 		'''
 		Per ogni vicino di var, verifico se ha già un assegnamento uguale a quello testato
@@ -23,7 +23,22 @@ def isSafe(v, var, assegnamento, csp):
 			y = assegnamento[n]
 
 			#print("stampa assegnamento corrente ", y)
-			if (v[0] == y[0] and ((v[2] != y[2] and abs(float(v[1])-float(y[1])) < distance(v[2], y[2])*0.5 + 1) or (v[2] == y[2] and abs(float(v[1])-float(y[1])) != 1))):
+
+			isSameDay = (v[0] == y[0])
+			isSameHouse = v[2] == y[2]
+
+			timeBwAppointments = abs(float(v[1])-float(y[1])) 
+			distanceBwHouses = (distance(v[2], y[2])*0.5 + 1)
+			cantReachInTime = (not isSameHouse and (timeBwAppointments < distanceBwHouses))
+			avoidSameHouse = (isSameHouse and timeBwAppointments != 1)
+
+			'''
+			TODO: modify so that only avoid appointments at same house if they are both in the morning/afternoon
+			'''
+			# notEnoughTime = (timeBwAppointments < distanceBwHouses)
+
+			if (isSameDay and (cantReachInTime or avoidSameHouse)):
+			# if (isSameDay and (notEnoughTime)):
 				return (False, n)
 	return (True, "-1")
 
@@ -38,17 +53,17 @@ def varNonAssegnata(assegnamento, csp):
 	for n in csp.nodes():
 		if n not in assegnamento and len(csp.nodes[n]['domain']) < minimumLength:
 			chosenVar = n
-	return chosenVar
 
 	'''
 	Restituisco la prima variabile del csp che non compare nell'assegnamento
-	'''
-	''''
 	for n in csp.nodes():
-		if n not in assegnamento:
-			print(type(n))
-			return n
 	'''
+	# if n not in assegnamento:
+	# 	print(type(n))
+	# 	return n
+	return chosenVar
+
+	
 
 def ordinaValori(var, assegnamento, csp):
 	'''
@@ -98,6 +113,7 @@ def backtracking(assegnamento, assegnate, csp, iteration):
 				return ris
 		else:
 			conflictSet.append(conflict)
+			# print("Conflict: " + conflict)
 			# Se arrivo a questo punto sono sicuro di essere tornato alla radice
 			# del sottoalbero che potevo analizzare e di non aver trovato una soluzione.
 

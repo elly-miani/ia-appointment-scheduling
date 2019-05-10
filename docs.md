@@ -48,3 +48,8 @@ def constraintFunction():
  ['sat', '11.00', 'D']
 ```
 Are they different things?
+
+
+# Fixes
+
+- Check on same House on same Day to be changed to same House Morning/Afternoon

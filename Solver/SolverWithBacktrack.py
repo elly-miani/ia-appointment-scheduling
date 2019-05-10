@@ -77,7 +77,7 @@ def printSolution(solution):
         if solution[x][0] == days[5]:
             ordApp[5].append([x, solution[x]])
 
-    print(ordApp)
+    # print(ordApp)
     for x in ordApp:
         x.sort(key=takeSecond)
 
