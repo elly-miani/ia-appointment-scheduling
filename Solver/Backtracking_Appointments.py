@@ -9,6 +9,53 @@ def assCompleto(assegnamento,csp):
 	'''
 	return len(assegnamento)==len(csp.nodes())
 
+
+def isSafeAllSolutions(v, var, assegnamento, csp, analyzed):
+	'''
+	Verifico se l'assegnamento è consistente.
+	'''
+	#print("Verifico vincoli con i vicini alla variabile ", var, " con assegnato il valore ", v)
+	for n in csp.neighbors(var):
+		'''
+		Per ogni vicino di var, verifico se ha già un assegnamento uguale a quello testato
+		Qui è dove devo cercare di far rispettare i vincoli rispetto i vincoli con i vicini.
+		valore che ho appena dato alla variabile var
+		'''
+		if n in assegnamento:
+			y = assegnamento[n]
+
+			#print("stampa assegnamento corrente ", y)
+
+			isSameDay = v[0] == y[0]
+			# va ancora aggiustato
+			bothMorning = float(v[1]) <= 11.5 and float(y[1]) <= 11.5
+			bothAfternoon = float(v[1]) > 12.0 and float(y[1]) > 12.0
+			isSamePeriod = bothMorning or bothAfternoon
+			isSameHouse = v[2] == y[2]
+
+			timeBwAppointments = abs(float(v[1])-float(y[1]))
+			distanceBwHouses = (distance(v[2], y[2])*0.5 + 1)
+			cantReachInTime = (not isSameHouse and (timeBwAppointments < distanceBwHouses))
+			avoidSameHouse = (isSameHouse and timeBwAppointments != 1)
+
+			'''
+			TODO: Check the new condition.
+			'''
+			# notEnoughTime = (timeBwAppointments < distanceBwHouses)
+
+			if (isSameDay and isSamePeriod and (cantReachInTime or avoidSameHouse)):
+				
+				numCutSolutions = 1
+				
+				for k in csp.nodes():
+					if k not in assegnamento:
+						numCutSolutions *= len(csp.nodes[k]['domain'])
+				analyzed += numCutSolutions
+				
+				return (False, n, analyzed)
+	return (True, "-1", analyzed)
+
+
 def isSafe(v, var, assegnamento, csp):
 	'''
 	Verifico se l'assegnamento è consistente.
@@ -27,7 +74,7 @@ def isSafe(v, var, assegnamento, csp):
 
 			isSameDay = v[0] == y[0]
 			# va ancora aggiustato
-			bothMorning = float(v[1]) <= 11.0 and float(y[1]) <= 11.0
+			bothMorning = float(v[1]) <= 11.5 and float(y[1]) <= 11.5
 			bothAfternoon = float(v[1]) > 12.0 and float(y[1]) > 12.0
 			isSamePeriod = bothMorning or bothAfternoon
 			isSameHouse = v[2] == y[2]
@@ -40,12 +87,12 @@ def isSafe(v, var, assegnamento, csp):
 			'''
 			TODO: Check the new condition.
 			'''
-			# notEnoughTime = (timeBwAppointments < distanceBwHouses)
-
+			
 			if (isSameDay and isSamePeriod and (cantReachInTime or avoidSameHouse)):
-			# if (isSameDay and (notEnoughTime)):
 				return (False, n)
 	return (True, "-1")
+
+
 
 def varNonAssegnata(assegnamento, csp):
 	'''
@@ -126,7 +173,6 @@ def backtracking(assegnamento, assegnate, csp, iteration):
 	return None
 
 
-NumTotalSolution=0
 
 """
 Funzione solver che viene chiamata dal programma principale
@@ -134,16 +180,18 @@ Per implementare il backjump è necessario tenere una lista delle variabili in
 ordine che sono state assegnate
 """
 def backtrackingSearchAllSolutions(csp):
-	'''for n in csp.nodes():
-		csp.nodes[var]['domain']'''
-	return backtrackingAllSolutions([],{},[],csp,0)[0]
+	numTotalSolution = 1
+	for n in csp.nodes():
+		numTotalSolution *= len(csp.nodes[n]['domain'])
+	print("Total number of possible solution = ", numTotalSolution)
+	return backtrackingAllSolutions([],{},[],csp,0, 0, numTotalSolution)[0]
 
 
-def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration):
+def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration, analyzed, numTotalSolution):
 	'''
 	Se l'assegnamento è completo mi fermo
 	'''
-	print("Iterazione numero = ", iteration)#, "\nAssegnamento corrente = ", assegnamento)
+	print("Iterazione numero = ", iteration, "Percentuale albero analizzata = ", (analyzed/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
 	iteration += 1
 
 	if assCompleto(assegnamento, csp):
@@ -164,12 +212,12 @@ def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration)
 	conflictSet = []
 	#print("Variabile scelta ", var)
 	for v in ordinaValori(var, assegnamento, csp):
-		(safe, conflict) = isSafe(v, var, assegnamento, csp)
+		(safe, conflict, analyzed) = isSafeAllSolutions(v, var, assegnamento, csp, analyzed)
 		if safe:
 			assegnamento[var] = v
 			assegnate.append(var)
 			assLength = len(assegnate)
-			(sol, ris) = backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration)
+			(sol, ris) = backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration, analyzed, numTotalSolution)
 			#Significa che è successo un backjump e sta tagliando il ramo attuale
 			if assLength > len(assegnate) + 1:
 				print("Exit here")
