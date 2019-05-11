@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Example of Hello World in HTML">
+  <meta name="author" content="Nicola Ferro">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- Fontawesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+
+
+  <title>
+    Request Appointment
+  </title>
+
+</head>
+
+<body>
+  <div class="container">
+    <br/>
+    <h1>Request Appointment</h1>
+
+    <form id="appointmentRequest" class="form-box">
+      <div class="form-line">
+        <!-- <label for="course-form"> Name </label> -->
+        <input id="name-form" class="form-input" name="Name" placeholder="Name" required>
+        <!-- <span class="error"> </span> -->
+      </div>
+      <div class="form-line">
+        <!-- <label for="course-form"> Surname </label> -->
+        <input id="surname-form" class="form-input" name="Surname" placeholder="Surname" required>
+        <!-- <span class="error"> </span> -->
+      </div>
+      <div class="form-line">
+        <label for="house-form"> Choose the house you'd like to visit: </label>
+        <select id="house-form" name="House" required>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+          </select>
+      </div>
+      <div class="form-line">
+        <label for="days-form"> Choose the days you're available: </label>
+        <br/>
+        <input id="days-form" type="checkbox" name="Day" value="mon"> Monday<br>
+        <input id="days-form" type="checkbox" name="Day" value="tue"> Tuesday<br>
+        <input id="days-form" type="checkbox" name="Day" value="wed"> Wednesday<br>
+        <input id="days-form" type="checkbox" name="Day" value="thu"> Thursday<br>
+        <input id="days-form" type="checkbox" name="Day" value="fri"> Friday<br>
+      </div>
+      <div class="form-line">
+        <label for="pref-form"> Choose if you'd prefer the mornings or the afternoons: </label>
+        <input id="pref-form" type="checkbox" name="Pref" value="Morning"> Morning
+        <input id="pref-form" type="checkbox" name="Pref" value="Afternoon"> Afternoon<br>
+      </div>
+      <div class="form-line">
+        <!-- <button type="button" onclick="alert('Appointment requested!')">Submit</button> -->
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- <div id="demo">
+    <h1>The XMLHttpRequest Object</h1>
+    <button type="button" onclick="loadDoc()">Change Content</button>
+  </div> -->
+
+  <!-- <script>
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+
+      // With the XMLHttpRequest object you can define a function to be executed when the request receives an answer.
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("demo").innerHTML =
+            this.responseText;
+        }
+      };
+
+      //The second parameter can be any kind of file, like .txt and .xml, or server scripting files like .asp and .php (which can perform actions on the server before sending the response back).
+      xhttp.open("POST", "", true);
+      xhttp.send("key:value, hello:world");
+    }
+  </script> -->
+
+  <!-- JAVASCRIPT -->
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+
+  <!-- Javascript library to manage tooltips -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+
+  <!-- Bootstrap Javascript-->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+
+  <!-- Custom Javascript -->
+  <script src="../js/script.js">
+  </script>
+
+</body>
+
+</html>

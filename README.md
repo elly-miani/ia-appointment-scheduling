@@ -1,6 +1,14 @@
 # IA-APPOINTMENT-SCHEDULING
 A simple webapp to schedule meetings with time and location constraints using constraint programming techniques.
 
+## How to Run
+You need to run a local Python web server to use the web application.
+
+From the root folder: `python webserver.py`
+
+The web server will run on `http://localhost:8000/`
+
+
 ## Case study
 An estate agent needs a tool to automatically schedule next week appointments based on his and his clients' constraints.
 
