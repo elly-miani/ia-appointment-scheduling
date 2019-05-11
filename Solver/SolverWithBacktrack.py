@@ -147,6 +147,7 @@ ConstraintGraph.add_edges_from(itertools.combinations(variablesName, 2))
 
 #solution = problem.getSolutions()
 #Chiamo il solutore fatto in casa...
+'''
 start = current_milli_time()
 solution = backtrackingSearch(ConstraintGraph)
 end = current_milli_time()
@@ -154,6 +155,7 @@ print("\n\n###########Time spent to find the first solution = ", end-start," ms.
 #print(solution)
 printSolution(solution)
 '''
+
 start = current_milli_time()
 solutions = backtrackingSearchAllSolutions(ConstraintGraph)
 end = current_milli_time()
@@ -161,4 +163,4 @@ print("\n\n###########Time spent to find all solution = ", end-start," ms.\n\n")
 
 for sol in solutions:
     printSolution(sol)
-'''
+
