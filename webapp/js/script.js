@@ -1,70 +1,10 @@
-/**
- * Retrieves input data from a form and returns it as a JSON object.
- * @param  {HTMLFormControlsCollection} elements  the form elements
- * @return {Object}                               form data as an object literal
- */
-// const formToJSON = elements => [].reduce.call(elements, (data, element) => {
-
-//   data[element.name] = element.value;
-//   return data;
-
-// }, {});
+// Function to handle forms and send content as JSON via ajax to the server
 
 
-/**
- * Checks if an element’s value can be saved (e.g. not an unselected checkbox).
- * @param  {Element} element  the element to check
- * @return {Boolean}          true if the value should be added, false if not
- */
-
-
-const isValidValue = element => {
-  return (!['checkbox', 'radio'].includes(element.type) || element.checked);
-};
-
-const isValidElement = element => {
-  return element.name && element.value;
-};
-
-const isCheckbox = element => element.type === 'checkbox';
-
-const formToJSON = elements => {
-  const reducerFunction = (data, element) => {
-
-    // Make sure the element has the required properties and should be added.
-    if (isValidElement(element) && isValidValue(element)) {
-
-      if (isCheckbox(element)) {
-        // Add the current field to the array if more than one can be selected
-        data[element.name] = (data[element.name] || []).concat(element.value);
-      } else {
-        // Add the current field to the object.
-        data[element.name] = element.value;
-      }
-    }
-
-    console.log(JSON.stringify(data));
-
-    return data;
-  }
-
-  // This is used as the initial value of `data` in `reducerFunction()`.
-  const reducerInitialValue = {};
-
-
-  // Now we reduce by `call`-ing `Array.prototype.reduce()` on `elements`.
-  const formData = [].reduce.call(elements, reducerFunction, reducerInitialValue);
-
-  // The result is then returned for use elsewhere.
-  return formData;
-}
-
-
-
-
+// validate form to ensure all fields have been filled in
 function formValidation() {
 
-  // Stop the form from submitting since we’re handling that with AJAX.
+  // stop the form from submitting since we’re handling that with AJAX
   event.preventDefault();
 
   checkedDays = $("#days-form:checked").length;
@@ -78,32 +18,81 @@ function formValidation() {
       alert("You must select at least one preference for time of day.");
     }
     else {
+      // if everything is validated then process the form
       handleFormSubmit();
     }
   }
-  
 }
 
 
-/**
- * A handler function to prevent default submission and run our custom script.
- * @param  {Event} event  the submit event triggered by the user
- * @return {void}
- */
+
+
+// check if the element is valid
+const isValidElement = element => {
+  // both `name` and `value` properties must be non-empty
+  return element.name && element.value;
+};
+
+// check if checkable fields are valid
+const isValidValue = element => {
+  // only checked elements are accepted 
+  return (!['checkbox', 'radio'].includes(element.type) || element.checked);
+};
+
+// check if the element is a checkbox
+const isCheckbox = element => element.type === 'checkbox';
+
+
+
+// function to create a JSON string from the form elements
+const formToJSON = elements => {
+
+  // concatenate in *data* each `element`, making the necessary modifications
+  const reducerFunction = (data, element) => {
+
+    // make sure the element is valid and should be added
+    if (isValidElement(element) && isValidValue(element)) {
+
+      if (isCheckbox(element)) {
+        // checkbox can have multiple values: store them in a list
+        // concatenate the current value to the `data` dict, with key = element.name
+        // either in the existing list or creating a new empty one
+        data[element.name] = (data[element.name] || []).concat(element.value);
+      } else {
+        // add the current element to the dict `data`
+        data[element.name] = element.value;
+      }
+    }
+
+    return data;
+  }
+
+  // initial value of `data` in `reducerFunction()`
+  const reducerInitialValue = {};
+
+
+  // reduce by call Array.prototype.reduce()` on `elements`
+  const formData = [].reduce.call(elements, reducerFunction, reducerInitialValue);
+
+  return formData;
+}
+
+
+
+
+// handle the form content, parse it into JSON and send to the server
 const handleFormSubmit = event => {
 
-  // Call our function to get the form data.
+  // get the form data
   const data = formToJSON(form.elements);
-  console.log(data);
 
-  // Use `JSON.stringify()` to make the output valid, human-readable JSON.
+  // `JSON.stringify()` to make the output valid, human-readable JSON
   dataContainer = JSON.stringify(data);
 
-  console.log(dataContainer);
-
+  // send via ajax to the webservice `/requestAppointment`
   $.ajax({
     type: "POST",
-    url: "serverUrl",
+    url: "requestAppointment",
     data: dataContainer,
     success: function () { },
     dataType: "json",
@@ -113,23 +102,5 @@ const handleFormSubmit = event => {
 
 const form = document.getElementById('appointmentRequest');
 form.addEventListener('submit', formValidation);
-
-
-
-// function sendData() {
-
-
-//   var formData = JSON.stringify($("#appointmentRequest").serializeArray());
-
-//   $.ajax({
-//     type: "POST",
-//     url: "serverUrl",
-//     data: formData,
-//     success: function () { },
-//     dataType: "json",
-//     contentType: "application/json"
-//   });
-// }
-
 
 

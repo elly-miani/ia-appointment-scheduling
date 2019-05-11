@@ -1,0 +1,64 @@
+{
+    "0": {
+        "Name": "BUFf",
+        "Surname": "Hell",
+        "House": "D",
+        "Day": [
+            "mon",
+            "tue"
+        ],
+        "Pref": [
+            "Morning",
+            "Afternoon"
+        ]
+    },
+    "1": {
+        "Name": "Eleonora",
+        "Surname": "Miani",
+        "House": "B",
+        "Day": [
+            "thu"
+        ],
+        "Pref": [
+            "Afternoon"
+        ]
+    },
+    "2": {
+        "Name": "Enrico",
+        "Surname": "Petrucci",
+        "House": "D",
+        "Day": [
+            "mon",
+            "tue",
+            "thu"
+        ],
+        "Pref": [
+            "Morning",
+            "Afternoon"
+        ]
+    },
+    "3": {
+        "Name": "Bip",
+        "Surname": "Bop",
+        "House": "B",
+        "Day": [
+            "mon",
+            "tue",
+            "fri"
+        ],
+        "Pref": [
+            "Afternoon"
+        ]
+    },
+    "4": {
+        "Name": "Last",
+        "Surname": "Try",
+        "House": "A",
+        "Day": [
+            "mon"
+        ],
+        "Pref": [
+            "Afternoon"
+        ]
+    }
+}

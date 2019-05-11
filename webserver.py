@@ -1,7 +1,24 @@
+'''
+    basic server handling GET and POST requests
+    currently supports:
+        # GET requests of files
+        # POST requests to `/requestAppointment` with JSON payload, 
+          to add a new appointment by calling `requestAppointment()`
+    TODO: error handling:
+        # POST to unknown paths
+
+    use KeyboardInterrupt to close socket
+'''
+
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from os import curdir, sep
+import sys
 from io import BytesIO
 import json
+
+sys.path.append('./webservices')
+from requestAppointment import requestAppointment 
+
 
 class HTTPRequestHandler(BaseHTTPRequestHandler):
 
@@ -12,7 +29,7 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        # if path is root
+        # if path is root, show homepage
         if self.path=="/":
             self.path="html/index.html"
 
@@ -31,7 +48,7 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
                 sendReply = True
 
             if sendReply == True:
-                #Open the static file requested and send it
+                # open the static file requested and send it
                 f = open(curdir + sep + "webapp/" + self.path, "rb")
                 self._set_headers(mimetype)
                 self.wfile.write(f.read())
@@ -46,18 +63,17 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
         content_length = int(self.headers['Content-Length'])
         body = self.rfile.read(content_length)
 
-        self.send_response(200)
-        self.end_headers()
+        # if requested webservice is `requestAppointment`
+        if self.path == "/requestAppointment":
+            requestAppointment(json.loads(body))
 
-        response = BytesIO()
-        response.write(b'This is POST request. ')
-        response.write(b'Received: ')
-        response.write(body)
-        self.wfile.write(response.getvalue())
-
-        datastore = json.loads(body)
-
-        print(datastore)
+            self.send_response(200)
+            self.end_headers()
+            response = BytesIO()
+            response.write(b'Received POST request for new appointment:')
+            response.write(body)
+            self.wfile.write(response.getvalue())
+        
 
 
 try:
