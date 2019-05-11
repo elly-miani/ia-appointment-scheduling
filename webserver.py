@@ -14,7 +14,7 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         # if path is root
         if self.path=="/":
-            self.path="/index.html"
+            self.path="html/index.html"
 
         try:
             sendReply = False
@@ -32,7 +32,7 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
 
             if sendReply == True:
                 #Open the static file requested and send it
-                f = open(curdir + sep + self.path, "rb")
+                f = open(curdir + sep + "webapp/" + self.path, "rb")
                 self._set_headers(mimetype)
                 self.wfile.write(f.read())
                 f.close()
@@ -57,7 +57,7 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
 
         datastore = json.loads(body)
 
-        print(datastore["hello"])
+        print(datastore)
 
 
 try:
