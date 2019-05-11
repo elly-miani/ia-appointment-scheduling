@@ -43,12 +43,14 @@ def initDomain():
     '''
     Data per il dominio
     '''
+    #days = ["mon", "tue", "wed", "thu", "fri", "sat"]
+    days = ["mon", "tue", "wed"]
 
-    days = ["mon", "tue", "wed", "thu", "fri", "sat"]
-
+    #hours = ["08.00", "08.50", "09.00", "09.50", "10.00", "10.50", "11.00", "11.50",
+    #"13.00", "13.50", "14.00", "14.50", "15.00", "15.50", "16.00", "16.50", "17.00",
+    #"17.50"]
     hours = ["08.00", "08.50", "09.00", "09.50", "10.00", "10.50", "11.00", "11.50",
-            "13.00", "13.50", "14.00", "14.50", "15.00", "15.50", "16.00", "16.50", "17.00",
-            "17.50"]
+    "13.00", "13.50", "14.00", "14.50", "15.00", "15.50", "16.00", "16.50"]
 
     locations = ["A", "B", "C", "D"]
 
@@ -120,17 +122,16 @@ variablesName = []
 # for each appointment (iterate on the numerical key of the appointments)
 for x in appointments:
     dom = []
-
     # check which elements of the generic domain are necessary for this appointment
     for y in domain:
         hour , minutes = y[1].split(".")
         hour = int(hour)
 
         if "Morning" in appointments[x]["Pref"] and hour < 12 and y[0] in appointments[x]["Day"] and y[2] in appointments[x]["House"]:
-                dom.append(y)
+            dom.append(y)
 
         if "Afternoon" in appointments[x]["Pref"] and hour > 12 and y[0] in appointments[x]["Day"] and y[2] in appointments[x]["House"]:
-                dom.append(y)
+            dom.append(y)
 
     #Aggiungo la variabile corrente con il domain aggiustato
     ConstraintGraph.add_node(x, domain=dom)
@@ -160,7 +161,7 @@ start = current_milli_time()
 solutions = backtrackingSearchAllSolutions(ConstraintGraph)
 end = current_milli_time()
 print("\n\n###########Time spent to find all solution = ", end-start," ms.\n\n")
-
+'''
 for sol in solutions:
     printSolution(sol)
-
+'''

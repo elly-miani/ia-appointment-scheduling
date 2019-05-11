@@ -206,6 +206,8 @@ def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration,
 		#pp.pprint(assegnamento)
 		print("\n\n######################### SOLUZIONE NUMERO ", len(solutions), " #########################\n\n")
 		print(solutions[-1])
+		print("assegnate = ", assegnate,"\n\n")
+
 		return (solutions, None)
 
 	var = varNonAssegnata(assegnamento, csp)
@@ -231,14 +233,20 @@ def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration,
 			# Se arrivo a questo punto sono sicuro di essere tornato alla radice
 			# del sottoalbero che potevo analizzare e di non aver trovato una soluzione.
 
-	backjump(assegnamento, assegnate, conflictSet)
+	if len(conflictSet) != 0:
+		backjump(assegnamento, assegnate, conflictSet)
+	else:
+		if len(assegnate) > 0:
+			del(assegnate[-1])
+
 	return (solutions, None)
 
 
 def backjump(assegnamento, assegnate, conflictSet):
 	assIndex = len(assegnate)-1
 	print("\n\n####BACKJUMP####\n")
-	#print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
+	print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
+	
 	while( not(assegnate[assIndex] in conflictSet)):
 		del(assegnamento[assegnate[assIndex]])
 		del(assegnate[assIndex])
