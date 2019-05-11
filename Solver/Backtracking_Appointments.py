@@ -26,7 +26,10 @@ def isSafe(v, var, assegnamento, csp):
 			#print("stampa assegnamento corrente ", y)
 
 			isSameDay = v[0] == y[0]
-			isSamePeriod = abs(float(v[1])-float(y[1])) <= 4.5
+			# va ancora aggiustato
+			bothMorning = float(v[1]) <= 11.0 and float(y[1]) <= 11.0
+			bothAfternoon = float(v[1]) > 12.0 and float(y[1]) > 12.0
+			isSamePeriod = bothMorning or bothAfternoon
 			isSameHouse = v[2] == y[2]
 
 			timeBwAppointments = abs(float(v[1])-float(y[1]))
@@ -123,12 +126,16 @@ def backtracking(assegnamento, assegnate, csp, iteration):
 	return None
 
 
+NumTotalSolution=0
+
 """
 Funzione solver che viene chiamata dal programma principale
 Per implementare il backjump è necessario tenere una lista delle variabili in
 ordine che sono state assegnate
 """
 def backtrackingSearchAllSolutions(csp):
+	'''for n in csp.nodes():
+		csp.nodes[var]['domain']'''
 	return backtrackingAllSolutions([],{},[],csp,0)[0]
 
 
@@ -178,9 +185,6 @@ def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration)
 
 	backjump(assegnamento, assegnate, conflictSet)
 	return (solutions, None)
-
-
-
 
 
 def backjump(assegnamento, assegnate, conflictSet):

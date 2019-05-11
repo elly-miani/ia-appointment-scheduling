@@ -1,4 +1,3 @@
-from constraint import *
 import networkx as nx
 import itertools
 import matplotlib.pyplot as plt
