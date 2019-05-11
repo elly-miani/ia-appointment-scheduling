@@ -4,6 +4,7 @@ import random
 import csv
 import time
 import sys
+import json
 
 
 current_milli_time = lambda: int(round(time.time() * 1000))
@@ -78,16 +79,27 @@ def initDomain():
 
 
 # load appointments from a csv file in *filePath*
+# load appointments from a csv file in *filePath*
 def loadAppointments(filePath):
     appointments = {}
 
     with open(filePath, 'r') as f:
-        reader = csv.reader(f)
-        for row in reader:
-            a = iter(row[1:])
-            appointments[row[0]] = dict(zip(a, a))
+        appointments = json.load(f)
 
+    # pp.pprint(appointments)
+    # print(appointments['8'])
     return appointments
+
+# def loadAppointments(filePath):
+#     appointments = {}
+
+#     with open(filePath, 'r') as f:
+#         reader = csv.reader(f)
+#         for row in reader:
+#             a = iter(row[1:])
+#             appointments[row[0]] = dict(zip(a, a))
+
+#     return appointments
 
 
 def solver(domain, appointments):

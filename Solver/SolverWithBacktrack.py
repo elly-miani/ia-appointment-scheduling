@@ -1,9 +1,10 @@
 import networkx as nx
 import itertools
 import matplotlib.pyplot as plt
-import csv
 import time
 import sys
+import json
+import pprint as pp
 
 from Backtracking_Appointments import backtrackingSearch
 from Backtracking_Appointments import backtrackingSearchAllSolutions
@@ -21,12 +22,20 @@ def loadAppointments(filePath):
     appointments = {}
 
     with open(filePath, 'r') as f:
-        reader = csv.reader(f)
-        for row in reader:
-            a = iter(row[1:])
-            appointments[row[0]] = dict(zip(a, a))
-
+        appointments = json.load(f)
+    
     return appointments
+
+# def loadAppointments(filePath):
+#     appointments = {}
+
+#     with open(filePath, 'r') as f:
+#         reader = csv.reader(f)
+#         for row in reader:
+#             a = iter(row[1:])
+#             appointments[row[0]] = dict(zip(a, a))
+
+#     return appointments
 
 
 # intialize a generic domain with all possible combinations of days, hours and locations
@@ -123,7 +132,6 @@ for x in appointments:
         if "Afternoon" in appointments[x]["Pref"] and hour > 12 and y[0] in appointments[x]["Day"] and y[2] in appointments[x]["House"]:
                 dom.append(y)
 
-    #print(dom)
     #Aggiungo la variabile corrente con il domain aggiustato
     ConstraintGraph.add_node(x, domain=dom)
     variablesName.append(x)
