@@ -1,5 +1,6 @@
-
 from copy import deepcopy
+import pprint as pp
+
 
 def assCompleto(assegnamento,csp):
 	'''
@@ -12,7 +13,7 @@ def isSafe(v, var, assegnamento, csp):
 	'''
 	Verifico se l'assegnamento è consistente.
 	'''
-	print("Verifico vincoli con i vicini alla variabile ", var, " con assegnato il valore ", v)
+	#print("Verifico vincoli con i vicini alla variabile ", var, " con assegnato il valore ", v)
 	for n in csp.neighbors(var):
 		'''
 		Per ogni vicino di var, verifico se ha già un assegnamento uguale a quello testato
@@ -24,20 +25,21 @@ def isSafe(v, var, assegnamento, csp):
 
 			#print("stampa assegnamento corrente ", y)
 
-			isSameDay = (v[0] == y[0])
+			isSameDay = v[0] == y[0]
+			isSamePeriod = abs(float(v[1])-float(y[1])) <= 4.5
 			isSameHouse = v[2] == y[2]
 
-			timeBwAppointments = abs(float(v[1])-float(y[1])) 
+			timeBwAppointments = abs(float(v[1])-float(y[1]))
 			distanceBwHouses = (distance(v[2], y[2])*0.5 + 1)
 			cantReachInTime = (not isSameHouse and (timeBwAppointments < distanceBwHouses))
 			avoidSameHouse = (isSameHouse and timeBwAppointments != 1)
 
 			'''
-			TODO: modify so that only avoid appointments at same house if they are both in the morning/afternoon
+			TODO: Check the new condition.
 			'''
 			# notEnoughTime = (timeBwAppointments < distanceBwHouses)
 
-			if (isSameDay and (cantReachInTime or avoidSameHouse)):
+			if (isSameDay and isSamePeriod and (cantReachInTime or avoidSameHouse)):
 			# if (isSameDay and (notEnoughTime)):
 				return (False, n)
 	return (True, "-1")
@@ -63,7 +65,7 @@ def varNonAssegnata(assegnamento, csp):
 	# 	return n
 	return chosenVar
 
-	
+
 
 def ordinaValori(var, assegnamento, csp):
 	'''
@@ -121,20 +123,79 @@ def backtracking(assegnamento, assegnate, csp, iteration):
 	return None
 
 
+"""
+Funzione solver che viene chiamata dal programma principale
+Per implementare il backjump è necessario tenere una lista delle variabili in
+ordine che sono state assegnate
+"""
+def backtrackingSearchAllSolutions(csp):
+	return backtrackingAllSolutions([],{},[],csp,0)[0]
+
+
+def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration):
+	'''
+	Se l'assegnamento è completo mi fermo
+	'''
+	print("Iterazione numero = ", iteration)#, "\nAssegnamento corrente = ", assegnamento)
+	iteration += 1
+
+	if assCompleto(assegnamento, csp):
+		#Devo anche fare in modo di visitare la vicina soluzione probabilmente
+		#basta cancellare il valore dell'ultima variabile dall'assegnamento
+		solutions.append(deepcopy(assegnamento))
+		#print("Assegnamento prima del ")
+		#pp.pprint(assegnamento)
+		del(assegnamento[assegnate[-1]])
+		del(assegnate[-1])
+		#print("Assegnamento dopo del ")
+		#pp.pprint(assegnamento)
+		print("\n\n######################### SOLUZIONE NUMERO ", len(solutions), " #########################\n\n")
+		print(solutions[-1])
+		return (solutions, None)
+
+	var = varNonAssegnata(assegnamento, csp)
+	conflictSet = []
+	#print("Variabile scelta ", var)
+	for v in ordinaValori(var, assegnamento, csp):
+		(safe, conflict) = isSafe(v, var, assegnamento, csp)
+		if safe:
+			assegnamento[var] = v
+			assegnate.append(var)
+			assLength = len(assegnate)
+			(sol, ris) = backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration)
+			#Significa che è successo un backjump e sta tagliando il ramo attuale
+			if assLength > len(assegnate) + 1:
+				print("Exit here")
+				return (sol, None)
+			'''if ris!=None:
+				return (sol, ris)
+			'''
+		else:
+			conflictSet.append(conflict)
+			# print("Conflict: " + conflict)
+			# Se arrivo a questo punto sono sicuro di essere tornato alla radice
+			# del sottoalbero che potevo analizzare e di non aver trovato una soluzione.
+
+	backjump(assegnamento, assegnate, conflictSet)
+	return (solutions, None)
+
+
+
+
 
 def backjump(assegnamento, assegnate, conflictSet):
 	assIndex = len(assegnate)-1
 	print("\n\n####BACKJUMP####\n")
-	print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
+	#print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
 	while( not(assegnate[assIndex] in conflictSet)):
 		del(assegnamento[assegnate[assIndex]])
 		del(assegnate[assIndex])
 		assIndex -= 1
-		print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
+		#print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
 	del(assegnamento[assegnate[assIndex]])
 	del(assegnate[assIndex])
-	print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
-	print("\n####BACKJUMP_FINE####\n")
+	#print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
+	#print("\n####BACKJUMP_FINE####\n")
 
 
 

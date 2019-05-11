@@ -7,6 +7,7 @@ import time
 import sys
 
 from Backtracking_Appointments import backtrackingSearch
+from Backtracking_Appointments import backtrackingSearchAllSolutions
 
 
 current_milli_time = lambda: int(round(time.time() * 1000))
@@ -143,8 +144,14 @@ start = current_milli_time()
 solution = backtrackingSearch(ConstraintGraph)
 end = current_milli_time()
 print("\n\n###########Time spent to find the first solution = ", end-start," ms.\n\n")
-
-
-print(solution)
-
+#print(solution)
 printSolution(solution)
+'''
+start = current_milli_time()
+solutions = backtrackingSearchAllSolutions(ConstraintGraph)
+end = current_milli_time()
+print("\n\n###########Time spent to find all solution = ", end-start," ms.\n\n")
+
+for sol in solutions:
+    printSolution(sol)
+'''
