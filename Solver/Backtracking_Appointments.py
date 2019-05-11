@@ -46,11 +46,12 @@ def isSafeAllSolutions(v, var, assegnamento, csp, analyzed):
 			if (isSameDay and isSamePeriod and (cantReachInTime or avoidSameHouse)):
 				
 				numCutSolutions = 1
-				
+				print(csp.nodes())
 				for k in csp.nodes():
-					if k not in assegnamento:
+					if k not in assegnamento and k != var:
 						numCutSolutions *= len(csp.nodes[k]['domain'])
 				analyzed += numCutSolutions
+				print("####Pruning#### analizzate altre soluzioni : ", numCutSolutions )
 				
 				return (False, n, analyzed)
 	return (True, "-1", analyzed)
@@ -184,6 +185,9 @@ def backtrackingSearchAllSolutions(csp):
 	for n in csp.nodes():
 		numTotalSolution *= len(csp.nodes[n]['domain'])
 	print("Total number of possible solution = ", numTotalSolution)
+	"""
+	IDEA: forse posso passare a btas un vettore [a,b,c,d] dove vedo a che ciclo e a che profondità sto
+	"""
 	return backtrackingAllSolutions([],{},[],csp,0, 0, numTotalSolution)[0]
 
 
@@ -198,6 +202,7 @@ def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration,
 		#Devo anche fare in modo di visitare la vicina soluzione probabilmente
 		#basta cancellare il valore dell'ultima variabile dall'assegnamento
 		solutions.append(deepcopy(assegnamento))
+		analyzed+=1
 		#print("Assegnamento prima del ")
 		#pp.pprint(assegnamento)
 		del(assegnamento[assegnate[-1]])
@@ -208,7 +213,7 @@ def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration,
 		print(solutions[-1])
 		print("assegnate = ", assegnate,"\n\n")
 
-		return (solutions, None)
+		return (solutions, None, analyzed)
 
 	var = varNonAssegnata(assegnamento, csp)
 	conflictSet = []
@@ -219,11 +224,11 @@ def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration,
 			assegnamento[var] = v
 			assegnate.append(var)
 			assLength = len(assegnate)
-			(sol, ris) = backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration, analyzed, numTotalSolution)
+			(sol, ris, analyzed) = backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration, analyzed, numTotalSolution)
 			#Significa che è successo un backjump e sta tagliando il ramo attuale
 			if assLength > len(assegnate) + 1:
 				print("Exit here")
-				return (sol, None)
+				return (sol, None, analyzed)
 			'''if ris!=None:
 				return (sol, ris)
 			'''
@@ -234,29 +239,39 @@ def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration,
 			# del sottoalbero che potevo analizzare e di non aver trovato una soluzione.
 
 	if len(conflictSet) != 0:
-		backjump(assegnamento, assegnate, conflictSet)
+		analyzed = backjump(assegnamento, assegnate, conflictSet, analyzed, csp)
 	else:
 		if len(assegnate) > 0:
 			del(assegnate[-1])
 
-	return (solutions, None)
+	print("Iterazione numero = ", iteration, "Percentuale albero analizzata = ", (analyzed/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
+	return (solutions, None, analyzed)
 
 
-def backjump(assegnamento, assegnate, conflictSet):
+def backjump(assegnamento, assegnate, conflictSet, analyzed, csp):
 	assIndex = len(assegnate)-1
 	print("\n\n####BACKJUMP####\n")
 	print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
-	
+	#l'unica cosa che posso fare è una stima di quante ne salto... dovrei passare a che punto dello scorrere del dominio sono arrivato
+	skipped = 1
 	while( not(assegnate[assIndex] in conflictSet)):
+		controlled = 0
+		for x in csp.nodes[assegnate[assIndex]]['domain']:
+			controlled += 0
+		skipped *= (len(csp.nodes[assegnate[assIndex]]['domain'])-controlled) 
 		del(assegnamento[assegnate[assIndex]])
 		del(assegnate[assIndex])
 		assIndex -= 1
 		#print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
+	
+	analyzed+=skipped
+	print("Soluzioni skippate= ", skipped)
+	# Per questo non devo considerare rami tagliati perché riparto proprio da lì
 	del(assegnamento[assegnate[assIndex]])
 	del(assegnate[assIndex])
 	#print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
 	#print("\n####BACKJUMP_FINE####\n")
-
+	return analyzed
 
 
 
