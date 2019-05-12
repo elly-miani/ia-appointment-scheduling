@@ -1,3 +1,51 @@
+body {
+	font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+	font-family: 'Sanchez', serif;
+	font-size: 3rem;
+}
+
+a {
+	color: #8E596C;
+}
+
+a:hover {
+	color: #8EB199;
+}
+
+/* HOMEPAGE */
+.welcome-card {
+	max-width: 60%; 
+	margin-left:auto; 
+	margin-right:auto; 
+	margin-top:10%;
+	text-align: center;
+	padding-top:2%;
+}
+
+.card-body {
+	padding:4%;
+}
+
+.card-footer {
+	margin-top:8%;
+}
+
+
+.btn-primary {
+	background-color: #8E596C;
+	border-color: #8E596C;
+}
+
+.btn-primary:hover, .btn-primary:not(:disabled):not(.disabled):active {
+	background-color: #8EB199;
+	border-color: #8EB199;
+}
+
+
+/* FORM  */
 .error {
 	color: #ce4e4e;
 	font-size: 14px;

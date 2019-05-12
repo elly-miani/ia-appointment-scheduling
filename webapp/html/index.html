@@ -17,7 +17,16 @@
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" type="text/css" href="../css/styles.css">
 
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Sanchez" rel="stylesheet">
 
+  <style>
+    body {
+      background-image: url("../media/jesse-roberts-unsplash.jpg");
+      /* background-position: center; */
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  </style>
 
   <title>
     Request Appointment
@@ -27,72 +36,24 @@
 
 <body>
   <div class="container">
-    <br/>
-    <h1>Request Appointment</h1>
-
-    <form id="appointmentRequest" class="form-box">
-      <div class="form-line">
-        <!-- <label for="course-form"> Name </label> -->
-        <input id="name-form" class="form-input" name="Name" placeholder="Name" required>
-        <!-- <span class="error"> </span> -->
-      </div>
-      <div class="form-line">
-        <!-- <label for="course-form"> Surname </label> -->
-        <input id="surname-form" class="form-input" name="Surname" placeholder="Surname" required>
-        <!-- <span class="error"> </span> -->
-      </div>
-      <div class="form-line">
-        <label for="house-form"> Choose the house you'd like to visit: </label>
-        <select id="house-form" name="House" required>
-          <option value="A">A</option>
-          <option value="B">B</option>
-          <option value="C">C</option>
-          <option value="D">D</option>
-          </select>
-      </div>
-      <div class="form-line">
-        <label for="days-form"> Choose the days you're available: </label>
+    <div class="card welcome-card">
+      <div class="card-body">
+        <h1 class="card-title">Welcome to our<br/> AI-powered <br/>Real Estate Agency</h1>
         <br/>
-        <input id="days-form" type="checkbox" name="Day" value="mon"> Monday<br>
-        <input id="days-form" type="checkbox" name="Day" value="tue"> Tuesday<br>
-        <input id="days-form" type="checkbox" name="Day" value="wed"> Wednesday<br>
-        <input id="days-form" type="checkbox" name="Day" value="thu"> Thursday<br>
-        <input id="days-form" type="checkbox" name="Day" value="fri"> Friday<br>
+        <p class="card-text">
+          What would you like to do?
+        </p>
       </div>
-      <div class="form-line">
-        <label for="pref-form"> Choose if you'd prefer the mornings or the afternoons: </label>
-        <input id="pref-form" type="checkbox" name="Pref" value="Morning"> Morning
-        <input id="pref-form" type="checkbox" name="Pref" value="Afternoon"> Afternoon<br>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><a href="html/requestAppointment.html" class="btn btn-primary"> Request an appointment </a></li>
+        <li class="list-group-item"><a href="#" class="btn btn-primary"> Schedule next week appointments </a></li>
+      </ul>
+      <div class="card-footer text-muted">
+        <a href="https://github.com/elly-miani/ia-appointment-scheduling">github.com/ia-appointment-scheduling</a>
       </div>
-      <div class="form-line">
-        <!-- <button type="button" onclick="alert('Appointment requested!')">Submit</button> -->
-        <button type="submit">Submit</button>
-      </div>
-    </form>
+    </div>
   </div>
 
-  <!-- <div id="demo">
-    <h1>The XMLHttpRequest Object</h1>
-    <button type="button" onclick="loadDoc()">Change Content</button>
-  </div> -->
-
-  <!-- <script>
-    function loadDoc() {
-      var xhttp = new XMLHttpRequest();
-
-      // With the XMLHttpRequest object you can define a function to be executed when the request receives an answer.
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("demo").innerHTML =
-            this.responseText;
-        }
-      };
-
-      //The second parameter can be any kind of file, like .txt and .xml, or server scripting files like .asp and .php (which can perform actions on the server before sending the response back).
-      xhttp.open("POST", "", true);
-      xhttp.send("key:value, hello:world");
-    }
-  </script> -->
 
   <!-- JAVASCRIPT -->
   <!-- jQuery -->

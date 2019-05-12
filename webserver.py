@@ -46,6 +46,9 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
             if self.path.endswith(".css"):
                 mimetype='text/css'
                 sendReply = True
+            if self.path.endswith(".jpg"):
+                mimetype="image/jpeg"
+                sendReply = True
 
             if sendReply == True:
                 # open the static file requested and send it
