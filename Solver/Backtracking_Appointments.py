@@ -10,52 +10,6 @@ def assCompleto(assegnamento,csp):
 	return len(assegnamento)==len(csp.nodes())
 
 
-def isSafeAllSolutions(v, var, assegnamento, csp, analyzed):
-	'''
-	Verifico se l'assegnamento è consistente.
-	'''
-	#print("Verifico vincoli con i vicini alla variabile ", var, " con assegnato il valore ", v)
-	for n in csp.neighbors(var):
-		'''
-		Per ogni vicino di var, verifico se ha già un assegnamento uguale a quello testato
-		Qui è dove devo cercare di far rispettare i vincoli rispetto i vincoli con i vicini.
-		valore che ho appena dato alla variabile var
-		'''
-		if n in assegnamento:
-			y = assegnamento[n]
-
-			#print("stampa assegnamento corrente ", y)
-
-			isSameDay = v[0] == y[0]
-			# va ancora aggiustato
-			bothMorning = float(v[1]) <= 11.5 and float(y[1]) <= 11.5
-			bothAfternoon = float(v[1]) > 12.0 and float(y[1]) > 12.0
-			isSamePeriod = bothMorning or bothAfternoon
-			isSameHouse = v[2] == y[2]
-
-			timeBwAppointments = abs(float(v[1])-float(y[1]))
-			distanceBwHouses = (distance(v[2], y[2])*0.5 + 1)
-			cantReachInTime = (not isSameHouse and (timeBwAppointments < distanceBwHouses))
-			avoidSameHouse = (isSameHouse and timeBwAppointments != 1)
-
-			'''
-			TODO: Check the new condition.
-			'''
-			# notEnoughTime = (timeBwAppointments < distanceBwHouses)
-
-			if (isSameDay and isSamePeriod and (cantReachInTime or avoidSameHouse)):
-				
-				numCutSolutions = 1
-				print(csp.nodes())
-				for k in csp.nodes():
-					if k not in assegnamento and k != var:
-						numCutSolutions *= len(csp.nodes[k]['domain'])
-				analyzed += numCutSolutions
-				print("####Pruning#### analizzate altre soluzioni : ", numCutSolutions )
-				
-				return (False, n, analyzed)
-	return (True, "-1", analyzed)
-
 
 def isSafe(v, var, assegnamento, csp):
 	'''
@@ -175,6 +129,47 @@ def backtracking(assegnamento, assegnate, csp, iteration):
 
 
 
+
+def isSafeAllSolutions(v, var, assegnamento, csp):
+	'''
+	Verifico se l'assegnamento è consistente.
+	'''
+	#print("Verifico vincoli con i vicini alla variabile ", var, " con assegnato il valore ", v)
+	for n in csp.neighbors(var):
+		'''
+		Per ogni vicino di var, verifico se ha già un assegnamento uguale a quello testato
+		Qui è dove devo cercare di far rispettare i vincoli rispetto i vincoli con i vicini.
+		valore che ho appena dato alla variabile var
+		'''
+		if n in assegnamento:
+			y = assegnamento[n]
+
+			#print("stampa assegnamento corrente ", y)
+
+			isSameDay = v[0] == y[0]
+			# va ancora aggiustato
+			bothMorning = float(v[1]) <= 11.5 and float(y[1]) <= 11.5
+			bothAfternoon = float(v[1]) > 12.0 and float(y[1]) > 12.0
+			isSamePeriod = bothMorning or bothAfternoon
+			isSameHouse = v[2] == y[2]
+
+			timeBwAppointments = abs(float(v[1])-float(y[1]))
+			distanceBwHouses = (distance(v[2], y[2])*0.5 + 1)
+			cantReachInTime = (not isSameHouse and (timeBwAppointments < distanceBwHouses))
+			avoidSameHouse = (isSameHouse and timeBwAppointments != 1)
+
+			'''
+			TODO: Check the new condition.
+			'''
+			# notEnoughTime = (timeBwAppointments < distanceBwHouses)
+
+			if (isSameDay and isSamePeriod and (cantReachInTime or avoidSameHouse)):
+				print("Conflitto tra ", var , " ", v," e ", n, " ", assegnamento[n])
+				return (False, n)
+	return (True, "-1")
+
+
+
 """
 Funzione solver che viene chiamata dal programma principale
 Per implementare il backjump è necessario tenere una lista delle variabili in
@@ -182,53 +177,80 @@ ordine che sono state assegnate
 """
 def backtrackingSearchAllSolutions(csp):
 	numTotalSolution = 1
+	analyzed = {}
 	for n in csp.nodes():
 		numTotalSolution *= len(csp.nodes[n]['domain'])
+		analyzed[n] = 0
+
 	print("Total number of possible solution = ", numTotalSolution)
 	"""
 	IDEA: forse posso passare a btas un vettore [a,b,c,d] dove vedo a che ciclo e a che profondità sto
 	"""
-	return backtrackingAllSolutions([],{},[],csp,0, 0, numTotalSolution)[0]
+	return backtrackingAllSolutions([], {}, [], csp, 0, analyzed, numTotalSolution)[0]
 
 
 def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration, analyzed, numTotalSolution):
 	'''
 	Se l'assegnamento è completo mi fermo
 	'''
-	print("Iterazione numero = ", iteration, "Percentuale albero analizzata = ", (analyzed/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
+	print("Iteration = ", iteration)
 	iteration += 1
-
+	
 	if assCompleto(assegnamento, csp):
 		#Devo anche fare in modo di visitare la vicina soluzione probabilmente
 		#basta cancellare il valore dell'ultima variabile dall'assegnamento
 		solutions.append(deepcopy(assegnamento))
-		analyzed+=1
 		#print("Assegnamento prima del ")
-		#pp.pprint(assegnamento)
-		del(assegnamento[assegnate[-1]])
-		del(assegnate[-1])
-		#print("Assegnamento dopo del ")
 		#pp.pprint(assegnamento)
 		print("\n\n######################### SOLUZIONE NUMERO ", len(solutions), " #########################\n\n")
 		print(solutions[-1])
 		print("assegnate = ", assegnate,"\n\n")
-
-		return (solutions, None, analyzed)
+		'''
+		print("Chiamata finita, iterazione numero = ", iteration,"\nAnalyzed= ", analyzed, "\nPercentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
+		del(assegnamento[assegnate[-1]])
+		del(assegnate[-1])
+		'''
+		#print("Assegnamento dopo del ")
+		#pp.pprint(assegnamento)
+		return (solutions, "found")
 
 	var = varNonAssegnata(assegnamento, csp)
+	analyzed[var] = 0
+	
 	conflictSet = []
 	#print("Variabile scelta ", var)
 	for v in ordinaValori(var, assegnamento, csp):
-		(safe, conflict, analyzed) = isSafeAllSolutions(v, var, assegnamento, csp, analyzed)
+		(safe, conflict) = isSafeAllSolutions(v, var, assegnamento, csp)
 		if safe:
 			assegnamento[var] = v
 			assegnate.append(var)
 			assLength = len(assegnate)
-			(sol, ris, analyzed) = backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration, analyzed, numTotalSolution)
+			(sol, ris) = backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration, analyzed, numTotalSolution)
+			analyzed[var] += 1
+			print("riprendo all'iterazione ", iteration)
 			#Significa che è successo un backjump e sta tagliando il ramo attuale
+			if ris=="found":
+				print("Riprendo dopo soluzione trovata")
+				print("Iterazione numero = ", iteration,"\nAnalyzed= ", analyzed, "\nPercentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
+				del(assegnamento[assegnate[-1]])
+				del(assegnate[-1])
+
+			# Entro qui se è avvenuto un backjump 
 			if assLength > len(assegnate) + 1:
 				print("Exit here")
-				return (sol, None, analyzed)
+				print("Chiamata finita per backjump, devo saltare ancora indietro, iterazione numero = ", iteration,"\nAnalyzed= ", analyzed)
+				return (sol, "back")
+			else:
+				if(ris == "back"):
+					print("\nRiprendo dopo backjump")
+					print("Riprendo dopo backjump, iterazione numero = ", iteration,"\nAnalyzed= ", analyzed, "\nPercentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
+			if ris == "finished":
+				print("Riprendo dopo fine di tutte le iterazioni della chiamata ricorsiva interna, iterazione numero = ", iteration,"\nAnalyzed= ", analyzed, "\nPercentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
+				# non si può fare sempre?
+				if len(assegnate) > 0:
+					del(assegnamento[assegnate[-1]])
+					del(assegnate[-1])
+
 			'''if ris!=None:
 				return (sol, ris)
 			'''
@@ -237,45 +259,63 @@ def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration,
 			# print("Conflict: " + conflict)
 			# Se arrivo a questo punto sono sicuro di essere tornato alla radice
 			# del sottoalbero che potevo analizzare e di non aver trovato una soluzione.
+			analyzed[var] += 1
+		
+	#	print("sottoiterazione completata, iterazione numero = ", iteration,"\nAnalyzed= ", analyzed, "\nPercentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
+	
 
-	if len(conflictSet) != 0:
-		analyzed = backjump(assegnamento, assegnate, conflictSet, analyzed, csp)
-	else:
-		if len(assegnate) > 0:
-			del(assegnate[-1])
+	if len(conflictSet) == len(csp.nodes[var]['domain']):
+		backjump(assegnamento, assegnate, conflictSet, csp)
+		# Necessario per sapere a che punto sono dopo un backjump
+		analyzed[var] = 0
+		return (solutions, "back")
+		
+	# esco da qui solo se tutti i cicli del for sono finiti e ho trovato almeno una soluzione nel frattempo
+	return (solutions, "finished")
 
-	print("Iterazione numero = ", iteration, "Percentuale albero analizzata = ", (analyzed/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
-	return (solutions, None, analyzed)
 
-
-def backjump(assegnamento, assegnate, conflictSet, analyzed, csp):
+def backjump(assegnamento, assegnate, conflictSet, csp):
 	assIndex = len(assegnate)-1
 	print("\n\n####BACKJUMP####\n")
 	print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
 	#l'unica cosa che posso fare è una stima di quante ne salto... dovrei passare a che punto dello scorrere del dominio sono arrivato
-	skipped = 1
 	while( not(assegnate[assIndex] in conflictSet)):
-		controlled = 0
-		for x in csp.nodes[assegnate[assIndex]]['domain']:
-			controlled += 0
-		skipped *= (len(csp.nodes[assegnate[assIndex]]['domain'])-controlled) 
 		del(assegnamento[assegnate[assIndex]])
 		del(assegnate[assIndex])
 		assIndex -= 1
 		#print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
 	
-	analyzed+=skipped
-	print("Soluzioni skippate= ", skipped)
-	# Per questo non devo considerare rami tagliati perché riparto proprio da lì
 	del(assegnamento[assegnate[assIndex]])
 	del(assegnate[assIndex])
 	#print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
 	#print("\n####BACKJUMP_FINE####\n")
-	return analyzed
+	
 
 
-
-
+def computeVisited(analyzed, assegnate, csp):
+	total = 0
+	passed = []
+	print("\n\n###computeVisited", "\nAssegnate = ", assegnate)
+	print("analyzed = ", analyzed)
+	for i in assegnate:
+		partial = analyzed[i]
+		passed.append(i)
+		for k in csp.nodes():
+			if k not in passed:
+				partial *= len(csp.nodes[k]['domain'])
+		
+		print("variabile ", i, "Contributo = ", partial)
+		total += partial
+		'''
+		if i in assegnate:
+			print("moltiplico per ", analyzed[i])
+			total *= analyzed[i]
+		else:
+			print("moltiplico per ", len(csp.nodes[i]['domain']))
+			total *= len(csp.nodes[i]['domain'])
+		'''
+	print("Total = ", total)
+	return total
 
 
 
