@@ -15,6 +15,10 @@ a:hover {
 	color: #8EB199;
 }
 
+.navbar {
+	background-color: #8E596C;
+}
+
 /* HOMEPAGE */
 .welcome-card {
 	max-width: 60%; 
@@ -25,11 +29,11 @@ a:hover {
 	padding-top:2%;
 }
 
-.card-body {
+.welcome-card > .card-body {
 	padding:4%;
 }
 
-.card-footer {
+.welcome-card > .card-footer {
 	margin-top:8%;
 }
 
@@ -45,22 +49,51 @@ a:hover {
 }
 
 
+
+/* REQUEST APPOINTMENT */
+.request-card {
+	max-width: 70%; 
+	margin-left:auto; 
+	margin-right:auto; 
+	margin-top:10%;
+	margin-bottom:10%;
+	text-align: center;
+	padding-top:2%;
+}
+
+
+.request-card > .card-body {
+	/* padding-left:15%;
+	padding-right:15%; */
+	padding:4%;
+}
+
+.request-card > .card-footer {
+	margin-top:5%;
+}
+
+.request-card > .card-title {
+	margin-top:5%;
+	margin-bottom:5%;
+}
+
+
 /* FORM  */
+label {
+	margin-bottom: 10px;
+	color: #8E596C;
+}
+
 .error {
 	color: #ce4e4e;
 	font-size: 14px;
 
 }
 
-.form-box {
-	border: 2px solid black;
-	border-radius: 8px;
-	padding:5%;
-	margin-top:80px;
-}
-
 .form-line {
 	margin-bottom: 25px;
+	padding-left:20%;
+	padding-right:20%;
 }
 
 .form-input {

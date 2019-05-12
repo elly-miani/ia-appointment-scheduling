@@ -16,83 +16,102 @@
 
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" type="text/css" href="../css/styles.css">
-
-
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Sanchez" rel="stylesheet">
 
   <title>
     Request Appointment
   </title>
 
+  <style>
+    body {
+      background-image: url("../media/aaron-huber-unsplash.jpg");
+      /* background-position: center; */
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  </style>
+
 </head>
 
 <body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="/">AI-powered Real Estate Agency</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Request an appointment</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Schedule next week appointments</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
   <div class="container">
-    <br/>
-    <h1>Request Appointment</h1>
+    <div class="card request-card shadow">
+      <h1 class="card-title">Request Appointment</h1>
+      
+      <form id="appointmentRequest">
+        <div class="card-body">
+          <div class="form-line">
+            <!-- <label for="course-form"> Name </label> -->
+            <input id="name-form" class="form-input" name="Name" placeholder="Name" required>
+            <!-- <span class="error"> </span> -->
+          </div>
+          <div class="form-line">
+            <!-- <label for="course-form"> Surname </label> -->
+            <input id="surname-form" class="form-input" name="Surname" placeholder="Surname" required>
+            <!-- <span class="error"> </span> -->
+          </div>
+        </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <label for="house-form"> Choose the house you'd like to visit: </label>
+              <br/>
+              <select id="house-form" name="House" required>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+              </select>
+            </li>
+            <li class="list-group-item">
+              <label for="days-form"> Choose the days you're available: </label>
+              <br />
+              <input id="days-form" type="checkbox" name="Day" value="mon"> Monday<br>
+              <input id="days-form" type="checkbox" name="Day" value="tue"> Tuesday<br>
+              <input id="days-form" type="checkbox" name="Day" value="wed"> Wednesday<br>
+              <input id="days-form" type="checkbox" name="Day" value="thu"> Thursday<br>
+              <input id="days-form" type="checkbox" name="Day" value="fri"> Friday<br>
+            </li>
+            <li class="list-group-item">
+              <label for="pref-form"> Choose if you'd prefer the mornings or the afternoons: </label>
+              <br />
+              <input id="pref-form" type="checkbox" name="Pref" value="Morning"> Morning
+              <input id="pref-form" type="checkbox" name="Pref" value="Afternoon"> Afternoon<br>
+            </li>
+            <li class=" list-group-item">
+              
+            </li>
+          </ul>
 
-    <form id="appointmentRequest" class="form-box">
-      <div class="form-line">
-        <!-- <label for="course-form"> Name </label> -->
-        <input id="name-form" class="form-input" name="Name" placeholder="Name" required>
-        <!-- <span class="error"> </span> -->
-      </div>
-      <div class="form-line">
-        <!-- <label for="course-form"> Surname </label> -->
-        <input id="surname-form" class="form-input" name="Surname" placeholder="Surname" required>
-        <!-- <span class="error"> </span> -->
-      </div>
-      <div class="form-line">
-        <label for="house-form"> Choose the house you'd like to visit: </label>
-        <select id="house-form" name="House" required>
-          <option value="A">A</option>
-          <option value="B">B</option>
-          <option value="C">C</option>
-          <option value="D">D</option>
-          </select>
-      </div>
-      <div class="form-line">
-        <label for="days-form"> Choose the days you're available: </label>
-        <br/>
-        <input id="days-form" type="checkbox" name="Day" value="mon"> Monday<br>
-        <input id="days-form" type="checkbox" name="Day" value="tue"> Tuesday<br>
-        <input id="days-form" type="checkbox" name="Day" value="wed"> Wednesday<br>
-        <input id="days-form" type="checkbox" name="Day" value="thu"> Thursday<br>
-        <input id="days-form" type="checkbox" name="Day" value="fri"> Friday<br>
-      </div>
-      <div class="form-line">
-        <label for="pref-form"> Choose if you'd prefer the mornings or the afternoons: </label>
-        <input id="pref-form" type="checkbox" name="Pref" value="Morning"> Morning
-        <input id="pref-form" type="checkbox" name="Pref" value="Afternoon"> Afternoon<br>
-      </div>
-      <div class="form-line">
+      </form>
+      
+      <div class="card-footer text-muted">
         <!-- <button type="button" onclick="alert('Appointment requested!')">Submit</button> -->
-        <button type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit">Submit</button>
       </div>
-    </form>
+    </div>
+    </div>
+
+    
   </div>
-
-  <!-- <div id="demo">
-    <h1>The XMLHttpRequest Object</h1>
-    <button type="button" onclick="loadDoc()">Change Content</button>
-  </div> -->
-
-  <!-- <script>
-    function loadDoc() {
-      var xhttp = new XMLHttpRequest();
-
-      // With the XMLHttpRequest object you can define a function to be executed when the request receives an answer.
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("demo").innerHTML =
-            this.responseText;
-        }
-      };
-
-      //The second parameter can be any kind of file, like .txt and .xml, or server scripting files like .asp and .php (which can perform actions on the server before sending the response back).
-      xhttp.open("POST", "", true);
-      xhttp.send("key:value, hello:world");
-    }
-  </script> -->
 
   <!-- JAVASCRIPT -->
   <!-- jQuery -->
