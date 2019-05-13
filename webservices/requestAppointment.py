@@ -38,6 +38,7 @@ def requestAppointment(request):
   requestedAppointments = loadAppointments(requestedAppointmentsFile)
 
   # find the new ordered key to add a new request
+  # TODO: sort keys
   if requestedAppointments:
     key = int(list(requestedAppointments.keys())[-1]) + 1
   else:

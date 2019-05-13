@@ -92,7 +92,7 @@ const handleFormSubmit = event => {
   // send via ajax to the webservice `/requestAppointment`
   $.ajax({
     type: "POST",
-    url: "requestAppointment",
+    url: "/requestAppointment",
     data: dataContainer,
     success: function () { },
     dataType: "json",

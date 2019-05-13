@@ -66,7 +66,9 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
         content_length = int(self.headers['Content-Length'])
         body = self.rfile.read(content_length)
 
-        # if requested webservice is `requestAppointment`
+        print("Received POST request")
+
+        print(self.path)
         if self.path == "/requestAppointment":
             requestAppointment(json.loads(body))
 
