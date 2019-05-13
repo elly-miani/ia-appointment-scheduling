@@ -124,7 +124,7 @@ def backtracking(assegnamento, assegnate, csp, iteration):
 			# Se arrivo a questo punto sono sicuro di essere tornato alla radice
 			# del sottoalbero che potevo analizzare e di non aver trovato una soluzione.
 
-	backjump(assegnamento, assegnate, conflictSet)
+	backjump(assegnamento, assegnate, conflictSet, csp)
 	return None
 
 
@@ -223,6 +223,7 @@ def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration,
 		(safe, conflict) = isSafeAllSolutions(v, var, assegnamento, csp)
 		if safe:
 			assegnamento[var] = v
+			print("Assegno alla variabile " + str(var) + " il valore " + str(v))
 			assegnate.append(var)
 			assLength = len(assegnate)
 			(sol, ris) = backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, iteration, analyzed, numTotalSolution)
@@ -295,8 +296,8 @@ def backjump(assegnamento, assegnate, conflictSet, csp):
 def computeVisited(analyzed, assegnate, csp):
 	total = 0
 	passed = []
-	print("\n\n###computeVisited", "\nAssegnate = ", assegnate)
-	print("analyzed = ", analyzed)
+	#print("\n\n###computeVisited", "\nAssegnate = ", assegnate)
+	#print("analyzed = ", analyzed)
 	for i in assegnate:
 		partial = analyzed[i]
 		passed.append(i)
@@ -304,7 +305,7 @@ def computeVisited(analyzed, assegnate, csp):
 			if k not in passed:
 				partial *= len(csp.nodes[k]['domain'])
 		
-		print("variabile ", i, "Contributo = ", partial)
+		#print("variabile ", i, "Contributo = ", partial)
 		total += partial
 		'''
 		if i in assegnate:
