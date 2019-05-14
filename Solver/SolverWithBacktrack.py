@@ -39,7 +39,7 @@ def loadAppointments(filePath):
 
 
 # intialize a generic domain with all possible combinations of days, hours and locations
-def initDomain():
+def initDomainR():
     '''
     Data per il dominio
     '''
@@ -55,6 +55,32 @@ def initDomain():
 
     hours = ["08.00", "08.50", "09.00", "09.50", "15.00", "15.50", "16.00", "16.50"]
 
+    locations = ["A", "B", "C", "D"]
+
+    domain = []
+    count = 0
+
+    for i in days:
+        for y in hours:
+            for loc in locations:
+                domain.append([i])
+                domain[count].append(y)
+                domain[count].append(loc)
+                count += 1
+
+    return domain
+
+# intialize a generic domain with all possible combinations of days, hours and locations
+def initDomain():
+    '''
+    Data per il dominio
+    '''
+    days = ["mon", "tue", "wed", "thu", "fri", "sat"]
+    
+    hours = ["08.00", "08.50", "09.00", "09.50", "10.00", "10.50", "11.00", "11.50",
+    "13.00", "13.50", "14.00", "14.50", "15.00", "15.50", "16.00", "16.50", "17.00",
+    "17.50"]
+    
     locations = ["A", "B", "C", "D"]
 
     domain = []
@@ -109,6 +135,41 @@ def printSolution(solution):
         index += 1
 
 
+# print function to print a solution in a clean way
+def printSolutionR(solution):
+    days = ["mon", "tue", "wed"]
+
+    ordApp = [[], [], []]
+    notSched = []
+
+    for x in solution:
+        if solution[x] != "notScheduled":
+            if solution[x][0] == days[0]:
+                ordApp[0].append([x, solution[x]])
+            if solution[x][0] == days[1]:
+                ordApp[1].append([x, solution[x]])
+            if solution[x][0] == days[2]:
+                ordApp[2].append([x, solution[x]])
+        else:
+            notSched.append([x, solution[x]])
+    # print(ordApp)
+    for x in ordApp:
+        x.sort(key=takeSecond)
+
+    index = 0
+    for x in ordApp:
+        print("\n\nGiorno: ", days[index])
+        print("\nMattina:")
+        cond = True
+        for y in x:
+            if (cond and float(y[1][1]) > 12):
+                print("\nPomeriggio:")
+                cond = False
+            print("Ore: ", y[1][1], "Casa: ", y[1][2], " Appuntamento con: ",
+                  appointments[y[0]]["Name"], " ", appointments[y[0]]["Surname"])
+        index += 1
+    print(notSched)
+
 
 
 appointments = loadAppointments(sys.argv[1])
@@ -136,6 +197,8 @@ for x in appointments:
         if "Afternoon" in appointments[x]["Pref"] and hour > 12 and y[0] in appointments[x]["Day"] and y[2] in appointments[x]["House"]:
             dom.append(y)
 
+    dom.append("notScheduled")
+    print(dom)
     #Aggiungo la variabile corrente con il domain aggiustato
     ConstraintGraph.add_node(x, domain=dom)
     variablesName.append(x)
@@ -161,10 +224,10 @@ printSolution(solution)
 '''
 
 start = current_milli_time()
-solutions = backtrackingSearchAllSolutions(ConstraintGraph)
+sol = backtrackingSearchAllSolutions(ConstraintGraph, 60000)
 end = current_milli_time()
 print("\n\n###########Time spent to find all solution = ", end-start," ms.\n\n")
-'''
-for sol in solutions:
-    printSolution(sol)
-'''
+
+printSolution(sol[0])
+print("With cost = ", sol[1])
+
