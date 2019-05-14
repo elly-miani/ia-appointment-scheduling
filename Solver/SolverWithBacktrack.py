@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import time
 import sys
 import json
+from copy import deepcopy
 import pprint as pp
 
 from Backtracking_Appointments import backtrackingSearch
@@ -96,27 +97,29 @@ def initDomain():
 
     return domain
 
-
 # print function to print a solution in a clean way
 def printSolution(solution):
     days = ["mon", "tue", "wed", "thu", "fri", "sat"]
 
     ordApp = [[], [], [], [], [], []]
+    notSched = []
 
     for x in solution:
-        if solution[x][0] == days[0]:
-            ordApp[0].append([x, solution[x]])
-        if solution[x][0] == days[1]:
-            ordApp[1].append([x, solution[x]])
-        if solution[x][0] == days[2]:
-            ordApp[2].append([x, solution[x]])
-        if solution[x][0] == days[3]:
-            ordApp[3].append([x, solution[x]])
-        if solution[x][0] == days[4]:
-            ordApp[4].append([x, solution[x]])
-        if solution[x][0] == days[5]:
-            ordApp[5].append([x, solution[x]])
-
+        if solution[x] != "notScheduled":
+            if solution[x][0] == days[0]:
+                ordApp[0].append([x, solution[x]])
+            if solution[x][0] == days[1]:
+                ordApp[1].append([x, solution[x]])
+            if solution[x][0] == days[2]:
+                ordApp[2].append([x, solution[x]])
+            if solution[x][0] == days[3]:
+                ordApp[3].append([x, solution[x]])
+            if solution[x][0] == days[4]:
+                ordApp[4].append([x, solution[x]])
+            if solution[x][0] == days[5]:
+                ordApp[5].append([x, solution[x]])
+        else:
+            notSched.append([x, solution[x]])
     # print(ordApp)
     for x in ordApp:
         x.sort(key=takeSecond)
@@ -133,6 +136,7 @@ def printSolution(solution):
             print("Ore: ", y[1][1], "Casa: ", y[1][2], " Appuntamento con: ",
                   appointments[y[0]]["Name"], " ", appointments[y[0]]["Surname"])
         index += 1
+    print(notSched)
 
 
 # print function to print a solution in a clean way
@@ -180,6 +184,7 @@ domain = initDomain()
 
 # Invece che problem faccio un grafo dei vincoli, aggiungo un nodo per ciascuna variabile e relativo domino.
 ConstraintGraph = nx.Graph()
+ConstraintGraphCost = nx.Graph() 
 
 variablesName = []
 
@@ -196,15 +201,18 @@ for x in appointments:
 
         if "Afternoon" in appointments[x]["Pref"] and hour > 12 and y[0] in appointments[x]["Day"] and y[2] in appointments[x]["House"]:
             dom.append(y)
-
+    
+    ConstraintGraph.add_node(x, domain = deepcopy(dom))
     dom.append("notScheduled")
-    print(dom)
     #Aggiungo la variabile corrente con il domain aggiustato
-    ConstraintGraph.add_node(x, domain=dom)
+    ConstraintGraphCost.add_node(x, domain = dom)
     variablesName.append(x)
 
 
 ConstraintGraph.add_edges_from(itertools.combinations(variablesName, 2))
+
+ConstraintGraphCost.add_edges_from(itertools.combinations(variablesName, 2))
+
 
 #nx.draw(ConstraintGraph)
 #ax = plt.gca()
@@ -223,11 +231,13 @@ print("\n\n###########Time spent to find the first solution = ", end-start," ms.
 printSolution(solution)
 '''
 
+
+
 start = current_milli_time()
-sol = backtrackingSearchAllSolutions(ConstraintGraph, 60000)
+sol = backtrackingSearchAllSolutions(ConstraintGraphCost, 30000)
 end = current_milli_time()
 print("\n\n###########Time spent to find all solution = ", end-start," ms.\n\n")
-
+print(sol[0])
 printSolution(sol[0])
 print("With cost = ", sol[1])
 

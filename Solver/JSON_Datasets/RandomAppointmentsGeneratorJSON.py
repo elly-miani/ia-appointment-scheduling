@@ -7,8 +7,8 @@ import sys
 
 appointments = dict()
 
-#days = ["mon", "tue", "wed", "thu", "fri", "sat"]
-days = ["mon", "tue", "wed"]
+days = ["mon", "tue", "wed", "thu", "fri", "sat"]
+#days = ["mon", "tue", "wed"]
 
 #hours = ["08.00", "08.50", "09.00", "09.50", "10.00", "10.50", "11.00", "11.50",
 #"13.00", "13.50", "14.00", "14.50", "15.00", "15.50", "16.00", "16.50", "17.00",
@@ -47,6 +47,6 @@ for k in datasetDimensions:
     # print(appointments)
     print("Creating JSON file with " + str(k) + " appointments.")
 
-    with open('Solver/JSON_Datasets/RandomAppointmentsSMALL'+str(k)+'.json', 'w') as json_file:
+    with open('Solver/JSON_Datasets/RandomAppointments'+str(k)+'.json', 'w') as json_file:
       json.dump(appointments, json_file, indent=4)
       # json.dump(appointments, json_file)

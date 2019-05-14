@@ -80,6 +80,7 @@ def ordinaValori(var, assegnamento, csp):
 	Restituisco tutti i valori del dominio di var che non sono assegnati
 	'''
 	list = deepcopy(csp.nodes[var]['domain'])
+	# secondo me questo if non serve a nulla, non ci entro mai mi sembra
 	if var in assegnamento:
 		list.pop(list.index(assegnamento[var]))
 	return list
@@ -130,8 +131,22 @@ def backtracking(assegnamento, assegnate, csp, iteration):
 	backjump(assegnamento, assegnate, conflictSet, csp)
 	return None
 
-
-
+def backjump(assegnamento, assegnate, conflictSet, csp):
+	assIndex = len(assegnate)-1
+	print("\n\n####BACKJUMP####\n")
+	print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
+	#l'unica cosa che posso fare è una stima di quante ne salto... dovrei passare a che punto dello scorrere del dominio sono arrivato
+	while( not(assegnate[assIndex] in conflictSet)):
+		del(assegnamento[assegnate[assIndex]])
+		del(assegnate[assIndex])
+		assIndex -= 1
+		#print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
+	
+	del(assegnamento[assegnate[assIndex]])
+	del(assegnate[assIndex])
+	#print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
+	#print("\n####BACKJUMP_FINE####\n")
+	
 
 def isSafeAllSolutions(v, var, assegnamento, currCost, csp):
 	'''
@@ -140,11 +155,11 @@ def isSafeAllSolutions(v, var, assegnamento, currCost, csp):
 	if v == "notScheduled":
 		return (True, currCost + 10) 
 	#print("Verifico vincoli con i vicini alla variabile ", var, " con assegnato il valore ", v)
+	previousAppointment = ['', '0', '']
 	for n in csp.neighbors(var):
 		'''
 		Devo trovare l'appuntamento precedente a quello che sto provando ad assegnare.
 		'''
-		previousAppointment = ['', '0', '']
 		if n in assegnamento and assegnamento[n] != "notScheduled":
 			y = assegnamento[n]
 
@@ -172,8 +187,94 @@ def isSafeAllSolutions(v, var, assegnamento, currCost, csp):
 					previousAppointment = y
 	if previousAppointment[1]=="0":
 		return (True, currCost + 0.5)
-	return (True, currCost + (float(v[1])-float(previousAppointment[1])-1)*(float(v[1])-float(previousAppointment[1])-1))
+	return (True, currCost + ((float(v[1])-float(previousAppointment[1])-1)/0.5)*((float(v[1])-float(previousAppointment[1])-1)/0.5))
 
+#devo considerare entrambi i casi, successivo e precedente
+def ordinaValoriCost(var, assegnamento, csp):
+	'''
+	Restituisco tutti i valori del dominio di var che non sono assegnati
+	'''
+	print("\n\n###########ordina valori################\n")
+	ordDomain = []
+	dom = deepcopy(csp.nodes[var]['domain'])
+	print("Assegnamento ", assegnamento)
+
+	# rimozione valori non più utilizzabili back propagation
+	for v in csp.nodes[var]['domain']:
+		if v != "notScheduled":
+			conflict = False
+			for n in csp.neighbors(var):
+				# skip the following iterations because the value is in conflict with at least one assigned variable
+				if(conflict==False):
+					'''
+					Devo trovare l'appuntamento precedente a quello che sto provando ad assegnare.
+					'''
+					previousAppointment = ['', '0', '']
+					if n in assegnamento and assegnamento[n] != "notScheduled":
+						y = assegnamento[n]
+						#print("stampa assegnamento corrente ", y)
+						isSameDay = v[0] == y[0]
+						bothMorning = float(v[1]) <= 11.5 and float(y[1]) <= 11.5
+						bothAfternoon = float(v[1]) > 12.0 and float(y[1]) > 12.0
+						isSamePeriod = bothMorning or bothAfternoon
+						isSameHouse = v[2] == y[2]
+						timeBwAppointments = abs(float(v[1])-float(y[1]))
+						distanceBwHouses = (distance(v[2], y[2])*0.5 + 1)
+						cantReachInTime = (not isSameHouse and (timeBwAppointments < distanceBwHouses))
+						avoidSameHouse = (isSameHouse and timeBwAppointments != 1)
+						if (isSameDay and isSamePeriod and (cantReachInTime or avoidSameHouse)):
+							dom.remove(v)
+							# it means that it is not an acceptable value of the domain
+							break
+			
+	#print("dom senza conflitti = ", dom)
+	while(len(dom) > 1):
+		bestValue = []
+		bestValueCost = 1000
+		for v in dom:
+			print("Considero attuale ", v)
+			if v != "notScheduled":
+				conflict = False
+				previousAppointment = ['', '0', '']
+						
+				for n in csp.neighbors(var):
+					# skip the following iterations because the value is in conflict with at least one assigned variable
+					if(conflict==False):
+						'''
+						Devo trovare l'appuntamento precedente a quello che sto provando ad assegnare.
+						'''
+						if n in assegnamento and assegnamento[n] != "notScheduled":
+							y = assegnamento[n]
+							isSameDay = v[0] == y[0]
+							
+							bothMorning = float(v[1]) <= 11.5 and float(y[1]) <= 11.5
+							bothAfternoon = float(v[1]) > 12.0 and float(y[1]) > 12.0
+							
+							isSamePeriod = bothMorning or bothAfternoon
+							isSameHouse = v[2] == y[2]
+							if(isSameDay and isSamePeriod and float(v[1])-float(y[1]) < float(v[1])-float(previousAppointment[1])):
+								previousAppointment = y
+				print("previous appointment per attuale = ",previousAppointment)
+				if previousAppointment[1] == '0' and bestValueCost > 0.5:
+					bestValueCost = 0.5
+					bestValue = v
+				else:
+					print(v)
+					float(v[1])
+					float(previousAppointment[1])
+					if(bestValueCost > ((float(v[1])-float(previousAppointment[1])-1)/0.5)*((float(v[1])-float(previousAppointment[1])-1)/0.5)):
+						bestValueCost = ((float(v[1])-float(previousAppointment[1])-1)/0.5)*((float(v[1])-float(previousAppointment[1])-1)/0.5)
+						bestValue = v
+				print("Attuale best = ", bestValue, " Con costo " , bestValueCost)
+		
+		print("\n\n###Fine analisi per massimo locale\ndom = ", dom)
+		print("bestValue = ",bestValue)
+		dom.remove(bestValue)
+		ordDomain.append(bestValue)
+		print("dom = ", dom)
+		print("ordDomain = ", ordDomain)
+	ordDomain.append("notScheduled")
+	return ordDomain
 
 
 """
@@ -192,7 +293,7 @@ def backtrackingSearchAllSolutions(csp, maxTime):
 	"""
 	IDEA: forse posso passare a btas un vettore [a,b,c,d] dove vedo a che ciclo e a che profondità sto
 	"""
-	endTime = current_milli_time()+maxTime
+	endTime = current_milli_time() + maxTime
 	return backtrackingAllSolutions({}, 1000000000, {}, 0, [], csp, 0, analyzed, numTotalSolution, endTime)
 
 
@@ -223,8 +324,8 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 	analyzed[var] = 0
 	
 	print("Variabile scelta ", var)
-	
-	for v in ordinaValori(var, assegnamento, csp):
+	orderedDomain = ordinaValoriCost(var, assegnamento, csp)
+	for v in orderedDomain:
 		(safe, currCost) = isSafeAllSolutions(v, var, assegnamento, currCost, csp)
 		print("currentCost = ", currCost)
 		if safe and currCost < bestSolCost:
@@ -251,6 +352,9 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 			analyzed[var] += 1
 # esco da qui solo se tutti i cicli del for sono finiti e ho trovato almeno una soluzione nel frattempo
 	return (solution, bestSolCost, "finished")
+
+
+
 
 
 def computeVisited(analyzed, assegnate, csp):
