@@ -16,7 +16,6 @@
 
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" type="text/css" href="../css/styles.css">
-  <link rel="stylesheet" type="text/css" href="../css/requestAppointment.css">
   <link href="https://fonts.googleapis.com/css?family=Raleway|Sanchez" rel="stylesheet">
 
   <title>
@@ -25,7 +24,7 @@
 
   <style>
     body {
-      background-image: url("../media/aaron-huber-unsplash.jpg");
+      background-image: url("../media/naomi-hebert-unsplash.jpg");
       /* background-position: center; */
       background-size: cover;
       background-repeat: no-repeat;
@@ -55,52 +54,14 @@
   </nav>
 
   <div class="container">
-    <div class="card request-card shadow">
-      <h1 class="card-title">Request Appointment</h1>
+    <div class="card schedule-card shadow">
+      <h1 class="card-title">Schedule Next Week Appointments</h1>
       
-      <form id="appointmentRequest">
+      <form id="appointmentSchedule">
         <div class="card-body">
-          <div class="form-line">
-            <!-- <label for="course-form"> Name </label> -->
-            <input id="name-form" class="form-input" name="Name" placeholder="Name" required>
-            <!-- <span class="error"> </span> -->
-          </div>
-          <div class="form-line">
-            <!-- <label for="course-form"> Surname </label> -->
-            <input id="surname-form" class="form-input" name="Surname" placeholder="Surname" required>
-            <!-- <span class="error"> </span> -->
-          </div>
+          
         </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <label for="house-form"> Choose the house you'd like to visit: </label>
-              <br/>
-              <select id="house-form" name="House" required>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-              </select>
-            </li>
-            <li class="list-group-item">
-              <label for="days-form"> Choose the days you're available: </label>
-              <br />
-              <input id="days-form" type="checkbox" name="Day" value="mon"> Monday<br>
-              <input id="days-form" type="checkbox" name="Day" value="tue"> Tuesday<br>
-              <input id="days-form" type="checkbox" name="Day" value="wed"> Wednesday<br>
-              <input id="days-form" type="checkbox" name="Day" value="thu"> Thursday<br>
-              <input id="days-form" type="checkbox" name="Day" value="fri"> Friday<br>
-            </li>
-            <li class="list-group-item">
-              <label for="pref-form"> Choose if you'd prefer the mornings or the afternoons: </label>
-              <br />
-              <input id="pref-form" type="checkbox" name="Pref" value="Morning"> Morning
-              <input id="pref-form" type="checkbox" name="Pref" value="Afternoon"> Afternoon<br>
-            </li>
-            <li class=" list-group-item">
-              
-            </li>
-          </ul>
+          
         <div class="card-footer text-muted">
           <!-- <button type="button" onclick="alert('Appointment requested!')">Submit</button> -->
           <button class="btn btn-primary" type="submit">Submit</button>
@@ -129,7 +90,7 @@
 
 
   <!-- Custom Javascript -->
-  <script src="../js/requestAppointmentForm.js">
+  <script src="../js/script.js">
   </script>
 
 </body>

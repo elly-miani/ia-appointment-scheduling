@@ -18,6 +18,7 @@ import json
 
 sys.path.append('./webservices')
 from requestAppointment import requestAppointment 
+from scheduleAppointments import scheduleAppointments
 
 
 class HTTPRequestHandler(BaseHTTPRequestHandler):
@@ -77,6 +78,17 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
             response = BytesIO()
             response.write(b'Received POST request for new appointment:')
             response.write(body)
+            self.wfile.write(response.getvalue())
+        
+        if self.path == "/scheduleAppointments":
+            scheduleAppointments()
+            json_string = json.dumps(scheduleAppointments(), indent=4)
+
+            self.send_response(200)
+            self.end_headers()
+            response = BytesIO()
+            response.write(b'Received POST request to schedule appointments:')
+            response.write(json_string.encode(encoding='utf_8'))
             self.wfile.write(response.getvalue())
         
 
