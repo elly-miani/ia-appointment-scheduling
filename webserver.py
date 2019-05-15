@@ -82,12 +82,11 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
         
         if self.path == "/scheduleAppointments":
             scheduleAppointments()
-            json_string = json.dumps(scheduleAppointments(), indent=4)
+            json_string = json.dumps(scheduleAppointments())
 
             self.send_response(200)
             self.end_headers()
             response = BytesIO()
-            response.write(b'Received POST request to schedule appointments:')
             response.write(json_string.encode(encoding='utf_8'))
             self.wfile.write(response.getvalue())
         

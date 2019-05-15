@@ -4,62 +4,112 @@
         "Surname": "Wright",
         "House": "D",
         "Day": "mon",
-        "Hour": "8:30"
+        "HourStart": "11:30",
+        "HourEnd": "12:30"
     },
     "1": {
         "Name": "Evelyn",
         "Surname": "Jones",
         "House": "D",
-        "Day": "tue",
-        "Hour": "9:00"
+        "Day": "wed",
+        "HourStart": "9:30",
+        "HourEnd": "10:30"
     },
     "2": {
         "Name": "James",
         "Surname": "Morgan",
         "House": "B",
         "Day": "wed",
-        "Hour": "16:30"
+        "HourStart": "16:30",
+        "HourEnd": "17:30"
     },
     "3": {
         "Name": "Lucas",
         "Surname": "Brown",
         "House": "D",
         "Day": "thu",
-        "Hour": "10:30"
+        "HourStart": "10:30",
+        "HourEnd": "11:30"
     },
     "4": {
         "Name": "Daniel",
         "Surname": "King",
         "House": "D",
         "Day": "thu",
-        "Hour": "11:30"
+        "HourStart": "13:00",
+        "HourEnd": "14:00"
     },
     "5": {
         "Name": "Michael",
         "Surname": "Williams",
         "House": "D",
         "Day": "mon",
-        "Hour": "10:30"
+        "HourStart": "10:30",
+        "HourEnd": "11:30"
     },
     "6": {
         "Name": "Ava",
         "Surname": "King",
         "House": "D",
         "Day": "wed",
-        "Hour": "15:30"
+        "HourStart": "15:30",
+        "HourEnd": "16:30"
     },
     "7": {
         "Name": "Logan",
         "Surname": "Lewis",
         "House": "D",
         "Day": "fri",
-        "Hour": "8:30"
+        "HourStart": "14:00",
+        "HourEnd": "15:00"
     },
     "8": {
         "Name": "Harper",
         "Surname": "Clarke",
         "House": "D",
+        "Day": "wed",
+        "HourStart": "14:30",
+        "HourEnd": "15:30"
+    },
+    "9": {
+        "Name": "Oliver",
+        "Surname": "Taylor",
+        "House": "D",
+        "Day": "thu",
+        "HourStart": "9:30",
+        "HourEnd": "10:30"
+    },
+    "10": {
+        "Name": "Sophia",
+        "Surname": "Lee",
+        "House": "D",
+        "Day": "tue",
+        "HourStart": "9:30",
+        "HourEnd": "10:30"
+    },
+    "11": {
+        "Name": "Alexander",
+        "Surname": "Jones",
+        "House": "B",
+        "Day": "tue",
+        "HourStart": "10:30",
+        "HourEnd": "11:30"
+    },
+    "12": {
+        "Name": "Elizabeth",
+        "Surname": "Clarke",
+        "House": "C",
+        "Day": "mon",
+        "HourStart": "15:30",
+        "HourEnd": "16:30"
+    },
+    "13": {
+        "Name": "Ethan",
+        "Surname": "Watson",
+        "House": "D",
         "Day": "fri",
-        "Hour": "9:30"
+        "HourStart": "12:30",
+        "HourEnd": "13:30"
     }
+    
 }
