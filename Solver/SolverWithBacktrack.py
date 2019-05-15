@@ -208,17 +208,42 @@ for x in appointments:
     ConstraintGraphCost.add_node(x, domain = dom)
     variablesName.append(x)
 
+# Add edges to the constraint graph only if the two variables share at least one element of the domain, it is possible to make this part better
+a =itertools.combinations(variablesName, 2)
+
+for i in a:
+    #print("Considero ", i)
+    stop = False
+    for domItem1 in ConstraintGraphCost.nodes[i[0]]['domain']:
+        if(stop):
+            break
+        else:
+            for domItem2 in ConstraintGraphCost.nodes[i[1]]['domain']:
+                if domItem1[0] == domItem2[0] and domItem1[1] == domItem2[1] and domItem1!="notScheduled" :
+                    #print("creo edge")
+                    ConstraintGraphCost.add_edge(i[0], i[1])
+                    stop = True
+                    break
+
+                    
+                
 
 ConstraintGraph.add_edges_from(itertools.combinations(variablesName, 2))
 
-ConstraintGraphCost.add_edges_from(itertools.combinations(variablesName, 2))
+#ConstraintGraphCost.add_edges_from(itertools.combinations(variablesName, 2))
 
 
-#nx.draw(ConstraintGraph)
-#ax = plt.gca()
-#ax.collections[0].set_edgecolor("#ffffff")
-#plt.show()
+'''
+nx.draw(ConstraintGraph)
+ax = plt.gca()
+ax.collections[0].set_edgecolor("#ffffff")
+plt.show()
 
+nx.draw(ConstraintGraphCost)
+ax = plt.gca()
+ax.collections[0].set_edgecolor("#ffffff")
+plt.show()
+'''
 
 #solution = problem.getSolutions()
 #Chiamo il solutore fatto in casa...
