@@ -52,9 +52,7 @@ def isSafe(v, var, assegnamento, csp):
 	return (True, "-1")
 	
 
-
-
-def varNonAssegnata(assegnamento, csp):
+def varNonAssegnata(assegnamento, csp, nearest):
 	'''
 	Restituisco la variabile del csp non assegnata che ha dominio più piccolo
 	implementazione della euristica first fail.
@@ -62,19 +60,16 @@ def varNonAssegnata(assegnamento, csp):
 
 	minimumLength = 10000
 	chosenVar = "-1"
-	for n in csp.nodes():
+	if len(nearest)==0:
+		list = csp.nodes()
+	else:
+		list = nearest
+
+	for n in list:
 		if n not in assegnamento and len(csp.nodes[n]['domain']) < minimumLength:
 			chosenVar = n
 			minimumLength = len(csp.nodes[n]['domain'])
-	print("variabile scelta con dominio = ", minimumLength)
-
-	'''
-	Restituisco la prima variabile del csp che non compare nell'assegnamento
-	for n in csp.nodes():
-	'''
-	# if n not in assegnamento:
-	# 	print(type(n))
-	# 	return n
+	print("variabile scelta con dominio di dimensione = ", minimumLength)
 	return chosenVar
 
 
@@ -111,7 +106,7 @@ def backtracking(assegnamento, assegnate, csp, iteration):
 	if assCompleto(assegnamento, csp):
 		return assegnamento
 
-	var = varNonAssegnata(assegnamento, csp)
+	var = varNonAssegnata(assegnamento, csp, [])
 	conflictSet = []
 	#print("Variabile scelta ", var)
 	for v in ordinaValori(var, assegnamento, csp):
@@ -152,53 +147,16 @@ def backjump(assegnamento, assegnate, conflictSet, csp):
 	#print("\n####BACKJUMP_FINE####\n")
 	
 
-def isSafeAllSolutions(v, var, assegnamento, currCost, csp):
-	'''
-	Verifico se l'assegnamento è consistente.
-	'''
-	if v == "notScheduled":
-		return (True, currCost + 10) 
-	#print("Verifico vincoli con i vicini alla variabile ", var, " con assegnato il valore ", v)
-	previousAppointment = ['', '0', '']
-	for n in csp.neighbors(var):
-		'''
-		Devo trovare l'appuntamento precedente a quello che sto provando ad assegnare.
-		'''
-		if n in assegnamento and assegnamento[n] != "notScheduled":
-			y = assegnamento[n]
-
-			#print("stampa assegnamento corrente ", y)
-			isSameDay = v[0] == y[0]
-			# va ancora aggiustato
-			bothMorning = float(v[1]) <= 11.5 and float(y[1]) <= 11.5
-			bothAfternoon = float(v[1]) > 12.0 and float(y[1]) > 12.0
-			isSamePeriod = bothMorning or bothAfternoon
-			isSameHouse = v[2] == y[2]
-			timeBwAppointments = abs(float(v[1])-float(y[1]))
-			distanceBwHouses = (distance(v[2], y[2])*0.5 + 1)
-			cantReachInTime = (not isSameHouse and (timeBwAppointments < distanceBwHouses))
-			avoidSameHouse = (isSameHouse and timeBwAppointments != 1)
-
-			'''
-			TODO: Check the new condition.
-			'''
-			
-			if (isSameDay and isSamePeriod and (cantReachInTime or avoidSameHouse)):
-				print("Conflitto tra ", var , " ", v," e ", n, " ", assegnamento[n])
-				return (False, currCost)
-			else:
-				if(isSameDay and isSamePeriod and float(v[1])-float(y[1]) < float(v[1])-float(previousAppointment[1])):
-					previousAppointment = y
-	if previousAppointment[1] == "0":
-		return (True, currCost + 0.5)
-	return (True, currCost + ((float(v[1])-float(previousAppointment[1])-1)/0.5)*((float(v[1])-float(previousAppointment[1])-1)/0.5))
-
-
-
+# è possibile già qui identificare se c'è un successivo e azzerargli il dominio tranne quello da utilizzare?
+# per evitare il problema di avere appuntamenti che avrebbero potuto essere nella stessa casa, e nello stesso periodo,
+# ma non sono stati scelti tengo in nearest quelli che hanno la possibilità di confinare e poi vado a sceglierli 
 def deleteValues(v, var, assegnamento, newCSP):
+	nearest = []
+	print("Eliminio valori in conflitto con ", v)
 	if v != "notScheduled":
 		for n in newCSP.neighbors(var):
 			if n not in assegnamento:
+				print("Variabile non in assegnamento ", n)	
 				newDom = []
 				for y in newCSP.nodes[n]['domain']:
 					if y != "notScheduled":
@@ -209,13 +167,19 @@ def deleteValues(v, var, assegnamento, newCSP):
 						isSameHouse = v[2] == y[2]
 						timeBwAppointments = abs(float(v[1])-float(y[1]))
 						distanceBwHouses = (distance(v[2], y[2])*0.5 + 1)
-						cantReachInTime = (not isSameHouse and (timeBwAppointments < distanceBwHouses))
-						avoidSameHouse = (isSameHouse and timeBwAppointments != 1)
-						if not (isSameDay and isSamePeriod and (cantReachInTime or avoidSameHouse)):
+						cantReachInTime = timeBwAppointments < distanceBwHouses
+						if not (isSameDay and isSamePeriod and (cantReachInTime)):
+							if(timeBwAppointments == 1 and isSameHouse and isSameDay ):
+								print("appuntamento precedente ", y, " rispetto a ", v)
+								nearest.append(n)
 							newDom.append(y)
-						#else:	
-							#print("rimuovo ", y, " dal dominio di", n)
-				newCSP.nodes[n]['domain'] = newDom 		
+						else:	
+							print("rimuovo ", y, " dal dominio di", n)
+				newDom.append("notScheduled")
+				print("dominio rimanente = ", newDom,"\n")
+				newCSP.nodes[n]['domain'] = newDom
+	print("nearest ", nearest)
+	return nearest
 
 
 #devo considerare entrambi i casi, successivo e precedente
@@ -231,11 +195,11 @@ def ordinaValoriCost(var, assegnamento, csp):
 	random.shuffle(dom)
 	#print("Assegnamento ", assegnamento)
 	#print("dom senza conflitti = ", dom)
-	while(len(dom) > 1):
+	while(len(dom) > 0):
 		bestValue = []
 		bestValueCost = 1000
 		for v in dom:
-#			print("Considero attuale ", v)
+			#print("Considero attuale ", v)
 			if v != "notScheduled":
 				conflict = False
 				previousAppointment = ['', '0', '']
@@ -256,30 +220,37 @@ def ordinaValoriCost(var, assegnamento, csp):
 							isSamePeriod = bothMorning or bothAfternoon
 							if(isSameDay and isSamePeriod and float(v[1])-float(y[1]) < float(v[1])-float(previousAppointment[1])):
 								previousAppointment = y
+				#print("v ", v)
+				#print("prev ",previousAppointment)
+				#print("With distance = ", float(v[1])-float(previousAppointment[1]))
 				#print("previous appointment per attuale = ",previousAppointment)
 				# It does make sense to penalize the choice of a casual starting point if the current slot is free.
-				if previousAppointment[1] == '0' and (v[1] == "08.00" or v[1] == "15.00")  and bestValueCost > 0.5:
+				if previousAppointment[1] == '0' and (v[1] == "08.00" or v[1] == "14.00")  and bestValueCost > 0.5:
 					bestValueCost = 0.5
 					bestValue = v					
 				else:
-					if previousAppointment[1] == '0' and bestValueCost > 5:
-						bestValueCost = 5
+					if previousAppointment[1] == '0' and bestValueCost > 15:
+						bestValueCost = 15
 						bestValue = v					
 					else:
-						print("v ", v)
-						print("prev ",previousAppointment)
 						if(bestValueCost > ((float(v[1])-float(previousAppointment[1])-1)/0.5)*((float(v[1])-float(previousAppointment[1])-1)/0.5)):
 							bestValueCost = ((float(v[1])-float(previousAppointment[1])-1)/0.5)*((float(v[1])-float(previousAppointment[1])-1)/0.5)
 							bestValue = v
 				#print("Attuale best = ", bestValue, " Con costo " , bestValueCost)
-			
+			else:
+				if (bestValueCost > 10):
+					bestValue = "notScheduled"
+					bestValueCost = 10
 		dom.remove(bestValue)
+	
+		
 		ordDomain.append((bestValue, bestValueCost))
 		#print("dom = ", dom)
 		#print("ordDomain = ", ordDomain)
-		print("\n\n###Fine analisi per massimo locale\nOrdDom = ", ordDomain)
+		#print("\n\n###Fine analisi per massimo locale\nOrdDom = ", ordDomain)
 		
-	ordDomain.append(("notScheduled", 10))
+	print("\n\n###Fine ordinamento per  = ",var, " ", ordDomain)
+	
 	return ordDomain
 
 
@@ -300,14 +271,14 @@ def backtrackingSearchAllSolutions(csp, maxTime):
 	IDEA: forse posso passare a btas un vettore [a,b,c,d] dove vedo a che ciclo e a che profondità sto
 	"""
 	endTime = current_milli_time() + maxTime
-	return backtrackingAllSolutions({}, 1000000000, {}, 0, [], csp, 0, analyzed, numTotalSolution, endTime)
+	return backtrackingAllSolutions({}, 1000000000, {}, 0, [], csp, [], 0, analyzed, numTotalSolution, endTime)
 
 
-def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, assegnate, csp, iteration, analyzed, numTotalSolution, endTime):
+def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, assegnate, csp, nearest, iteration, analyzed, numTotalSolution, endTime):
 	'''
 	Se l'assegnamento è completo mi fermo
 	'''
-	print("Iteration = ", iteration)
+	print("\n\n\nIteration = ", iteration)
 	iteration += 1
 	if(current_milli_time() > endTime):
 		print("\n\n######TEMPO SCADUTO!!!#####\n\nIterazione numero = ", iteration,"\nAnalyzed= ", analyzed, "\nPercentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
@@ -325,22 +296,24 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 			print("Che ha costo = ", currCost)
 		return (solution, bestSolCost, "found")
 
-	var = varNonAssegnata(assegnamento, csp)
+	var = varNonAssegnata(assegnamento, csp, nearest)
 	analyzed[var] = 0
 	
 	print("Variabile scelta ", var)
 	orderedDomain = ordinaValoriCost(var, assegnamento, csp)
 	for v in orderedDomain:
 		newCSP = deepcopy(csp)
-		deleteValues(v[0], var, assegnamento, newCSP)
+		nearest = deleteValues(v[0], var, assegnamento, newCSP)
 		print(var," = ",v)
 		iterationCost = currCost + v[1]
 		print("currentCost = ", iterationCost)
 		if iterationCost < bestSolCost:
-			assegnamento[var] = v[0]
 			print("Assegno alla variabile " + str(var) + " il valore " + str(v))
+			assegnamento[var] = v[0]
+			print("\n\n#####Settimana attualmente schedulata#####")
+			printSolution(assegnamento)
 			assegnate.append(var)
-			(solution, bestSolCost, ris) = backtrackingAllSolutions(solution, bestSolCost, assegnamento, iterationCost, assegnate, newCSP, iteration, analyzed, numTotalSolution, endTime)
+			(solution, bestSolCost, ris) = backtrackingAllSolutions(solution, bestSolCost, assegnamento, iterationCost, assegnate, newCSP, nearest, iteration, analyzed, numTotalSolution, endTime)
 			print("\nRiprendo all'iterazione ", iteration-1, " Sto considerando la variabile ", var)
 			if ris=="END":
 				return (solution, bestSolCost, "END")
@@ -359,6 +332,7 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 		else:
 			#qui potrei anche fare un break tanto i valori del dominio sono già organizzati in base alla funzione di costo: se non va il primo non vanno neanche quelli dopo...
 			analyzed[var] += 1
+			break
 # esco da qui solo se tutti i cicli del for sono finiti e ho trovato almeno una soluzione nel frattempo
 	print("Esco da albero", "\nAnalyzed= ", analyzed, "\nPercentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
 	analyzed[var] = 0
@@ -410,3 +384,47 @@ def distance(a, b):
         return 1
     if (a == b):
         return 0
+
+
+def printSolution(solution):
+    days = ["mon", "tue", "wed", "thu", "fri", "sat"]
+
+    ordApp = [[], [], [], [], [], []]
+    notSched = []
+
+    for x in solution:
+        if solution[x] != "notScheduled":
+            if solution[x][0] == days[0]:
+                ordApp[0].append([x, solution[x]])
+            if solution[x][0] == days[1]:
+                ordApp[1].append([x, solution[x]])
+            if solution[x][0] == days[2]:
+                ordApp[2].append([x, solution[x]])
+            if solution[x][0] == days[3]:
+                ordApp[3].append([x, solution[x]])
+            if solution[x][0] == days[4]:
+                ordApp[4].append([x, solution[x]])
+            if solution[x][0] == days[5]:
+                ordApp[5].append([x, solution[x]])
+        else:
+            notSched.append([x, solution[x]])
+    # print(ordApp)
+    for x in ordApp:
+        x.sort(key=takeSecond)
+    index = 0
+    for x in ordApp:
+        if len(x)!=0:
+            print("\n\nGiorno: ", days[index])
+            print("\nMattina:")
+            cond = True
+            for y in x:
+                if (cond and float(y[1][1]) > 12):
+                    print("\nPomeriggio:")
+                    cond = False
+                print("Ore: ", y[1][1], "Casa: ", y[1][2], " Appuntamento numero: ", y[0])
+        index += 1
+    print(notSched)
+
+
+def takeSecond(elem):
+    return elem[1]
