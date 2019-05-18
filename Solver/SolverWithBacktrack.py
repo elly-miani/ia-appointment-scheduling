@@ -54,7 +54,8 @@ def initDomainR():
     #"13.00", "13.50", "14.00", "14.50", "15.00", "15.50", "16.00", "16.50"]
 
 
-    hours = ["08.00", "08.50", "09.00", "09.50", "15.00", "15.50", "16.00", "16.50"]
+    hours = ["08.00", "08.50", "09.00", "09.50",
+             "14.00", "14.50", "15.00", "15.50"]
 
     locations = ["A", "B", "C", "D"]
 
@@ -208,7 +209,7 @@ for x in appointments:
     variablesName.append(x)
 
 # Add edges to the constraint graph only if the two variables share at least one element of the domain, it is possible to make this part better
-a =itertools.combinations(variablesName, 2)
+a = itertools.combinations(variablesName, 2)
 
 for i in a:
     #print("Considero ", i)
@@ -258,7 +259,7 @@ printSolution(solution)
 
 
 start = current_milli_time()
-sol = backtrackingSearchAllSolutions(ConstraintGraphCost, 120000)
+sol = backtrackingSearchAllSolutions(ConstraintGraphCost, 160000)
 end = current_milli_time()
 print("\n\n###########Time spent to find all solution = ", end-start," ms.\n\n")
 print(sol[0])
