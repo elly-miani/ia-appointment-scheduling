@@ -82,24 +82,31 @@
                 <option value="D">D</option>
               </select>
             </li>
+            
             <li class="list-group-item">
-              <label for="days-form"> Choose the days you're available: </label>
+              <label for="days-form"> Choose when you're available:</label>
+              <br/>
+              <span class="day-label"> Monday:</span>
+              <input id="days-form" type="checkbox" name="Day" value="mon,Morning"> Morning
+              <input id="days-form" type="checkbox" name="Day" value="mon,Afternoon"> Afternoon
+              <br/>
+              <span class="day-label"> Tuesday:</span>
+              <input id="days-form" type="checkbox" name="Day" value="tue,Morning"> Morning
+              <input id="days-form" type="checkbox" name="Day" value="tue,Afternoon"> Afternoon     
               <br />
-              <input id="days-form" type="checkbox" name="Day" value="mon"> Monday<br>
-              <input id="days-form" type="checkbox" name="Day" value="tue"> Tuesday<br>
-              <input id="days-form" type="checkbox" name="Day" value="wed"> Wednesday<br>
-              <input id="days-form" type="checkbox" name="Day" value="thu"> Thursday<br>
-              <input id="days-form" type="checkbox" name="Day" value="fri"> Friday<br>
-            </li>
-            <li class="list-group-item">
-              <label for="pref-form"> Choose if you'd prefer the mornings or the afternoons: </label>
+              <span class="day-label"> Tuesday:</span>
+              <input id="days-form" type="checkbox" name="Day" value="wed,Morning"> Morning
+              <input id="days-form" type="checkbox" name="Day" value="wed,Afternoon"> Afternoon
               <br />
-              <input id="pref-form" type="checkbox" name="Pref" value="Morning"> Morning
-              <input id="pref-form" type="checkbox" name="Pref" value="Afternoon"> Afternoon<br>
+              <span class="day-label"> Tuesday:</span>
+              <input id="days-form" type="checkbox" name="Day" value="thu,Morning"> Morning
+              <input id="days-form" type="checkbox" name="Day" value="thu,Afternoon"> Afternoon
+              <br />
+              <span class="day-label"> Tuesday:</span>
+              <input id="days-form" type="checkbox" name="Day" value="fri,Morning"> Morning
+              <input id="days-form" type="checkbox" name="Day" value="fri,Afternoon"> Afternoon
             </li>
-            <li class=" list-group-item">
-              
-            </li>
+
           </ul>
         <div class="card-footer text-muted">
           <!-- <button type="button" onclick="alert('Appointment requested!')">Submit</button> -->

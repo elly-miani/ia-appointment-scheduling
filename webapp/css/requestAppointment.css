@@ -58,6 +58,14 @@ label {
 	box-shadow: 0px 0px 5px #B0CFE0;
 }
 
+input[type=checkbox] {
+	margin-left:20px;
+}
+
+.day-label {
+	color: #8E596C;
+	padding-right:30px;
+}
 
 
 /* SCHEDULE APPOINTMENT */

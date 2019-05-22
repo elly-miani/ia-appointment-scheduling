@@ -7,6 +7,7 @@ function formValidation() {
   // stop the form from submitting since we’re handling that with AJAX
   event.preventDefault();
 
+
   checkedDays = $("#days-form:checked").length;
   checkedPref = $("#pref-form:checked").length;
 
@@ -14,13 +15,8 @@ function formValidation() {
     alert("You must select at least one day.");
   }
   else {
-    if (!checkedPref) {
-      alert("You must select at least one preference for time of day.");
-    }
-    else {
       // if everything is validated then process the form
       handleFormSubmit();
-    }
   }
 }
 
@@ -50,6 +46,8 @@ const formToJSON = elements => {
   // concatenate in *data* each `element`, making the necessary modifications
   const reducerFunction = (data, element) => {
 
+    // console.log(data);
+
     // make sure the element is valid and should be added
     if (isValidElement(element) && isValidValue(element)) {
 
@@ -57,7 +55,17 @@ const formToJSON = elements => {
         // checkbox can have multiple values: store them in a list
         // concatenate the current value to the `data` dict, with key = element.name
         // either in the existing list or creating a new empty one
-        data[element.name] = (data[element.name] || []).concat(element.value);
+
+        dayPref = element.value.split(',');
+
+        if (data[element.name] != null) {
+          data[element.name].push(dayPref);
+        }
+        else {
+          data[element.name] = [];
+          data[element.name].push(dayPref);
+        }
+
       } else {
         // add the current element to the dict `data`
         data[element.name] = element.value;
@@ -83,9 +91,10 @@ const formToJSON = elements => {
 // handle the form content, parse it into JSON and send to the server
 const handleFormSubmit = event => {
 
+
   // get the form data
   const data = formToJSON(form.elements);
-
+  
   // `JSON.stringify()` to make the output valid, human-readable JSON
   dataContainer = JSON.stringify(data);
 
@@ -98,6 +107,9 @@ const handleFormSubmit = event => {
     dataType: "json",
     contentType: "application/json"
   });
+
+  window.location.href = "/html/requestAppointment.html";
+
 };
 
 const form = document.getElementById('appointmentRequest');

@@ -1,115 +1,173 @@
 {
     "0": {
-        "Name": "BUFf",
-        "Surname": "Hell",
-        "House": "D",
-        "Day": [
-            "mon",
-            "tue"
-        ],
-        "Pref": [
-            "Morning",
-            "Afternoon"
-        ]
-    },
-    "1": {
         "Name": "Eleonora",
         "Surname": "Miani",
         "House": "B",
         "Day": [
-            "thu"
-        ],
-        "Pref": [
-            "Afternoon"
+            [
+                "mon",
+                "Morning"
+            ],
+            [
+                "mon",
+                "Afternoon"
+            ],
+            [
+                "tue",
+                "Afternoon"
+            ]
+        ]
+    },
+    "1": {
+        "Name": "Elly",
+        "Surname": "Miani",
+        "House": "C",
+        "Day": [
+            [
+                "mon",
+                "Morning"
+            ],
+            [
+                "tue",
+                "Afternoon"
+            ],
+            [
+                "thu",
+                "Morning"
+            ],
+            [
+                "thu",
+                "Afternoon"
+            ],
+            [
+                "fri",
+                "Afternoon"
+            ]
         ]
     },
     "2": {
         "Name": "Enrico",
         "Surname": "Petrucci",
-        "House": "D",
+        "House": "A",
         "Day": [
-            "mon",
-            "tue",
-            "thu"
-        ],
-        "Pref": [
-            "Morning",
-            "Afternoon"
+            [
+                "mon",
+                "Afternoon"
+            ],
+            [
+                "tue",
+                "Afternoon"
+            ]
         ]
     },
     "3": {
-        "Name": "Bip",
-        "Surname": "Bop",
-        "House": "B",
+        "Name": "Bobby",
+        "Surname": "Morse",
+        "House": "A",
         "Day": [
-            "mon",
-            "tue",
-            "fri"
-        ],
-        "Pref": [
-            "Afternoon"
+            [
+                "mon",
+                "Morning"
+            ]
         ]
     },
     "4": {
-        "Name": "Last",
-        "Surname": "Try",
-        "House": "A",
+        "Name": "Fitz",
+        "Surname": "Simmons",
+        "House": "D",
         "Day": [
-            "mon"
-        ],
-        "Pref": [
-            "Afternoon"
+            [
+                "mon",
+                "Morning"
+            ],
+            [
+                "tue",
+                "Morning"
+            ],
+            [
+                "wed",
+                "Afternoon"
+            ],
+            [
+                "fri",
+                "Afternoon"
+            ]
         ]
     },
     "5": {
-        "Name": "fwa",
-        "Surname": "af",
-        "House": "A",
+        "Name": "Anthony",
+        "Surname": "DiNozzo",
+        "House": "C",
         "Day": [
-            "mon",
-            "tue"
-        ],
-        "Pref": [
-            "Morning"
+            [
+                "mon",
+                "Morning"
+            ],
+            [
+                "tue",
+                "Morning"
+            ]
         ]
     },
     "6": {
-        "Name": "Eleonora",
+        "Name": "Elly",
         "Surname": "Miani",
-        "House": "A",
+        "House": "C",
         "Day": [
-            "mon",
-            "tue"
-        ],
-        "Pref": [
-            "Morning"
+            [
+                "mon",
+                "Morning"
+            ],
+            [
+                "tue",
+                "Afternoon"
+            ],
+            [
+                "wed",
+                "Afternoon"
+            ]
         ]
     },
     "7": {
-        "Name": "Enrico",
-        "Surname": "Petrucci",
+        "Name": "Leroy",
+        "Surname": "Gibbs",
         "House": "C",
         "Day": [
-            "thu"
-        ],
-        "Pref": [
-            "Morning",
-            "Afternoon"
+            [
+                "mon",
+                "Morning"
+            ],
+            [
+                "tue",
+                "Morning"
+            ],
+            [
+                "thu",
+                "Afternoon"
+            ],
+            [
+                "fri",
+                "Afternoon"
+            ]
         ]
     },
     "8": {
-        "Name": "Eleonoa",
-        "Surname": "qdmw",
-        "House": "A",
+        "Name": "Bob",
+        "Surname": "Tuttofare",
+        "House": "C",
         "Day": [
-            "mon",
-            "tue",
-            "wed",
-            "thu",
-            "fri"
-        ],
-        "Pref": [
-            "Afternoon"
+            [
+                "wed",
+                "Morning"
+            ],
+            [
+                "thu",
+                "Afternoon"
+            ],
+            [
+                "fri",
+                "Afternoon"
+            ]
         ]
     }
 }
