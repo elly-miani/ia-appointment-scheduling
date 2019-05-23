@@ -8,7 +8,6 @@ import json
 from copy import deepcopy
 import pprint as pp
 
-from Backtracking_Appointments import backtrackingSearch
 from Backtracking_Appointments import backtrackingSearchAllSolutions
 
 
@@ -225,14 +224,12 @@ for i in a:
                 if domItem1[0] == domItem2[0] and domItem1[1] == domItem2[1] and domItem1!="notScheduled" :
                     #print("creo edge")
                     ConstraintGraphCost.add_edge(i[0], i[1])
+                    ConstraintGraph.add_edge(i[0], i[1])
                     stop = True
                     break
 
                     
                 
-
-ConstraintGraph.add_edges_from(itertools.combinations(variablesName, 2))
-
 #ConstraintGraphCost.add_edges_from(itertools.combinations(variablesName, 2))
 
 
@@ -262,10 +259,11 @@ printSolution(solution)
 
 
 start = current_milli_time()
-sol = backtrackingSearchAllSolutions(ConstraintGraphCost, 1000*60*0 + 1000*0 + 500 )# minutes * seconds * 1000
+sol = backtrackingSearchAllSolutions(ConstraintGraph, 1000*60*0 + 1000*0 + 500 )# minutes * seconds * 1000
 end = current_milli_time()
 print("\n\n###########Time spent to find all solution = ", end-start," ms.\n\n")
 print(sol[0])
-printSolution(sol[0])
+for y in sol[0]:
+    printSolution(y)
 print("With cost = ", sol[1])
 

@@ -5,7 +5,8 @@ import csv
 import time
 import sys
 import json
-
+import itertools
+import networkx as nx
 
 current_milli_time = lambda: int(round(time.time() * 1000))
 
@@ -15,14 +16,12 @@ def constraintFunction():
         # [0] is 'Day': if they are in different days there's no needed constraint 
         if x[0] != y[0]:
             return True
-
-        # else: they are the same day
-        # [1] is 'Hour', [2] is 'House'
-        # if the houses are different, the distance 
-        
-        if (x[2] != y[2] and abs(float(x[1])-float(y[1])) < distance(x[2], y[2])*0.5 + 1):
+        bothMorning = float(x[1]) <= 11.5 and float(y[1]) <= 11.5
+        bothAfternoon = float(x[1]) > 12.0 and float(y[1]) > 12.0
+        isSamePeriod = bothMorning or bothAfternoon
+        if (x[2] != y[2] and isSamePeriod and abs(float(x[1])-float(y[1])) < distance(x[2], y[2])*0.5 + 1):
             return False
-        if (x[2] == y[2] and abs(float(x[1])-float(y[1])) != 1):
+        if (x[2] == y[2] and isSamePeriod and abs(float(x[1])-float(y[1])) != 1):
             return False
         else:
             return True
@@ -56,8 +55,7 @@ def initDomain():
     days = ["mon", "tue", "wed", "thu", "fri", "sat"]
 
     hours = ["08.00", "08.50", "09.00", "09.50", "10.00", "10.50", "11.00", "11.50",
-            "13.00", "13.50", "14.00", "14.50", "15.00", "15.50", "16.00", "16.50", "17.00",
-            "17.50"]
+             "14.00", "14.50", "15.00", "15.50", "16.00", "16.50", "17.00", "17.50"]
 
     locations = ["A", "B", "C", "D"]
 
@@ -104,35 +102,47 @@ def loadAppointments(filePath):
 
 def solver(domain, appointments):
     problem = Problem()
-
+    ConstraintGraphCost = nx.Graph()
+    variablesName = []
     # for each appointment (iterate on the numerical key of the appointments)
     for x in appointments:
         dom = []
-
         # check which elements of the generic domain are necessary for this appointment
         for y in domain:
-            hour, minutes = y[1].split(".")
+            hour , minutes = y[1].split(".")
             hour = int(hour)
-
-            if "Morning" in appointments[x]["Pref"] and hour < 12 and y[0] in appointments[x]["Day"] and y[2] in appointments[x]["House"]:
+            #print(appointments[x])
+            #print(appointments[x]["Day"])
+            
+            for a in appointments[x]["Day"]:
+                if "Morning" == a[1] and hour < 12 and y[0] in a[0] and y[2] in appointments[x]["House"]:
                     dom.append(y)
 
-            if "Afternoon" in appointments[x]["Pref"] and hour > 12 and y[0] in appointments[x]["Day"] and y[2] in appointments[x]["House"]:
+                if "Afternoon" == a[1] and hour > 12 and y[0] in a[0] and y[2] in appointments[x]["House"]:
                     dom.append(y)
-        
-        # print("FOR APPOINTMENT:\n")
-        # pp.pprint(x)
-        # print("The domain is:\n")
-        # pp.pprint(dom)
-
-        # add a variable to the CSP problem with the appointment *x* and the just computed domain *dom*
+            
+        #Aggiungo la variabile corrente con il domain aggiustato
+    #    print(dom)
+        variablesName.append(x)
+        ConstraintGraphCost.add_node(x, domain = dom)
         problem.addVariable(x, dom)
-    
-    # add constraints
-    for x in appointments:
-        for y in appointments:
-            if(x != y):
-                problem.addConstraint(constraintFunction(), (x, y))
+        
+    a = itertools.combinations(variablesName, 2)
+
+    for i in a:
+        #print("Considero ", i)
+        stop = False
+        for domItem1 in ConstraintGraphCost.nodes[i[0]]['domain']:
+            if(stop):
+                break
+            else:
+                for domItem2 in ConstraintGraphCost.nodes[i[1]]['domain']:
+                    if domItem1[0] == domItem2[0] and domItem1[1] == domItem2[1] and domItem1!="notScheduled" :
+                        #print("creo edge")
+                        ConstraintGraphCost.add_edge(i[0], i[1])
+                        problem.addConstraint(constraintFunction(), (i[0], i[1]))
+                        stop = True
+                        break
 
     start = current_milli_time()
     solution = problem.getSolution()
