@@ -98,9 +98,9 @@ def initDomain():
 
     return domain
 
+    
+
 # print function to print a solution in a clean way
-
-
 def printSolution(solution, appointments):
     days = ["mon", "tue", "wed", "thu", "fri"]
 
@@ -174,6 +174,32 @@ def printSolutionR(solution, appointments):
                   appointments[y[0]]["Name"], " ", appointments[y[0]]["Surname"])
         index += 1
     print(notSched)
+
+
+def readyForJSON(solution, appointments):
+    jsonSolution = {}
+
+    for x in solution[0]:
+        hour, minutes = solution[0][x][1].split(".")
+
+        hourEnd = int(hour)
+        hourEnd = hourEnd+1
+        if hourEnd < 10:
+            hourEnd = "0" + str(hourEnd)
+        else:
+            hourEnd = str(hourEnd)
+
+        jsonObject = {
+            "Name": appointments[x]["Name"],
+            "Surname": appointments[x]["Surname"],
+            "House": solution[0][x][2],
+            "Day": solution[0][x][0],
+            "HourStart": hour + ":" + minutes,
+            "HourEnd": hourEnd + ":" + minutes
+        }
+
+        jsonSolution[x] = jsonObject
+    return jsonSolution
 
 
 
@@ -262,9 +288,9 @@ def solver(appointments, domain):
     sol = backtrackingSearchAllSolutions(ConstraintGraphCost, 1000*60*0 + 1000*0 + 500 )# minutes * seconds * 1000
     end = current_milli_time()
     print("\n\n###########Time spent to find all solution = ", end-start," ms.\n\n")
-    print(sol[0])
-    printSolution(sol[0], appointments)
-    print("With cost = ", sol[1])
+    # print(sol[0])
+    # printSolution(sol[0], appointments)
+    # print("With cost = ", sol[1])
 
     return sol
 
@@ -272,18 +298,19 @@ def solver(appointments, domain):
 # appointments = loadAppointments(sys.argv[1])
 # #print(appointments)
 # domain = initDomain()
-# #print(domain)
+# # print(domain)
+# solution = solver(appointments, domain)
+# readyForJSON(solution, appointments)
 
 def scheduler(requestsPath):
 
     domain = initDomain()
     appointments = loadAppointments(requestsPath)
     solution = solver(appointments, domain)
+    jsonSolution = readyForJSON(solution, appointments)
 
     # write solutions on file
     scheduledAppointmentsFile = "data/scheduledAppointments.json"
 
     with open(scheduledAppointmentsFile, 'w') as json_file:
-        json.dump(solution, json_file, indent=4)
-
-    # return solution
+        json.dump(jsonSolution, json_file, indent=4)
