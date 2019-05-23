@@ -99,7 +99,9 @@ def initDomain():
     return domain
 
 # print function to print a solution in a clean way
-def printSolution(solution):
+
+
+def printSolution(solution, appointments):
     days = ["mon", "tue", "wed", "thu", "fri"]
 
     ordApp = [[], [], [], [], [],]
@@ -139,7 +141,7 @@ def printSolution(solution):
 
 
 # print function to print a solution in a clean way
-def printSolutionR(solution):
+def printSolutionR(solution, appointments):
     days = ["mon", "tue", "wed"]
 
     ordApp = [[], [], []]
@@ -175,97 +177,113 @@ def printSolutionR(solution):
 
 
 
-appointments = loadAppointments(sys.argv[1])
-#print(appointments)
-domain = initDomain()
-#print(domain)
+def solver(appointments, domain):
+    # Invece che problem faccio un grafo dei vincoli, aggiungo un nodo per ciascuna variabile e relativo domino.
+    ConstraintGraph = nx.Graph()
+    ConstraintGraphCost = nx.Graph() 
 
+    variablesName = []
 
-# Invece che problem faccio un grafo dei vincoli, aggiungo un nodo per ciascuna variabile e relativo domino.
-ConstraintGraph = nx.Graph()
-ConstraintGraphCost = nx.Graph() 
+    # for each appointment (iterate on the numerical key of the appointments)
+    for x in appointments:
+        dom = []
+        # check which elements of the generic domain are necessary for this appointment
+        for y in domain:
+            hour , minutes = y[1].split(".")
+            hour = int(hour)
+            #print(appointments[x])
+            #print(appointments[x]["Day"])
+            
+            for a in appointments[x]["Day"]:
+                if "Morning" == a[1] and hour < 12 and y[0] in a[0] and y[2] in appointments[x]["House"]:
+                    dom.append(y)
 
-variablesName = []
+                if "Afternoon" == a[1] and hour > 12 and y[0] in a[0] and y[2] in appointments[x]["House"]:
+                    dom.append(y)
+            
+        ConstraintGraph.add_node(x, domain = deepcopy(dom))
+        dom.append("notScheduled")
+        #Aggiungo la variabile corrente con il domain aggiustato
+    #    print(dom)
+        ConstraintGraphCost.add_node(x, domain = dom)
+        variablesName.append(x)
 
-# for each appointment (iterate on the numerical key of the appointments)
-for x in appointments:
-    dom = []
-    # check which elements of the generic domain are necessary for this appointment
-    for y in domain:
-        hour , minutes = y[1].split(".")
-        hour = int(hour)
-        #print(appointments[x])
-        #print(appointments[x]["Day"])
-        
-        for a in appointments[x]["Day"]:
-            if "Morning" == a[1] and hour < 12 and y[0] in a[0] and y[2] in appointments[x]["House"]:
-                dom.append(y)
+    # Add edges to the constraint graph only if the two variables share at least one element of the domain, it is possible to make this part better
+    a = itertools.combinations(variablesName, 2)
 
-            if "Afternoon" == a[1] and hour > 12 and y[0] in a[0] and y[2] in appointments[x]["House"]:
-                dom.append(y)
-        
-    ConstraintGraph.add_node(x, domain = deepcopy(dom))
-    dom.append("notScheduled")
-    #Aggiungo la variabile corrente con il domain aggiustato
-#    print(dom)
-    ConstraintGraphCost.add_node(x, domain = dom)
-    variablesName.append(x)
+    for i in a:
+        #print("Considero ", i)
+        stop = False
+        for domItem1 in ConstraintGraphCost.nodes[i[0]]['domain']:
+            if(stop):
+                break
+            else:
+                for domItem2 in ConstraintGraphCost.nodes[i[1]]['domain']:
+                    if domItem1[0] == domItem2[0] and domItem1[1] == domItem2[1] and domItem1!="notScheduled" :
+                        #print("creo edge")
+                        ConstraintGraphCost.add_edge(i[0], i[1])
+                        stop = True
+                        break
 
-# Add edges to the constraint graph only if the two variables share at least one element of the domain, it is possible to make this part better
-a = itertools.combinations(variablesName, 2)
-
-for i in a:
-    #print("Considero ", i)
-    stop = False
-    for domItem1 in ConstraintGraphCost.nodes[i[0]]['domain']:
-        if(stop):
-            break
-        else:
-            for domItem2 in ConstraintGraphCost.nodes[i[1]]['domain']:
-                if domItem1[0] == domItem2[0] and domItem1[1] == domItem2[1] and domItem1!="notScheduled" :
-                    #print("creo edge")
-                    ConstraintGraphCost.add_edge(i[0], i[1])
-                    stop = True
-                    break
-
+                        
                     
-                
 
-ConstraintGraph.add_edges_from(itertools.combinations(variablesName, 2))
+    ConstraintGraph.add_edges_from(itertools.combinations(variablesName, 2))
 
-#ConstraintGraphCost.add_edges_from(itertools.combinations(variablesName, 2))
-
-
-'''
-nx.draw(ConstraintGraph)
-ax = plt.gca()
-ax.collections[0].set_edgecolor("#ffffff")
-plt.show()
-
-nx.draw(ConstraintGraphCost, pos=nx.spring_layout(ConstraintGraphCost, k=0.5, iterations=35))
-ax = plt.gca()
-ax.collections[0].set_edgecolor("#ffffff")
-plt.show()
-'''
-
-#solution = problem.getSolutions()
-#Chiamo il solutore fatto in casa...
-'''
-start = current_milli_time()
-solution = backtrackingSearch(ConstraintGraph)
-end = current_milli_time()
-print("\n\n###########Time spent to find the first solution = ", end-start," ms.\n\n")
-#print(solution)
-printSolution(solution)
-'''
+    #ConstraintGraphCost.add_edges_from(itertools.combinations(variablesName, 2))
 
 
+    '''
+    nx.draw(ConstraintGraph)
+    ax = plt.gca()
+    ax.collections[0].set_edgecolor("#ffffff")
+    plt.show()
 
-start = current_milli_time()
-sol = backtrackingSearchAllSolutions(ConstraintGraphCost, 1000*60*0 + 1000*0 + 500 )# minutes * seconds * 1000
-end = current_milli_time()
-print("\n\n###########Time spent to find all solution = ", end-start," ms.\n\n")
-print(sol[0])
-printSolution(sol[0])
-print("With cost = ", sol[1])
+    nx.draw(ConstraintGraphCost, pos=nx.spring_layout(ConstraintGraphCost, k=0.5, iterations=35))
+    ax = plt.gca()
+    ax.collections[0].set_edgecolor("#ffffff")
+    plt.show()
+    '''
 
+    #solution = problem.getSolutions()
+    #Chiamo il solutore fatto in casa...
+    '''
+    start = current_milli_time()
+    solution = backtrackingSearch(ConstraintGraph)
+    end = current_milli_time()
+    print("\n\n###########Time spent to find the first solution = ", end-start," ms.\n\n")
+    #print(solution)
+    printSolution(solution)
+    '''
+
+
+
+    start = current_milli_time()
+    sol = backtrackingSearchAllSolutions(ConstraintGraphCost, 1000*60*0 + 1000*0 + 500 )# minutes * seconds * 1000
+    end = current_milli_time()
+    print("\n\n###########Time spent to find all solution = ", end-start," ms.\n\n")
+    print(sol[0])
+    printSolution(sol[0], appointments)
+    print("With cost = ", sol[1])
+
+    return sol
+
+
+# appointments = loadAppointments(sys.argv[1])
+# #print(appointments)
+# domain = initDomain()
+# #print(domain)
+
+def scheduler(requestsPath):
+
+    domain = initDomain()
+    appointments = loadAppointments(requestsPath)
+    solution = solver(appointments, domain)
+
+    # write solutions on file
+    scheduledAppointmentsFile = "data/scheduledAppointments.json"
+
+    with open(scheduledAppointmentsFile, 'w') as json_file:
+        json.dump(solution, json_file, indent=4)
+
+    # return solution

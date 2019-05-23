@@ -11,7 +11,7 @@ import json
 import pprint as pp
 
 sys.path.append('./Solver')
-from Solver import scheduler 
+from SolverWithBacktrack import scheduler 
 
 
 
