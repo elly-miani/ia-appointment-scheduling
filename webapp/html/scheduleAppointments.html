@@ -14,26 +14,27 @@
 
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" type="text/css" href="../css/styles.css">
+  <link rel="stylesheet" type="text/css" href="../css/forms.css">
   <link rel="stylesheet" type="text/css" href="../css/scheduleAppointments.css">
+  <link rel="stylesheet" type="text/css" href="../css/scheduleCalendar.css">
   <link href="https://fonts.googleapis.com/css?family=Raleway|Sanchez" rel="stylesheet">
 
   <title>
-    Request Appointment
+    Schedule Appointment
   </title>
 
-  <!-- <style>
+  <style>
     body {
       background-image: url("../media/naomi-hebert-unsplash.jpg");
-      /* background-position: center; */
-      background-size: cover;
+      background-position:top;
+      background-size: contain;
       background-repeat: no-repeat;
     }
-  </style> -->
+  </style>
 
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="/">AI-powered Real Estate Agency</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
@@ -42,10 +43,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="../html/requestAppointment.html">Request an appointment</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="../html/scheduleAppointments.html">Schedule next week appointments</a>
         </li>
       </ul>
@@ -53,7 +54,37 @@
   </nav>
 
   <div class="container">
-    
+    <div class="card schedule-card shadow">
+      <h1 class="card-title">Schedule Next Week Appointments</h1> 
+      <div class="card-body">
+        <form id="appointmentScheduling">
+          <div class="form-line">
+            <!-- <input id="timeout-form" class="form-input" name="Timeout" placeholder="Max computing time" required> -->
+            <button id="compute-schedule" class="btn btn-primary" type="button" style="display: inline-block;">Compute Schedule</button>
+            <a href="#schedule-calendar" class="btn btn-secondary"  style="display: inline-block;">View Schedule</a>
+          </div>
+        </form>
+      </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <form id="appointmentScheduling">
+              <div class="form-line">
+                <input id="timeout-form" class="form-input" name="Timeout" placeholder="Max computing time" required>
+                <button class="btn btn-primary" type="submit">Compute Schedule</button>
+              </div>
+            </form>
+          </li>
+        </ul>
+
+      
+      <div class="card-footer text-muted">
+        <!-- <button type="button" onclick="alert('Appointment requested!')">Submit</button> -->
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </div>
+    </div>
+  </div>
+  <div id="schedule-calendar" class="container-fluid">
+      <h2 class="card-title">Scheduled Appointments</h1>
       <div class="cd-schedule loading">
         <div class="timeline">
           <ul>
@@ -235,30 +266,8 @@
             </li>
           </ul>
         </div>
-      
-        <!-- <div class="event-modal">
-          <header class="header">
-            <div class="content">
-              <span class="event-date"></span>
-              <h3 class="event-name"></h3>
-            </div>
-      
-            <div class="header-bg"></div>
-          </header>
-      
-          <div class="body">
-            <div class="event-info"></div>
-            <div class="body-bg"></div>
-          </div>
-      
-          <a href="#0" class="close">Close</a>
-        </div> -->
-      
-        <!-- <div class="cover-layer"></div> -->
       </div> <!-- .cd-schedule -->
 
-
-    
   </div>
 
   <!-- JAVASCRIPT -->

@@ -6,12 +6,18 @@
  # writes to `data/requestedAppointments.json`
 '''
 
+import sys
 import json
 import pprint as pp
 
+sys.path.append('./Solver')
+from Solver import scheduler 
 
-# path to the json file storing the requested appointments
-scheduledAppointmentsFile = "data/result.json"
+
+
+# path to the json file storing the requested and scheduled appointments
+requestedAppointmentsFile = "data/requestedAppointments.json"
+scheduledAppointmentsFile = "data/scheduledAppointments.json"
 
 # function to load the json file to a dict 
 def loadAppointments(filePath):
@@ -25,30 +31,16 @@ def loadAppointments(filePath):
 
     return appointments
 
-# function to write a dict to the json file
-# def writeAppointments(filePath, content):
-#   with open(filePath, 'w') as json_file:
-#     json.dump(content, json_file, indent=4)
 
 
-# webservice function called by the webserver to add a new appointment request
+# webservice function called by the webserver to schedule and load appointments
 def scheduleAppointments():
 
+  scheduler(requestedAppointmentsFile)
   # load the appointments already requested
   scheduledAppointments = loadAppointments(scheduledAppointmentsFile)
 
-  # find the new ordered key to add a new request
-  # TODO: sort keys
-  # if requestedAppointments:
-  #   key = int(list(requestedAppointments.keys())[-1]) + 1
-  # else:
-  #   key = 0
-
-  # # add the new request passed by the webserver
-  # requestedAppointments[key] = request
-
-  # # write to the file storing the requested appointments
-  # writeAppointments(requestedAppointmentsFile, requestedAppointments)
+  
 
   #TODO: delete temporary print
   print("####### Scheduled appointments:\n")

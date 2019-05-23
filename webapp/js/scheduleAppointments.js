@@ -27,7 +27,8 @@ function dayCounter(day) {
   }
 }
 
-$(document).ready(function () {
+document.getElementById("compute-schedule").addEventListener("click", function () {
+  
   $.ajax({
     type: 'POST',
     url: '/scheduleAppointments',
@@ -35,7 +36,7 @@ $(document).ready(function () {
     dataType: 'json',
     success: function (data) {
 
-      $.each(data, function(index, appointment) {
+      $.each(data, function (index, appointment) {
         console.log(appointment);
         // console.log(appointment.Name);
         // console.log(appointment.Surname);
@@ -47,8 +48,13 @@ $(document).ready(function () {
       scheduleEverything();
     }
   });
-
 });
+
+
+// $(document).ready(function () {
+ 
+
+// });
 
 function createAppointment(index, appointment) {
   var dayContainer = $('#' + appointment.Day + '> ul');
