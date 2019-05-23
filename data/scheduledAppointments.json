@@ -47,6 +47,14 @@
         "HourStart": "14:00",
         "HourEnd": "15:00"
     },
+    "10": {
+        "Name": "Can't",
+        "Surname": "Anymore",
+        "House": "C",
+        "Day": "wed",
+        "HourStart": "15:00",
+        "HourEnd": "16:00"
+    },
     "4": {
         "Name": "Fitz",
         "Surname": "Simmons",
@@ -54,6 +62,14 @@
         "Day": "fri",
         "HourStart": "14:00",
         "HourEnd": "15:00"
+    },
+    "9": {
+        "Name": "ce la faremo",
+        "Surname": "forse no",
+        "House": "B",
+        "Day": "wed",
+        "HourStart": "08:00",
+        "HourEnd": "09:00"
     },
     "8": {
         "Name": "Bob",

@@ -19,6 +19,7 @@ import json
 sys.path.append('./webservices')
 from requestAppointment import requestAppointment 
 from scheduleAppointments import scheduleAppointments
+from scheduleAppointments import showAppointments
 
 
 class HTTPRequestHandler(BaseHTTPRequestHandler):
@@ -58,7 +59,16 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
                 self.wfile.write(f.read())
                 f.close()
             else:
-                self.send_error(404, 'Page Not Found: %s' % self.path)
+                if self.path == "/showAppointments":
+                    json_string = json.dumps(showAppointments())
+
+                    self.send_response(200)
+                    self.end_headers()
+                    response = BytesIO()
+                    response.write(json_string.encode(encoding='utf_8'))
+                    self.wfile.write(response.getvalue())
+                else:
+                    self.send_error(404, 'Page Not Found: %s' % self.path)
 
         except IOError:
             self.send_error(404, 'Page Not Found: %s' % self.path)
@@ -81,7 +91,6 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(response.getvalue())
         
         if self.path == "/scheduleAppointments":
-            scheduleAppointments()
             json_string = json.dumps(scheduleAppointments())
 
             self.send_response(200)

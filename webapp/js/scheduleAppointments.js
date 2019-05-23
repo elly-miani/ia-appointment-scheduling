@@ -1,6 +1,76 @@
-var count = [1,1,1,1,1];
+$(document).ready(function () {
+  // on page load call the showAppointments webservice, which will return the current schedule in json
+
+  $.ajax({
+    type: 'GET',
+    url: '/showAppointments',
+    dataType: 'json',
+    success: function (data) {
+
+      // create appointments in html code
+      $.each(data, function (index, appointment) {
+        console.log(appointment);
+        createAppointment(index, appointment);
+      })
+
+      // refresh appointments on calendar
+      scheduleEverything();
+    }
+  });
+});
+
+
+
+document.getElementById("compute-schedule").addEventListener("click", function () {
+  // on click of button "Compute Schedule"
+
+  // delete existing appointments from html
+  var dayContainer = $(".events-group > ul");
+  console.log(dayContainer);
+  Array.from(dayContainer).forEach(day => {
+    day.innerHTML = "";
+  });
+
+  // reset daily count to set correct colors to elements
+  count = [1, 1, 1, 1, 1];
+
+  // call scheduleAppointments webservice, which will run the solver and return the output file in json
+  $.ajax({
+    type: 'POST',
+    url: '/scheduleAppointments',
+    dataType: 'json',
+    success: function (data) {
+
+      // create appointments in html code
+      $.each(data, function (index, appointment) {
+        console.log(appointment);
+        createAppointment(index, appointment);
+      })
+
+      // refresh appointments on calendar
+      scheduleEverything();
+
+      // scroll to calendar
+      $('html, body').animate(
+        {
+          scrollTop: $("#schedule-calendar").offset().top,
+        },
+        500,
+        'linear'
+      )
+    }
+  });
+});
+
+
+
+
+// helper function to keep count of scheduled appointments for each day
+// needed for scheduleStructure.js to add colors correctly
+var count = [1, 1, 1, 1, 1];
+
 function dayCounter(day) {
-  if(day=="mon"){
+  if (day == "mon") {
     tmp = count[0];
     count[0]++;
     return tmp;
@@ -27,36 +97,10 @@ function dayCounter(day) {
   }
 }
 
-document.getElementById("compute-schedule").addEventListener("click", function () {
-  
-  $.ajax({
-    type: 'POST',
-    url: '/scheduleAppointments',
-    // data: { get_param: 'value' },
-    dataType: 'json',
-    success: function (data) {
 
-      $.each(data, function (index, appointment) {
-        console.log(appointment);
-        // console.log(appointment.Name);
-        // console.log(appointment.Surname);
-        // console.log(appointment.House);
-        // console.log(appointment.Day);
-        // console.log(appointment.Hour);
-        createAppointment(index, appointment);
-      })
-      scheduleEverything();
-    }
-  });
-});
-
-
-// $(document).ready(function () {
- 
-
-// });
 
 function createAppointment(index, appointment) {
+  // add each appointment with its data to the correct day list in the html code
   var dayContainer = $('#' + appointment.Day + '> ul');
   
   dayContainer.append($('<li/>', {
@@ -64,35 +108,16 @@ function createAppointment(index, appointment) {
     class: 'single-event'
   }))
 
+  // update loading status when adding appointments after they were already loaded once
+  // needed to ensure correct functioning of placeEvents() function in scheduleStructure.js
+  $(".cd-schedule").removeClass('js-full');
+  $(".cd-schedule").addClass('loading');
+
+  console.log("index:" + index);
   $('#' + index).attr("data-event", index);
   $('#' + index).attr("data-start", appointment.HourStart);
   $('#' + index).attr("data-end", appointment.HourEnd);
   $('#' + index).attr("data-event", "event-"+dayCounter(appointment.Day));
   let event = "<span class=\"event-name\">" + appointment.Name + " " + appointment.Surname + "<br/>" + appointment.HourStart + " - " + appointment.HourEnd + "<br/>" + "<em> House: " + appointment.House + "</em>" + "</span>"
   $('#' + index).append("<a>" + event + "</a>")
-
-
-  // dayContainer.append($('<li/>', {
-  //   text: "HEllo!"
-  // }))
-
-  // dayContainer.append("<li class=\"single-event\">"+ appointment.Name +"</li>")
-  
-
-  // <li class="single-event" data-start="12:00" data-end="13:45" data-content="event-restorative-yoga"
-  //   data-event="event-4">
-  //   <a href="#0">
-  //     <span class="event-name">Restorative Yoga</span>
-  //   </a>
-  // </li>
 }
-
-
-
-// obj = JSON.parse(json);
-
-// console.log(obj.count);
-// // expected output: 42
-
-// console.log(obj.result);
-// // expected output: true

@@ -47,7 +47,12 @@ def scheduleAppointments():
   pp.pprint(scheduledAppointments)
   return scheduledAppointments
 
+def showAppointments():
+  scheduledAppointments = loadAppointments(scheduledAppointmentsFile)
   
+  print("####### Scheduled appointments:\n")
+  pp.pprint(scheduledAppointments)
+  return scheduledAppointments
 
 
   

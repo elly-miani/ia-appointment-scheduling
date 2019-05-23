@@ -35,11 +35,14 @@ function scheduleEverything() {
   }
 
   SchedulePlan.prototype.initSchedule = function () {
+    console.log("initSchedule")
     this.scheduleReset();
     // this.initEvents();
   };
 
   SchedulePlan.prototype.scheduleReset = function () {
+    console.log("scheduleReset")
+
     var mq = this.mq();
     if (mq == 'desktop' && !this.element.hasClass('js-full')) {
       //in this case you are on a desktop version (first load or resize from mobile)
@@ -88,6 +91,7 @@ function scheduleEverything() {
   // };
 
   SchedulePlan.prototype.placeEvents = function () {
+    console.log("placeEvents")
     var self = this;
     this.singleEvents.each(function () {
       //place each event in the grid -> need to set top position and height
@@ -96,7 +100,7 @@ function scheduleEverything() {
 
       var eventTop = self.eventSlotHeight * (start - self.timelineStart) / self.timelineUnitDuration,
         eventHeight = self.eventSlotHeight * duration / self.timelineUnitDuration;
-      console.log(eventTop)
+      // console.log(eventTop)
 
       $(this).css({
         top: (eventTop - 1) + 'px',
