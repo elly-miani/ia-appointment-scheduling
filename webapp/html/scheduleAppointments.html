@@ -59,7 +59,7 @@
       <div class="card-body">
         <form id="appointmentScheduling">
           <div class="form-line">
-            <!-- <input id="timeout-form" class="form-input" name="Timeout" placeholder="Max computing time" required> -->
+            <input id="timeout-form" class="form-input" name="Timeout" placeholder="Max computing time">
             <button id="compute-schedule" class="btn btn-primary" type="button" style="display: inline-block;">Compute Schedule</button>
             <a href="#schedule-calendar" class="btn btn-secondary"  style="display: inline-block;">View Schedule</a>
           </div>
@@ -266,6 +266,26 @@
             </li>
           </ul>
         </div>
+
+        <div class="event-modal">
+          <header class="header">
+            <div class="content">
+              <span class="event-date"></span>
+              <h3 class="event-name"></h3>
+            </div>
+        
+            <div class="header-bg"></div>
+          </header>
+        
+          <div class="body">
+            <div class="event-info"></div>
+            <div class="body-bg"></div>
+          </div>
+        
+          <a href="#0" class="close"></a>
+        </div>
+        
+        <div class="cover-layer"></div>
       </div> <!-- .cd-schedule -->
 
   </div>

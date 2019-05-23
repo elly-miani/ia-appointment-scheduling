@@ -354,7 +354,7 @@ Main Components
   background: #f7bd7f;
 }
 
-/* .cd-schedule .event-modal {
+.cd-schedule .event-modal {
   position: fixed;
   z-index: 3;
   top: 0;
@@ -374,7 +374,7 @@ Main Components
   transition: transform .4s, visibility .4s, -webkit-transform .4s;
   -webkit-transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
           transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
-} */
+}
 
 .cd-schedule .event-modal .header {
   position: relative;
@@ -398,6 +398,7 @@ Main Components
   width: 100%;
   /* 70px is the .header height */
   height: calc(100% - 70px);
+  padding:5%;
 }
 
 .cd-schedule .event-modal .event-info {

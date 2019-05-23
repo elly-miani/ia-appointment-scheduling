@@ -21,13 +21,13 @@ function scheduleEverything() {
     this.singleEvents = this.eventsGroup.find('.single-event');
     this.eventSlotHeight = this.eventsGroup.eq(0).children('.top-info').outerHeight();
 
-    // this.modal = this.element.find('.event-modal');
-    // this.modalHeader = this.modal.find('.header');
-    // this.modalHeaderBg = this.modal.find('.header-bg');
-    // this.modalBody = this.modal.find('.body');
-    // this.modalBodyBg = this.modal.find('.body-bg');
-    // this.modalMaxWidth = 800;
-    // this.modalMaxHeight = 480;
+    this.modal = this.element.find('.event-modal');
+    this.modalHeader = this.modal.find('.header');
+    this.modalHeaderBg = this.modal.find('.header-bg');
+    this.modalBody = this.modal.find('.body');
+    this.modalBodyBg = this.modal.find('.body-bg');
+    this.modalMaxWidth = 800;
+    this.modalMaxHeight = 480;
 
     this.animating = false;
 
@@ -37,7 +37,7 @@ function scheduleEverything() {
   SchedulePlan.prototype.initSchedule = function () {
     console.log("initSchedule")
     this.scheduleReset();
-    // this.initEvents();
+    this.initEvents();
   };
 
   SchedulePlan.prototype.scheduleReset = function () {
@@ -49,46 +49,46 @@ function scheduleEverything() {
       this.eventSlotHeight = this.eventsGroup.eq(0).children('.top-info').outerHeight();
       this.element.addClass('js-full');
       this.placeEvents();
-      // this.element.hasClass('modal-is-open') && this.checkEventModal();
+      this.element.hasClass('modal-is-open') && this.checkEventModal();
     } else if (mq == 'mobile' && this.element.hasClass('js-full')) {
       //in this case you are on a mobile version (first load or resize from desktop)
       this.element.removeClass('js-full loading');
       this.eventsGroup.children('ul').add(this.singleEvents).removeAttr('style');
       this.eventsWrapper.children('.grid-line').remove();
       this.element.hasClass('modal-is-open') && this.checkEventModal();
-    // } else if (mq == 'desktop' && this.element.hasClass('modal-is-open')) {
-    //   // on a mobile version with modal open - need to resize/move modal window
-    //   this.checkEventModal('desktop');
-    //   this.element.removeClass('loading');
+    } else if (mq == 'desktop' && this.element.hasClass('modal-is-open')) {
+      // on a mobile version with modal open - need to resize/move modal window
+      this.checkEventModal('desktop');
+      this.element.removeClass('loading');
     } else {
       this.element.removeClass('loading');
     }
   };
 
-  // SchedulePlan.prototype.initEvents = function () {
-    // var self = this;
+  SchedulePlan.prototype.initEvents = function () {
+    var self = this;
 
-    // this.singleEvents.each(function () {
-    //   //create the .event-date element for each event
-    //   var durationLabel = '<span class="event-date">' + $(this).data('start') + ' - ' + $(this).data('end') + '</span>';
-    //   $(this).children('a').prepend($(durationLabel));
+    this.singleEvents.each(function () {
+      //create the .event-date element for each event
+      var durationLabel = '<span class="event-date">' + $(this).data('start') + ' - ' + $(this).data('end') + '</span>';
+      $(this).children('a').prepend($(durationLabel));
 
-    //   // //detect click on the event and open the modal
-    //   // $(this).on('click', 'a', function (event) {
-    //   //   event.preventDefault();
-    //   //   if (!self.animating) self.openModal($(this));
-    //   // });
-    // });
+      //detect click on the event and open the modal
+      $(this).on('click', 'a', function (event) {
+        event.preventDefault();
+        if (!self.animating) self.openModal($(this));
+      });
+    });
 
-    //close modal window
-    // this.modal.on('click', '.close', function (event) {
-    //   event.preventDefault();
-    //   if (!self.animating) self.closeModal(self.eventsGroup.find('.selected-event'));
-    // });
-    // this.element.on('click', '.cover-layer', function (event) {
-    //   if (!self.animating && self.element.hasClass('modal-is-open')) self.closeModal(self.eventsGroup.find('.selected-event'));
-    // });
-  // };
+    // close modal window
+    this.modal.on('click', '.close', function (event) {
+      event.preventDefault();
+      if (!self.animating) self.closeModal(self.eventsGroup.find('.selected-event'));
+    });
+    this.element.on('click', '.cover-layer', function (event) {
+      if (!self.animating && self.element.hasClass('modal-is-open')) self.closeModal(self.eventsGroup.find('.selected-event'));
+    });
+  };
 
   SchedulePlan.prototype.placeEvents = function () {
     console.log("placeEvents")
@@ -117,15 +117,27 @@ function scheduleEverything() {
     this.animating = true;
 
     //update event name and time
-    // this.modalHeader.find('.event-name').text(event.find('.event-name').text());
-    // this.modalHeader.find('.event-date').text(event.find('.event-date').text());
-    // this.modal.attr('data-event', event.parent().attr('data-event'));
+    this.modalHeader.find('.event-name').text(event.find('.event-name').text());
+    this.modalHeader.find('.event-date').text(event.find('.event-date').text());
+    this.modal.attr('data-event', event.parent().attr('data-event'));
 
     //update event content
-    this.modalBody.find('.event-info').load(event.parent().attr('data-content') + '.html .event-info > *', function (data) {
+    this.modalBody.find('.event-info').load("/showRequestedAppointments?"+event.parent().attr('id'), function(data) {
+      console.log(data[event.parent().attr('id')]);
+      console.log(self);
+
       //once the event content has been loaded
       self.element.addClass('content-loaded');
     });
+
+    // this.modalBody.find('.event-info').load(event.parent().attr('data-content') + '.html .event-info > *', function (data) {
+    //   console.log(data);
+
+    //   //once the event content has been loaded
+    //   self.element.addClass('content-loaded');
+
+
+    // });
 
     this.element.addClass('modal-is-open');
 

@@ -118,6 +118,7 @@ function createAppointment(index, appointment) {
   $('#' + index).attr("data-start", appointment.HourStart);
   $('#' + index).attr("data-end", appointment.HourEnd);
   $('#' + index).attr("data-event", "event-"+dayCounter(appointment.Day));
-  let event = "<span class=\"event-name\">" + appointment.Name + " " + appointment.Surname + "<br/>" + appointment.HourStart + " - " + appointment.HourEnd + "<br/>" + "<em> House: " + appointment.House + "</em>" + "</span>"
-  $('#' + index).append("<a>" + event + "</a>")
+  // let event = "<span class=\"event-name\">" + appointment.Name + " " + appointment.Surname + "<br/>" + appointment.HourStart + " - " + appointment.HourEnd + "<br/>" + "<em> House: " + appointment.House + "</em>" + "</span>"
+  let event = "<span class=\"event-name\">" + appointment.Name + " " + appointment.Surname + "<br/>" + "<em> House: " + appointment.House + "</em>" + "</span>"
+  $('#' + index).append("<a href=\"#0\">" + event + "</a>")
 }

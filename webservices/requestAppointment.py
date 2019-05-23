@@ -54,6 +54,17 @@ def requestAppointment(request):
   print("####### Updated Requests:\n")
   pp.pprint(requestedAppointments)
 
+
+def showRequestedAppointments(appID):
+  # load the appointments already requested
+  requestedAppointments = loadAppointments(requestedAppointmentsFile)
+
+  appointmentDetails = "<p>Requested appointment with following constraints:</p>"
+  for day in requestedAppointments[appID]["Day"]:
+    appointmentDetails += "<p>" + str(day) + "</p>"
+    print(day)
+
+  return appointmentDetails
   
 
 
