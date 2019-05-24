@@ -1,3 +1,5 @@
+// links to IDs in html use smooth scroll
+
 $('a[href*="#"]').on('click', function (e) {
   e.preventDefault()
 

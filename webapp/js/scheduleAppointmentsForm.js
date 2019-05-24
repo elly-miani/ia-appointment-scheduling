@@ -20,7 +20,6 @@ $(document).ready(function () {
 });
 
 
-
 document.getElementById("compute-schedule").addEventListener("click", function (event) {
   // on click of button "Compute Schedule"
 
@@ -90,9 +89,7 @@ document.getElementById("compute-schedule").addEventListener("click", function (
   else {}
 
   $("#timeout-form")[0].value = ""
-  
 });
-
 
 
 
