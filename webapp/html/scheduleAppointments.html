@@ -75,9 +75,13 @@
       <div class="card-footer text-muted">
         <div>
           <h3 style="color:black">Requests Manager</h3>
-          <button id="generate-random-requests" class="btn btn-primary" style="display: inline-block;">Fill Requests Randomly</button>
-          <button id="empty-requests" class="btn btn-secondary" style="display: inline-block;">Empty Requests</button>
+          <form id="random-appointments-form">
+            <input id="num-requests-form" class="form-input" name="Timeout" placeholder="Number or requests" required>
+            <button id="generate-random-requests" class="btn btn-primary" style="display: inline-block;">Fill Requests Randomly</button>
+          </form>
+          <br/>
         </div>
+        <button id="empty-requests" class="btn btn-secondary" style="display: inline-block;">Empty Requests</button>
       </div>
     </div>
   </div>

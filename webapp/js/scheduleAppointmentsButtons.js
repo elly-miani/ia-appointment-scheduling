@@ -42,12 +42,24 @@ document.getElementById("empty-requests").addEventListener("click", function (ev
 document.getElementById("generate-random-requests").addEventListener("click", function (event) {
 
   if (confirm("Are you sure you want to generate random requested appointments?\nThis action will override the current requests and can't be reversed.")) {
-    $.ajax({
-      type: 'GET',
-      url: '/randomRequests',
-      success: function () {
-        alert("Requests generated!");
-      }
-    });
+
+    const formData = $("#num-requests-form").serializeArray()[0];
+    console.log(formData)
+
+    // stop the form from submitting since we’re handling that with AJAX
+    if ($("#num-requests-form")[0].value != "") {
+
+      event.preventDefault();
+      
+      $.ajax({
+        type: 'POST',
+        url: '/randomRequests',
+        data: JSON.stringify(formData),
+        success: function () {
+          alert("Requests generated!");
+        }
+      });
+    }
   }
+
 });

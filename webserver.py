@@ -161,6 +161,16 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
 
             # RESTRequest = True
         
+        if self.path == "/randomRequests":
+            generateRandomRequests(json.loads(body))
+
+            self.send_response(200)
+            self.end_headers()
+            response = BytesIO()
+            # response.write(json_string.encode(encoding='utf_8'))
+            self.wfile.write(response.getvalue())
+
+        
 
 
 try:

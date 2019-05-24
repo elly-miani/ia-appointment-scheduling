@@ -28,6 +28,10 @@ label {
 	width: 30%;
 }
 
+.form-input#num-requests-form {
+	width: 30%;
+}
+
 .form-input:focus {
 	border: 1px solid #B0CFE0;
 	box-shadow: 0px 0px 5px #B0CFE0;
