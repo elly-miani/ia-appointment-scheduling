@@ -25,26 +25,25 @@ prefs = ["Morning", "Afternoon"]
 
 
 def generateRandomRequests(numAppointments):
+  print(numAppointments)
   appointments = dict()
 
-  datasetDimensions = [numAppointments]  # , 10, 15, 20, 25, 30]
-  for k in datasetDimensions:
-    for i in range(k):
-      y = random.randint(2, 3)
-      d = sample(days, y)
-      app = []
-      for a in range(y):
-        newApp = (days[random.randint(0, len(days)-1)],
-                  prefs[random.randint(0, len(prefs)-1)])
-        if newApp not in app:
-          app.append(newApp)
-      appointment = {
-          "Name": names[random.randint(0, len(names)-1)],
-          "Surname": surnames[random.randint(0, len(surnames)-1)],
-          "House": locations[random.randint(0, len(locations)-1)],
-          "Day": app,
-      }
-      appointments[str(i)] = appointment
+  for i in range(numAppointments):
+    y = random.randint(2, 3)
+    d = sample(days, y)
+    app = []
+    for a in range(y):
+      newApp = (days[random.randint(0, len(days)-1)],
+                prefs[random.randint(0, len(prefs)-1)])
+      if newApp not in app:
+        app.append(newApp)
+    appointment = {
+      "Name": names[random.randint(0, len(names)-1)],
+      "Surname": surnames[random.randint(0, len(surnames)-1)],
+      "House": locations[random.randint(0, len(locations)-1)],
+      "Day": app,
+    }
+    appointments[str(i)] = appointment
 
     # # print(appointments)
     # print("Creating JSON file with " + str(k) + " appointments.")

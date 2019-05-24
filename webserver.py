@@ -149,7 +149,7 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
             response.write(body)
             self.wfile.write(response.getvalue())
         
-        if "/scheduleAppointments" in self.path:
+        if self.path == "/scheduleAppointments":
             post_data = json.loads(body)
             json_string = json.dumps(scheduleAppointments(int(post_data['value'])))
 
