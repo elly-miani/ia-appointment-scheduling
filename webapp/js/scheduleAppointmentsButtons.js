@@ -1,6 +1,4 @@
 document.getElementById("empty-schedule").addEventListener("click", function (event) {
-  // on page load call the showAppointments webservice, which will return the current schedule in json
-  console.log("EHI!");
 
   if (confirm("Are you sure you want to delete scheduled appointments?\nThis action can't be reversed.")) {
     $.ajax({
@@ -20,6 +18,8 @@ document.getElementById("empty-schedule").addEventListener("click", function (ev
         Array.from(notScheduledContainer).forEach(event => {
           event.outerHTML = "";
         });
+
+        alert("Scheduled appointments deleted!")
       }
     });
   }
@@ -27,7 +27,6 @@ document.getElementById("empty-schedule").addEventListener("click", function (ev
 
 
 document.getElementById("empty-requests").addEventListener("click", function (event) {
-  // on page load call the showAppointments webservice, which will return the current schedule in json
 
   if (confirm("Are you sure you want to delete requested appointments?\nThis action can't be reversed.")) {
     $.ajax({
@@ -35,6 +34,19 @@ document.getElementById("empty-requests").addEventListener("click", function (ev
       url: '/emptyRequests',
       success: function () {
         alert("Requests deleted!");
+      }
+    });
+  }
+});
+
+document.getElementById("generate-random-requests").addEventListener("click", function (event) {
+
+  if (confirm("Are you sure you want to generate random requested appointments?\nThis action will override the current requests and can't be reversed.")) {
+    $.ajax({
+      type: 'GET',
+      url: '/randomRequests',
+      success: function () {
+        alert("Requests generated!");
       }
     });
   }
