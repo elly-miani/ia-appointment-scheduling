@@ -186,14 +186,13 @@ def get_key(key):
 def readyForJSON(solution, appointments):
     jsonSolution = {}
 
-    # orderedKeys = []
-    # for x in sorted(solution[0].items(), key=lambda t: get_key(t[0])):
-    #     orderedKeys.append(x[0])
+    orderedKeys = []
+    for x in sorted(solution[0].items(), key=lambda t: get_key(t[0])):
+        orderedKeys.append(x[0])
 
-    # print(orderedKeys)
+    print(orderedKeys)
 
-    # for x in orderedKeys:
-    for x in solution[0]:
+    for x in orderedKeys:
         if solution[0][x] == "notScheduled":
             jsonObject = {
                 "Status": "not scheduled",

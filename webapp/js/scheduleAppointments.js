@@ -24,58 +24,73 @@ $(document).ready(function () {
 document.getElementById("compute-schedule").addEventListener("click", function (event) {
   // on click of button "Compute Schedule"
 
-  // stop the form from submitting since we’re handling that with AJAX
-  event.preventDefault();
-  console.log(event);
-  
-
-  // delete existing appointments from html
-  var dayContainer = $(".events-group > ul");
-  console.log(dayContainer);
-  Array.from(dayContainer).forEach(day => {
-    day.innerHTML = "";
-  });
-
-  // delete existing not scheduled appointments from html
-  var notScheduledContainer = $('.not-scheduled-event');
-  Array.from(notScheduledContainer).forEach(event => {
-    event.outerHTML = "";
-  });
-
-  // reset daily count to set correct colors to elements
-  count = [1, 1, 1, 1, 1];
+  console.log("validation:");
+  // console.log($("#timeout-form")[0].value);
 
   const formData = $("#timeout-form").serializeArray()[0];
-  console.log(formData.value);
 
-  // call scheduleAppointments webservice, which will run the solver and return the output file in json
-  $.ajax({
-    type: 'POST',
-    url: '/scheduleAppointments',
-    contentType: "application/json; charset=utf-8",
-    data: JSON.stringify(formData),
-    dataType: 'json',
-    success: function (data) {
+  
+  console.log(formData)
 
-      // create appointments in html code
-      $.each(data, function (index, appointment) {
-        console.log(appointment);
-        createAppointment(index, appointment);
-      })
+  // stop the form from submitting since we’re handling that with AJAX
+  if ($("#timeout-form")[0].value != "") {
+    event.preventDefault();
 
-      // refresh appointments on calendar
-      scheduleEverything();
+    console.log(event);
 
-      // scroll to calendar
-      $('html, body').animate(
-        {
-          scrollTop: $("#schedule-calendar").offset().top,
-        },
-        500,
-        'linear'
-      )
-    }
-  });
+
+    // delete existing appointments from html
+    var dayContainer = $(".events-group > ul");
+    console.log(dayContainer);
+    Array.from(dayContainer).forEach(day => {
+      day.innerHTML = "";
+    });
+
+    // delete existing not scheduled appointments from html
+    var notScheduledContainer = $('.not-scheduled-event');
+    Array.from(notScheduledContainer).forEach(event => {
+      event.outerHTML = "";
+    });
+
+    // reset daily count to set correct colors to elements
+    count = [1, 1, 1, 1, 1];
+
+    // const formData = $("#timeout-form").serializeArray()[0];
+    console.log(formData.value);
+
+    // call scheduleAppointments webservice, which will run the solver and return the output file in json
+    $.ajax({
+      type: 'POST',
+      url: '/scheduleAppointments',
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(formData),
+      dataType: 'json',
+      success: function (data) {
+
+        // create appointments in html code
+        $.each(data, function (index, appointment) {
+          console.log(appointment);
+          createAppointment(index, appointment);
+        })
+
+        // refresh appointments on calendar
+        scheduleEverything();
+
+        // scroll to calendar
+        $('html, body').animate(
+          {
+            scrollTop: $("#schedule-calendar").offset().top,
+          },
+          500,
+          'linear'
+        )
+      }
+    });
+  }
+  else {}
+
+  $("#timeout-form")[0].value = ""
+  
 });
 
 

@@ -640,21 +640,37 @@
         ]
     },
     "40": {
-        "Name": "Elly",
-        "Surname": "Miani",
-        "House": "A",
+        "Name": "Ennesima",
+        "Surname": "Prova",
+        "House": "D",
         "Day": [
-            [
-                "mon",
-                "Morning"
-            ],
             [
                 "tue",
                 "Morning"
             ],
             [
+                "tue",
+                "Afternoon"
+            ],
+            [
                 "wed",
                 "Morning"
+            ],
+            [
+                "wed",
+                "Afternoon"
+            ],
+            [
+                "thu",
+                "Afternoon"
+            ],
+            [
+                "fri",
+                "Morning"
+            ],
+            [
+                "fri",
+                "Afternoon"
             ]
         ]
     }
