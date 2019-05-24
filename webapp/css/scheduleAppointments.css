@@ -12,16 +12,20 @@
 
 
 .schedule-card > .card-body {
+	padding-top:4%;
+	padding-bottom:4%;
+}
+.schedule-card > .card-footer {
 	padding:4%;
 }
 
-.schedule-card > .card-footer {
-	margin-top:5%;
+.schedule-card h3 {
+	padding-bottom:2%;
 }
+
 
 .schedule-card > .card-title {
 	margin-top:5%;
-	margin-bottom:5%;
 }
 
 .not-scheduled-event {
