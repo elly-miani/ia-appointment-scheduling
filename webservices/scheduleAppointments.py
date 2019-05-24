@@ -34,9 +34,9 @@ def loadAppointments(filePath):
 
 
 # webservice function called by the webserver to schedule and load appointments
-def scheduleAppointments():
+def scheduleAppointments(timeout):
 
-  scheduler(requestedAppointmentsFile)
+  scheduler(requestedAppointmentsFile, timeout)
   # load the appointments already requested
   scheduledAppointments = loadAppointments(scheduledAppointmentsFile)
 

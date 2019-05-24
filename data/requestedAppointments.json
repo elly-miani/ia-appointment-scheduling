@@ -638,5 +638,24 @@
                 "Afternoon"
             ]
         ]
+    },
+    "40": {
+        "Name": "Elly",
+        "Surname": "Miani",
+        "House": "A",
+        "Day": [
+            [
+                "mon",
+                "Morning"
+            ],
+            [
+                "tue",
+                "Morning"
+            ],
+            [
+                "wed",
+                "Morning"
+            ]
+        ]
     }
 }

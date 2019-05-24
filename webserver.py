@@ -11,6 +11,8 @@
 '''
 
 from http.server import HTTPServer, BaseHTTPRequestHandler
+from urllib.parse import parse_qs
+
 from os import curdir, sep
 import sys
 from io import BytesIO
@@ -37,29 +39,31 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
             self.path="html/index.html"
 
         try:
-            sendReply = False
+            fileRequest = False
+            RESTRequest = False
 
-            # choose correct mimetype
+            # choose correct mimetype if server is asked for files
             if self.path.endswith(".html"):
                 mimetype='text/html'
-                sendReply = True
+                fileRequest = True
             if self.path.endswith(".js"):
                 mimetype='application/javascript'
-                sendReply = True
+                fileRequest = True
             if self.path.endswith(".css"):
                 mimetype='text/css'
-                sendReply = True
+                fileRequest = True
             if self.path.endswith(".jpg"):
                 mimetype="image/jpeg"
-                sendReply = True
+                fileRequest = True
 
-            if sendReply == True:
+            if fileRequest == True:
                 # open the static file requested and send it
                 f = open(curdir + sep + "webapp/" + self.path, "rb")
                 self._set_headers(mimetype)
                 self.wfile.write(f.read())
                 f.close()
             else:
+                # REST services
                 if self.path == "/showAppointments":
                     json_string = json.dumps(showAppointments())
 
@@ -68,19 +72,27 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
                     response = BytesIO()
                     response.write(json_string.encode(encoding='utf_8'))
                     self.wfile.write(response.getvalue())
-                else:
-                    if "/showRequestedAppointments" in self.path:
-                        path, appID = self.path.split("?")
-                        # json_string = json.dumps(showRequestedAppointments(appID))
 
-                        self.send_response(200)
-                        self.end_headers()
-                        response = BytesIO()
-                        # response.write(json_string.encode(encoding='utf_8'))
-                        response.write(showRequestedAppointments(appID).encode(encoding="utf_8"))
-                        self.wfile.write(response.getvalue())
-                    else:
-                        self.send_error(404, 'Page Not Found: %s' % self.path)
+                    RESTRequest = True
+
+               
+
+                if "/showRequestedAppointments" in self.path:
+                    path, appID = self.path.split("?")
+                    # json_string = json.dumps(showRequestedAppointments(appID))
+
+                    self.send_response(200)
+                    self.end_headers()
+                    response = BytesIO()
+                    # response.write(json_string.encode(encoding='utf_8'))
+                    response.write(showRequestedAppointments(
+                        appID).encode(encoding="utf_8"))
+                    self.wfile.write(response.getvalue())
+
+                    RESTRequest = True
+
+                if RESTRequest == False:
+                    self.send_error(404, 'Page Not Found: %s' % self.path)
 
         except IOError:
             self.send_error(404, 'Page Not Found: %s' % self.path)
@@ -102,14 +114,17 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
             response.write(body)
             self.wfile.write(response.getvalue())
         
-        if self.path == "/scheduleAppointments":
-            json_string = json.dumps(scheduleAppointments())
+        if "/scheduleAppointments" in self.path:
+            post_data = json.loads(body)
+            json_string = json.dumps(scheduleAppointments(int(post_data['value'])))
 
             self.send_response(200)
             self.end_headers()
             response = BytesIO()
             response.write(json_string.encode(encoding='utf_8'))
             self.wfile.write(response.getvalue())
+
+            # RESTRequest = True
         
 
 

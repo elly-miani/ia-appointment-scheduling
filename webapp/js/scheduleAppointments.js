@@ -21,8 +21,13 @@ $(document).ready(function () {
 
 
 
-document.getElementById("compute-schedule").addEventListener("click", function () {
+document.getElementById("compute-schedule").addEventListener("click", function (event) {
   // on click of button "Compute Schedule"
+
+  // stop the form from submitting since we’re handling that with AJAX
+  event.preventDefault();
+  console.log(event);
+  
 
   // delete existing appointments from html
   var dayContainer = $(".events-group > ul");
@@ -40,10 +45,15 @@ document.getElementById("compute-schedule").addEventListener("click", function (
   // reset daily count to set correct colors to elements
   count = [1, 1, 1, 1, 1];
 
+  const formData = $("#timeout-form").serializeArray()[0];
+  console.log(formData.value);
+
   // call scheduleAppointments webservice, which will run the solver and return the output file in json
   $.ajax({
     type: 'POST',
     url: '/scheduleAppointments',
+    contentType: "application/json; charset=utf-8",
+    data: JSON.stringify(formData),
     dataType: 'json',
     success: function (data) {
 

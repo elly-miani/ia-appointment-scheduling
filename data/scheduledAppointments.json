@@ -224,13 +224,21 @@
         "HourEnd": "10:00"
     },
     "31": {
-        "Status": "not scheduled",
         "Name": "Michael",
         "Surname": "Williams",
         "House": "A",
+        "Day": "tue",
+        "HourStart": "11:00",
+        "HourEnd": "12:00"
+    },
+    "17": {
+        "Status": "not scheduled",
+        "Name": "Elijah",
+        "Surname": "Roberts",
+        "House": "B",
         "Day": [
             [
-                "thu",
+                "wed",
                 "Morning"
             ],
             [
@@ -239,21 +247,45 @@
             ]
         ]
     },
-    "17": {
-        "Name": "Elijah",
-        "Surname": "Roberts",
-        "House": "B",
-        "Day": "tue",
-        "HourStart": "10:30",
-        "HourEnd": "11:30"
-    },
     "20": {
+        "Status": "not scheduled",
         "Name": "Liam",
         "Surname": "Harris",
         "House": "B",
-        "Day": "tue",
-        "HourStart": "11:30",
-        "HourEnd": "12:30"
+        "Day": [
+            [
+                "thu",
+                "Afternoon"
+            ],
+            [
+                "fri",
+                "Afternoon"
+            ],
+            [
+                "tue",
+                "Morning"
+            ]
+        ]
+    },
+    "40": {
+        "Status": "not scheduled",
+        "Name": "Elly",
+        "Surname": "Miani",
+        "House": "A",
+        "Day": [
+            [
+                "mon",
+                "Morning"
+            ],
+            [
+                "tue",
+                "Morning"
+            ],
+            [
+                "wed",
+                "Morning"
+            ]
+        ]
     },
     "4": {
         "Name": "Elijah",

@@ -233,7 +233,7 @@ def readyForJSON(solution, appointments):
 
 
 
-def solver(appointments, domain):
+def solver(appointments, domain, timeout):
     # Invece che problem faccio un grafo dei vincoli, aggiungo un nodo per ciascuna variabile e relativo domino.
     ConstraintGraph = nx.Graph()
     ConstraintGraphCost = nx.Graph() 
@@ -315,7 +315,8 @@ def solver(appointments, domain):
 
 
     start = current_milli_time()
-    sol = backtrackingSearchAllSolutions(ConstraintGraphCost, 1000*60*0 + 1000*0 + 500 )# minutes * seconds * 1000
+    # sol = backtrackingSearchAllSolutions(ConstraintGraphCost, 1000*60*0 + 1000*0 + 500 )# minutes * seconds * 1000
+    sol = backtrackingSearchAllSolutions(ConstraintGraphCost, timeout)  # minutes * seconds * 1000
     end = current_milli_time()
     print("\n\n###########Time spent to find all solution = ", end-start," ms.\n\n")
     # print(sol[0])
@@ -332,11 +333,11 @@ def solver(appointments, domain):
 # solution = solver(appointments, domain)
 # readyForJSON(solution, appointments)
 
-def scheduler(requestsPath):
+def scheduler(requestsPath, timeout):
 
     domain = initDomain()
     appointments = loadAppointments(requestsPath)
-    solution = solver(appointments, domain)
+    solution = solver(appointments, domain, timeout)
     jsonSolution = readyForJSON(solution, appointments)
 
     # write solutions on file
