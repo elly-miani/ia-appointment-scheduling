@@ -176,29 +176,59 @@ def printSolutionR(solution, appointments):
     print(notSched)
 
 
+def get_key(key):
+    try:
+        return int(key)
+    except ValueError:
+        return key
+
+
 def readyForJSON(solution, appointments):
     jsonSolution = {}
 
+    # orderedKeys = []
+    # for x in sorted(solution[0].items(), key=lambda t: get_key(t[0])):
+    #     orderedKeys.append(x[0])
+
+    # print(orderedKeys)
+
+    # for x in orderedKeys:
     for x in solution[0]:
-        hour, minutes = solution[0][x][1].split(".")
+        if solution[0][x] == "notScheduled":
+            jsonObject = {
+                "Status": "not scheduled",
+                "Name": appointments[x]["Name"],
+                "Surname": appointments[x]["Surname"],
+                "House": appointments[x]["House"],
+                "Day": appointments[x]["Day"],
+            }
 
-        hourEnd = int(hour)
-        hourEnd = hourEnd+1
-        if hourEnd < 10:
-            hourEnd = "0" + str(hourEnd)
+            print("not scheduled -- skipping: " + x)
+            # print(jsonObject)
+            jsonSolution[x] = jsonObject
         else:
-            hourEnd = str(hourEnd)
+            hour, minutes = solution[0][x][1].split(".")
 
-        jsonObject = {
-            "Name": appointments[x]["Name"],
-            "Surname": appointments[x]["Surname"],
-            "House": solution[0][x][2],
-            "Day": solution[0][x][0],
-            "HourStart": hour + ":" + minutes,
-            "HourEnd": hourEnd + ":" + minutes
-        }
+            hourEnd = int(hour)
+            hourEnd = hourEnd+1
+            if hourEnd < 10:
+                hourEnd = "0" + str(hourEnd)
+            else:
+                hourEnd = str(hourEnd)
+            
+            if minutes == "50":
+                minutes = "30"
 
-        jsonSolution[x] = jsonObject
+            jsonObject = {
+                "Name": appointments[x]["Name"],
+                "Surname": appointments[x]["Surname"],
+                "House": solution[0][x][2],
+                "Day": solution[0][x][0],
+                "HourStart": hour + ":" + minutes,
+                "HourEnd": hourEnd + ":" + minutes
+            }
+
+            jsonSolution[x] = jsonObject
     return jsonSolution
 
 

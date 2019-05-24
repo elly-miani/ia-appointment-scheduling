@@ -59,10 +59,16 @@ def showRequestedAppointments(appID):
   # load the appointments already requested
   requestedAppointments = loadAppointments(requestedAppointmentsFile)
 
-  appointmentDetails = "<p>Requested appointment with following constraints:</p>"
+  appointmentDetails = "<p>Requested appointment with following constraints:</p> <ul>"
+
+  daysDict = {"mon": "Monday", "tue": "Tuesday",
+              "wed": "Wednesday", "thu": "Thursday", "fri": "Friday"}
+
   for day in requestedAppointments[appID]["Day"]:
-    appointmentDetails += "<p>" + str(day) + "</p>"
+    appointmentDetails += "<li style=\"list-style-type: disc;\">" + daysDict[day[0]] + " " + day[1] + "</li>"
     print(day)
+  
+  appointmentDetails += "</ul>"
 
   return appointmentDetails
   

@@ -31,6 +31,12 @@ document.getElementById("compute-schedule").addEventListener("click", function (
     day.innerHTML = "";
   });
 
+  // delete existing not scheduled appointments from html
+  var notScheduledContainer = $('.not-scheduled-event');
+  Array.from(notScheduledContainer).forEach(event => {
+    event.outerHTML = "";
+  });
+
   // reset daily count to set correct colors to elements
   count = [1, 1, 1, 1, 1];
 
@@ -97,28 +103,65 @@ function dayCounter(day) {
   }
 }
 
+// dictionary to quickly render right text based on the values passed by the server
+daysDict = { "mon": "Monday", "tue": "Tuesday", "wed": "Wednesday", "thu": "Thursday", "fri": "Friday" }
+
 
 
 function createAppointment(index, appointment) {
   // add each appointment with its data to the correct day list in the html code
-  var dayContainer = $('#' + appointment.Day + '> ul');
+
+  if (appointment.Status != null) {
+    // if the appointment is not scheduled
+
+    var notScheduledContainer = $('#not-scheduled');
+
+    // create new `not-scheduled` appointment div
+    notScheduledContainer.append($('<div/>', {
+      id: index,
+      class: 'not-scheduled-event'
+    }));
+
+    constraints = "<div><ul>";
+    // for each appointment constraint add a list item with the day (using the daysDict) and the time of day
+    appointment.Day.forEach(x => {
+      constraints += "<li>" + daysDict[x[0]] + " " + x[1] + "</li>";
+    });
+    constraints += "</ul></div>";
+
+    // create the event html
+    let event = "<h3>" + appointment.Name + " " + appointment.Surname + "</h3>" + "<em> House: " + appointment.House + "</em>" + "<br/> <h5> Requested constraints: </h5>" + constraints;
+
+    // append to the correct event div
+    $('#' + index).append(event) + "</span>";
+
+  }
+  else {
+    // if the appointment is scheduled
+
+    var dayContainer = $('#' + appointment.Day + '> ul');
+
+    // create new appointment <li>
+    dayContainer.append($('<li/>', {
+      id: index,
+      class: 'single-event'
+    }))
+
+    // update loading status when adding appointments after they were already loaded once
+    // needed to ensure correct functioning of placeEvents() function in scheduleStructure.js
+    $(".cd-schedule").removeClass('js-full');
+    $(".cd-schedule").addClass('loading');
+
+    $('#' + index).attr("data-event", index);
+    $('#' + index).attr("data-start", appointment.HourStart);
+    $('#' + index).attr("data-end", appointment.HourEnd);
+    $('#' + index).attr("data-event", "event-" + dayCounter(appointment.Day));
+
+    // create the event html
+    let event = "<span class=\"event-name\">" + appointment.Name + " " + appointment.Surname + "<br/>" + "<em> House: " + appointment.House + "</em>" + "</span>";
+
+    // append to the correct event div
+    $('#' + index).append("<a href=\"#0\">" + event + "</a>");
+  }
   
-  dayContainer.append($('<li/>', {
-    id: index,
-    class: 'single-event'
-  }))
-
-  // update loading status when adding appointments after they were already loaded once
-  // needed to ensure correct functioning of placeEvents() function in scheduleStructure.js
-  $(".cd-schedule").removeClass('js-full');
-  $(".cd-schedule").addClass('loading');
-
-  console.log("index:" + index);
-  $('#' + index).attr("data-event", index);
-  $('#' + index).attr("data-start", appointment.HourStart);
-  $('#' + index).attr("data-end", appointment.HourEnd);
-  $('#' + index).attr("data-event", "event-"+dayCounter(appointment.Day));
-  // let event = "<span class=\"event-name\">" + appointment.Name + " " + appointment.Surname + "<br/>" + appointment.HourStart + " - " + appointment.HourEnd + "<br/>" + "<em> House: " + appointment.House + "</em>" + "</span>"
-  let event = "<span class=\"event-name\">" + appointment.Name + " " + appointment.Surname + "<br/>" + "<em> House: " + appointment.House + "</em>" + "</span>"
-  $('#' + index).append("<a href=\"#0\">" + event + "</a>")
 }

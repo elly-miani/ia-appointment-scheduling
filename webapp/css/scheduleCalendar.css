@@ -1,5 +1,5 @@
 
-ol, ul {
+#schedule-calendar ol, #schedule-calendar ul {
 	list-style: none;
 }
 
@@ -351,6 +351,43 @@ Main Components
 }
 
 .cd-schedule .single-event[data-event="event-4"]:hover {
+  background: #f7bd7f;
+}
+
+.cd-schedule .single-event[data-event="event-5"],
+.cd-schedule [data-event="event-5"] .header-bg {
+  /* this is used to set a background color for the event and the modal window */
+  background: #577F92;
+}
+
+.cd-schedule .single-event[data-event="event-5"]:hover {
+  background: #618da1;
+}
+
+.cd-schedule .single-event[data-event="event-6"],
+.cd-schedule [data-event="event-6"] .header-bg {
+  background: #443453;
+}
+
+.cd-schedule .single-event[data-event="event-6"]:hover {
+  background: #513e63;
+}
+
+.cd-schedule .single-event[data-event="event-7"],
+.cd-schedule [data-event="event-7"] .header-bg {
+  background: #A2B9B2;
+}
+
+.cd-schedule .single-event[data-event="event-7"]:hover {
+  background: #b1c4be;
+}
+
+.cd-schedule .single-event[data-event="event-8"],
+.cd-schedule [data-event="event-8"] .header-bg {
+  background: #f6b067;
+}
+
+.cd-schedule .single-event[data-event="event-8"]:hover {
   background: #f7bd7f;
 }
 
