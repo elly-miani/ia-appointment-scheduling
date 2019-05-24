@@ -23,6 +23,8 @@ from requestAppointment import requestAppointment
 from requestAppointment import showRequestedAppointments 
 from scheduleAppointments import scheduleAppointments
 from scheduleAppointments import showAppointments
+from emptyFiles import emptySchedule
+from emptyFiles import emptyRequests
 
 
 class HTTPRequestHandler(BaseHTTPRequestHandler):
@@ -75,7 +77,6 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
 
                     RESTRequest = True
 
-               
 
                 if "/showRequestedAppointments" in self.path:
                     path, appID = self.path.split("?")
@@ -90,7 +91,29 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
                     self.wfile.write(response.getvalue())
 
                     RESTRequest = True
+                
+                if self.path == "/emptySchedule":
+                    emptySchedule()
 
+                    self.send_response(200)
+                    self.end_headers()
+                    response = BytesIO()
+                    # response.write(json_string.encode(encoding='utf_8'))
+                    self.wfile.write(response.getvalue())
+
+                    RESTRequest = True
+                    
+                if self.path == "/emptyRequests":
+                    emptyRequests()
+
+                    self.send_response(200)
+                    self.end_headers()
+                    response = BytesIO()
+                    # response.write(json_string.encode(encoding='utf_8'))
+                    self.wfile.write(response.getvalue())
+
+                    RESTRequest = True
+                
                 if RESTRequest == False:
                     self.send_error(404, 'Page Not Found: %s' % self.path)
 
