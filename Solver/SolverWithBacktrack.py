@@ -344,3 +344,10 @@ def scheduler(requestsPath, timeout):
 
     with open(scheduledAppointmentsFile, 'w') as json_file:
         json.dump(jsonSolution, json_file, indent=4)
+    return(solution, appointments)
+
+if __name__ == "__main__":
+    (sol, appointments) = scheduler(sys.argv[1], int(sys.argv[2]))
+    print(sol[0])
+    printSolution(sol[0], appointments)
+    print("With cost = ", sol[1])
