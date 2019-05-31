@@ -1,4 +1,3 @@
-// const notScheduledContainer = $('#not-scheduled');
 var notScheduledAppointments;
 
 $(document).ready(function () {
@@ -14,7 +13,6 @@ $(document).ready(function () {
 
       // create appointments in html code
       $.each(data, function (index, appointment) {
-        // console.log(appointment);
         createAppointment(index, appointment);
       })
 
@@ -28,24 +26,15 @@ $(document).ready(function () {
 document.getElementById("compute-schedule").addEventListener("click", function (event) {
   // on click of button "Compute Schedule"
 
-  // console.log("validation:");
-  // console.log($("#timeout-form")[0].value);
-
   const formData = $("#timeout-form").serializeArray()[0];
 
-  
-  // console.log(formData)
 
   // stop the form from submitting since we’re handling that with AJAX
   if ($("#timeout-form")[0].value != "") {
     event.preventDefault();
 
-    // console.log(event);
-
-
     // delete existing appointments from html
     var dayContainer = $(".events-group > ul");
-    // console.log(dayContainer);
     Array.from(dayContainer).forEach(day => {
       day.innerHTML = "";
     });
@@ -60,16 +49,12 @@ document.getElementById("compute-schedule").addEventListener("click", function (
     if ($('#not-scheduled > h2').get(0) != null) {
       $('#not-scheduled > h2').get(0).outerHTML = "";
     }
-    // console.log(notScheduledContainer);
-    // notScheduledContainer.innerHTML = "";
+
     // initialize notScheduledAppointments variable
     notScheduledAppointments = false;
 
     // reset daily count to set correct colors to elements
     count = [1, 1, 1, 1, 1];
-
-    // const formData = $("#timeout-form").serializeArray()[0];
-    // console.log(formData.value);
 
     // call scheduleAppointments webservice, which will run the solver and return the output file in json
     $.ajax({
@@ -82,7 +67,6 @@ document.getElementById("compute-schedule").addEventListener("click", function (
 
         // create appointments in html code
         $.each(data, function (index, appointment) {
-          // console.log(appointment);
           createAppointment(index, appointment);
         })
 
@@ -148,7 +132,6 @@ function createAppointment(index, appointment) {
 
   if (appointment.Status != null) {
     // if the appointment is not scheduled
-    console.log("Are there not scheduled appointments?: " + notScheduledAppointments);
 
     var notScheduledContainer = $('#not-scheduled');
 

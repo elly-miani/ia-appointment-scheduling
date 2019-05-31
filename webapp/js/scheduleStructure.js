@@ -1,5 +1,5 @@
 function scheduleEverything() {
-  console.log("scheduleEverything called")
+  // console.log("scheduleEverything called")
   var transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
   var transitionsSupported = ($('.csstransitions').length > 0);
   //if browser does not support transitions - use a different event to trigger them
@@ -35,13 +35,13 @@ function scheduleEverything() {
   }
 
   SchedulePlan.prototype.initSchedule = function () {
-    console.log("initSchedule")
+    // console.log("initSchedule")
     this.scheduleReset();
     this.initEvents();
   };
 
   SchedulePlan.prototype.scheduleReset = function () {
-    console.log("scheduleReset")
+    // console.log("scheduleReset")
 
     var mq = this.mq();
     if (mq == 'desktop' && !this.element.hasClass('js-full')) {
@@ -91,7 +91,7 @@ function scheduleEverything() {
   };
 
   SchedulePlan.prototype.placeEvents = function () {
-    console.log("placeEvents")
+    // console.log("placeEvents")
     var self = this;
     this.singleEvents.each(function () {
       //place each event in the grid -> need to set top position and height
@@ -123,8 +123,8 @@ function scheduleEverything() {
 
     //update event content
     this.modalBody.find('.event-info').load("/showRequestedAppointments?"+event.parent().attr('id'), function(data) {
-      console.log(data[event.parent().attr('id')]);
-      console.log(self);
+      // console.log(data[event.parent().attr('id')]);
+      // console.log(self);
 
       //once the event content has been loaded
       self.element.addClass('content-loaded');

@@ -8,7 +8,6 @@ document.getElementById("empty-schedule").addEventListener("click", function (ev
 
         // delete existing appointments from html
         var dayContainer = $(".events-group > ul");
-        console.log(dayContainer);
         Array.from(dayContainer).forEach(day => {
           day.innerHTML = "";
         });
@@ -54,7 +53,6 @@ document.getElementById("generate-random-requests").addEventListener("click", fu
       event.preventDefault();
 
       const numReq = $("#randomRequests").serializeArray()[0];
-      console.log(numReq)
 
       $.ajax({
         type: 'POST',

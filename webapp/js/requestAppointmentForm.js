@@ -46,8 +46,6 @@ const formToJSON = elements => {
   // concatenate in *data* each `element`, making the necessary modifications
   const reducerFunction = (data, element) => {
 
-    // console.log(data);
-
     // make sure the element is valid and should be added
     if (isValidElement(element) && isValidValue(element)) {
 
