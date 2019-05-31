@@ -1,5 +1,10 @@
+// const notScheduledContainer = $('#not-scheduled');
+var notScheduledAppointments;
+
 $(document).ready(function () {
   // on page load call the showAppointments webservice, which will return the current schedule in json
+  
+  notScheduledAppointments = false;
 
   $.ajax({
     type: 'GET',
@@ -9,7 +14,7 @@ $(document).ready(function () {
 
       // create appointments in html code
       $.each(data, function (index, appointment) {
-        console.log(appointment);
+        // console.log(appointment);
         createAppointment(index, appointment);
       })
 
@@ -23,39 +28,48 @@ $(document).ready(function () {
 document.getElementById("compute-schedule").addEventListener("click", function (event) {
   // on click of button "Compute Schedule"
 
-  console.log("validation:");
+  // console.log("validation:");
   // console.log($("#timeout-form")[0].value);
 
   const formData = $("#timeout-form").serializeArray()[0];
 
   
-  console.log(formData)
+  // console.log(formData)
 
   // stop the form from submitting since we’re handling that with AJAX
   if ($("#timeout-form")[0].value != "") {
     event.preventDefault();
 
-    console.log(event);
+    // console.log(event);
 
 
     // delete existing appointments from html
     var dayContainer = $(".events-group > ul");
-    console.log(dayContainer);
+    // console.log(dayContainer);
     Array.from(dayContainer).forEach(day => {
       day.innerHTML = "";
     });
 
     // delete existing not scheduled appointments from html
-    var notScheduledContainer = $('.not-scheduled-event');
-    Array.from(notScheduledContainer).forEach(event => {
+    var notScheduledEvents = $('.not-scheduled-event');
+    Array.from(notScheduledEvents).forEach(event => {
       event.outerHTML = "";
     });
+
+    // delete not scheduled appointments title
+    if ($('#not-scheduled > h2').get(0) != null) {
+      $('#not-scheduled > h2').get(0).outerHTML = "";
+    }
+    // console.log(notScheduledContainer);
+    // notScheduledContainer.innerHTML = "";
+    // initialize notScheduledAppointments variable
+    notScheduledAppointments = false;
 
     // reset daily count to set correct colors to elements
     count = [1, 1, 1, 1, 1];
 
     // const formData = $("#timeout-form").serializeArray()[0];
-    console.log(formData.value);
+    // console.log(formData.value);
 
     // call scheduleAppointments webservice, which will run the solver and return the output file in json
     $.ajax({
@@ -68,7 +82,7 @@ document.getElementById("compute-schedule").addEventListener("click", function (
 
         // create appointments in html code
         $.each(data, function (index, appointment) {
-          console.log(appointment);
+          // console.log(appointment);
           createAppointment(index, appointment);
         })
 
@@ -129,14 +143,19 @@ function dayCounter(day) {
 daysDict = { "mon": "Monday", "tue": "Tuesday", "wed": "Wednesday", "thu": "Thursday", "fri": "Friday" }
 
 
-
 function createAppointment(index, appointment) {
   // add each appointment with its data to the correct day list in the html code
 
   if (appointment.Status != null) {
     // if the appointment is not scheduled
+    console.log("Are there not scheduled appointments?: " + notScheduledAppointments);
 
     var notScheduledContainer = $('#not-scheduled');
+
+    if (notScheduledAppointments === false) {
+      notScheduledContainer.append("<h2>Not scheduled appointments:</h2>");
+      notScheduledAppointments = true;
+    }
 
     // create new `not-scheduled` appointment div
     notScheduledContainer.append($('<div/>', {
@@ -169,11 +188,6 @@ function createAppointment(index, appointment) {
       class: 'single-event'
     }))
 
-    // update loading status when adding appointments after they were already loaded once
-    // needed to ensure correct functioning of placeEvents() function in scheduleStructure.js
-    $(".cd-schedule").removeClass('js-full');
-    $(".cd-schedule").addClass('loading');
-
     $('#' + index).attr("data-event", index);
     $('#' + index).attr("data-start", appointment.HourStart);
     $('#' + index).attr("data-end", appointment.HourEnd);
@@ -185,5 +199,10 @@ function createAppointment(index, appointment) {
     // append to the correct event div
     $('#' + index).append("<a href=\"#0\">" + event + "</a>");
   }
+
+  // update loading status when adding appointments after they were already loaded once
+  // needed to ensure correct functioning of placeEvents() function in scheduleStructure.js
+  $(".cd-schedule").removeClass('js-full');
+  $(".cd-schedule").addClass('loading');
   
 }

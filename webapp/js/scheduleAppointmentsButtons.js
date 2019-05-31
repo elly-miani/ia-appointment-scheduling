@@ -19,6 +19,11 @@ document.getElementById("empty-schedule").addEventListener("click", function (ev
           event.outerHTML = "";
         });
 
+        // delete not scheduled appointments title
+        if ($('#not-scheduled > h2').get(0) != null) {
+          $('#not-scheduled > h2').get(0).outerHTML = "";
+        }
+
         alert("Scheduled appointments deleted!")
       }
     });
