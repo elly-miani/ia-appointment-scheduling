@@ -174,9 +174,10 @@ class HTTPRequestHandler(BaseHTTPRequestHandler):
 
 
 try:
-    httpd = HTTPServer(('localhost', 8000), HTTPRequestHandler)
+    httpd = HTTPServer(('0.0.0.0', 8000), HTTPRequestHandler)
     print("Starting web server on port: " + str(httpd.server_port))
     httpd.serve_forever()
+
 
 except KeyboardInterrupt:
 	print('\nShutting down the web server')
