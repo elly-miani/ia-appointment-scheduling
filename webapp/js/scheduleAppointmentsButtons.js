@@ -65,6 +65,9 @@ document.getElementById("generate-random-requests").addEventListener("click", fu
 
       $("#num-requests-form")[0].value = ""
     }
+    else {
+      event.preventDefault();
+    }
   }
 
 
