@@ -293,10 +293,15 @@ def solver(appointments, domain, timeout):
     ax = plt.gca()
     ax.collections[0].set_edgecolor("#ffffff")
     plt.show()
+    
+    # Graph with Custom nodes:
+    nx.draw(ConstraintGraphCost, pos = nx.spring_layout(ConstraintGraphCost, k = 1.5, iterations=50), with_labels=True, node_size=500, node_color="skyblue", node_shape="o", alpha=0.75, linewidths=1.5, font_size=10, font_weight="bold", width=1, edge_color="lightgrey")
+    #nx.draw(ConstraintGraphCost, pos = nx.spring_layout(ConstraintGraphCost, k = 1.5, iterations=50), with_labels=True, node_size=2000, node_color="skyblue", node_shape="o", alpha=0.75, linewidths=3, font_size=20, font_weight="bold", width=3, edge_color="lightgrey")
 
-    nx.draw(ConstraintGraphCost, pos=nx.spring_layout(ConstraintGraphCost, k=0.5, iterations=35))
-    ax = plt.gca()
-    ax.collections[0].set_edgecolor("#ffffff")
+
+    #nx.draw(ConstraintGraphCost, pos=nx.spring_layout(ConstraintGraphCost, k=0.5, iterations=35))
+    #ax = plt.gca()
+    #ax.collections[0].set_edgecolor("#ffffff")
     plt.show()
     '''
 
