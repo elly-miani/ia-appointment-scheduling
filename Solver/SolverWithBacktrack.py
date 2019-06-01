@@ -8,7 +8,8 @@ import json
 from copy import deepcopy
 import pprint as pp
 
-from Backtracking_Appointments import backtrackingSearch
+# sys.path.append('./Solver/DifferentSolver')
+# from Backtracking_Appointments import backtrackingSearch
 from Backtracking_Appointments import backtrackingSearchAllSolutions
 
 

@@ -223,6 +223,7 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 	#print("\n\n\nRecursion Depth = ", recDepth)
 	recDepth += 1
 	if(current_milli_time() > endTime):
+		print("HELLOOOOOOOOOOOOOOOOO")
 		print("\n\n######TEMPO SCADUTO!!!#####\n\nIterazione numero = ", recDepth,"\nAnalyzed= ", analyzed, "\nPercentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
 		return (solution, bestSolCost, "END")
 
