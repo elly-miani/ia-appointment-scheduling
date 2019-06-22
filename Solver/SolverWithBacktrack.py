@@ -139,6 +139,18 @@ def printSolution(solution, appointments):
                   appointments[y[0]]["Name"], " ", appointments[y[0]]["Surname"])
         index += 1
     print(notSched)
+    return ordApp
+
+
+def computeObjFunc(ordApp):
+    print(ordApp)
+    travelTime = 0
+    for x in ordApp:
+        for y in range(len(x)-1):
+            if ((float(x[y][1][1]) > 12 and float(x[y+1][1][1]) > 12) or (float(x[y][1][1]) < 12 and float(x[y+1][1][1]) < 12)):
+                travelTime += float(x[y+1][1][1]) - float(x[y][1][1])-1
+    print("TravelTime = ",travelTime)        
+    return travelTime
 
 
 # print function to print a solution in a clean way
@@ -355,5 +367,6 @@ def scheduler(requestsPath, timeout):
 if __name__ == "__main__":
     (sol, appointments) = scheduler(sys.argv[1], int(sys.argv[2]))
     print(sol[0])
-    printSolution(sol[0], appointments)
+    ordBest = printSolution(sol[0], appointments)
+    obj = computeObjFunc(ordBest)
     print("With cost = ", sol[1])

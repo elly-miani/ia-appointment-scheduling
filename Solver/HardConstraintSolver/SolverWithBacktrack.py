@@ -97,6 +97,19 @@ def initDomain():
 
     return domain
 
+
+def computeObjFunc(ordApp):
+    print(ordApp)
+    travelTime = 0
+    for x in ordApp:
+        for y in range(len(x)-1):
+            if ((float(x[y][1][1]) > 12 and float(x[y+1][1][1]) > 12) or (float(x[y][1][1]) < 12 and float(x[y+1][1][1]) < 12)):
+                travelTime += float(x[y+1][1][1]) - float(x[y][1][1])-1
+    print("TravelTime = ",travelTime)        
+    return travelTime
+
+
+
 # print function to print a solution in a clean way
 def printSolution(solution):
     days = ["mon", "tue", "wed", "thu", "fri"]
@@ -135,7 +148,7 @@ def printSolution(solution):
                   appointments[y[0]]["Name"], " ", appointments[y[0]]["Surname"])
         index += 1
     print(notSched)
-
+    return ordApp
 
 # print function to print a solution in a clean way
 def printSolutionR(solution):
@@ -259,11 +272,20 @@ printSolution(solution)
 
 
 start = current_milli_time()
-sol = backtrackingSearchAllSolutions(ConstraintGraph, 1000*60*0 + 1000*0 + 500 )# minutes * seconds * 1000
+sol = backtrackingSearchAllSolutions(ConstraintGraph, 1000*60*0 + 1000*5 + 500 )# minutes * seconds * 1000
 end = current_milli_time()
 print("\n\n###########Time spent to find all solution = ", end-start," ms.\n\n")
 print(sol[0])
+oldObj=100
 for y in sol[0]:
-    printSolution(y)
+    ordApp = printSolution(y)
+    obj = computeObjFunc(ordApp)
+    if obj<oldObj:
+        oldObj = obj
+        bestSol = y
+print("\n\nBest solution:\n")
+ordBest=printSolution(bestSol)
+obj = computeObjFunc(ordBest)
+    
 print("With cost = ", sol[1])
 
