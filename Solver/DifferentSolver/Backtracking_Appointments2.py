@@ -28,6 +28,8 @@ def varNonAssegnata(assegnamento, csp, nearest):
 	implementazione della euristica first fail.
 	'''
 	minimumLength = 10000
+	# mattina e pomeriggio per i 5 giorni
+	minimumSlot = 10
 	chosenVar = "-1"
 
 	nodelist = list(csp)
@@ -35,18 +37,31 @@ def varNonAssegnata(assegnamento, csp, nearest):
 	#random.shuffle(nodelist)
 	if len(nearest)==0:
 		for n in nodelist:
-			if n not in assegnamento and len(csp.nodes[n]['domain']) < minimumLength:
+			if n not in assegnamento and computeSlot(n, csp) < minimumSlot and len(csp.nodes[n]['domain']) < minimumLength:
 				chosenVar = n
 				minimumLength = len(csp.nodes[n]['domain'])
 	#print("variabile scelta con dominio di dimensione = ", minimumLength)
 	else:
 		for n in nodelist:
-			if n not in assegnamento and len(csp.nodes[n]['domain']) < minimumLength and (n in nearest or len(csp.nodes[n]['domain'])==2):
+			if n not in assegnamento and computeSlot(n, csp) < minimumSlot and  len(csp.nodes[n]['domain']) < minimumLength and (n in nearest or len(csp.nodes[n]['domain'])==2):
 				chosenVar = n
 				minimumLength = len(csp.nodes[n]['domain'])
 	#print("variabile scelta con dominio di dimensione = ", minimumLength)
 	return chosenVar
 
+
+##Useless here
+def computeSlot(var, csp):
+	prevDay = ''
+	numSlot = 0
+	for n in csp.nodes[var]['domain']:
+		print(n)
+		print("prevDay: ", prevDay)
+		if n[0] != prevDay:
+			numSlot += 1
+			prevDay = n[0]
+	print("numSlot= ", numSlot)
+	return numSlot
 
 # bisognerebbe anche usare constraint propagation
 def computeSmallestDomain(v, var, assegnamento, newCSP):
@@ -110,6 +125,7 @@ def deleteValues(v, var, assegnamento, newCSP):
 	#print("nearest ", nearest)
 	return nearest
 
+
 # forse si può fare il calcolo qui di quanti valori vengono eliminati a
 # priori in modo da lasciare a tutti il numero più alto possiblie
 def ordinaValoriCost(var, assegnamento, csp):
@@ -163,6 +179,7 @@ def ordinaValoriCost(var, assegnamento, csp):
 						currValueCost = 100
 					else:
 						currValueCost = ((float(v[1])-float(previousAppointment[1])-1)/0.5)*((float(v[1])-float(previousAppointment[1])-1)/0.5)
+				##Qui va aggiunto il controllo sul dominio se diventa troppo piccolo si sceglie un'altro valore
 				if currValueCost <= 4 and bestValueCost <= 4:
 					old = computeSmallestDomain(bestValue, var, assegnamento, csp)
 					new = computeSmallestDomain(v, var, assegnamento, csp)
@@ -270,7 +287,7 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 		# è più alto della soluzione precedentemente trovata non ha senso proseguire.
 		# Se è possibile trovare una soluzione migliore chiamo ricorsivamente la stessa
 		# funzione che assegnerà una nuova variabile
-		if (iterationCost + computeUB(assegnamento, assegnate, csp, nearest)) < bestSolCost:
+		if (iterationCost < bestSolCost):
 			(solution, bestSolCost, ris) = backtrackingAllSolutions(solution, bestSolCost, assegnamento, iterationCost, assegnate, csp, newCSP, nearest, recDepth, analyzed, numTotalSolution, endTime)
 
 			#print("\n##### Riprendo, Profondità ricorsione = ", recDepth-1, " Ciclo numero: ", ciclo, " Sto considerando la variabile ", var)
@@ -304,7 +321,6 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 				del(assegnamento[assegnate[-1]])
 				del(assegnate[-1])
 			break
-
 
 # esco da qui solo se tutti i cicli del for sono finiti e ho trovato almeno una soluzione nel frattempo
 	analyzed[var] = 0
@@ -404,7 +420,7 @@ def printOrderedAnalyzed(analyzed, assigned):
 		result +='{' + str(x) +', '+ str(analyzed[x]) + '} '
 	return result
 
-
+'''
 def computeUB(assegnamento, assegnate, csp, nearest):
 	boundedCost = 0
 	for n in csp.nodes():
@@ -418,3 +434,4 @@ def computeUB(assegnamento, assegnate, csp, nearest):
 				boundedCost+=1
 	#print("bounded cost ", boundedCost)
 	return boundedCost
+'''

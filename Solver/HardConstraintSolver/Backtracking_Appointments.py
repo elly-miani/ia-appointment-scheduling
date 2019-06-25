@@ -50,74 +50,17 @@ def deleteValues(v, var, assegnamento, newCSP):
 				return False
 	return True
 
+
+
+
 def ordinaValoriCost(var, assegnamento, csp):
 	'''
 	Restituisco tutti i valori del dominio di var che non sono assegnati
 	'''
-	#print("\n\n###########ordina valori################\n")
-	ordDomain = []
 	dom = deepcopy(csp.nodes[var]['domain'])
 	#Bad idea!
 	random.shuffle(dom)
-	#print("Assegnamento ", assegnamento)
-	#print("dom senza conflitti = ", dom)
-	while(len(dom) > 0):
-		bestValue = []
-		bestValueCost = 1000
-		for v in dom:
-			#print("Considero attuale ", v)
-			if v != "notScheduled":
-				conflict = False
-				previousAppointment = ['', '0', '']
-						
-				for n in csp.neighbors(var):
-					# skip the following iterations because the value is in conflict with at least one assigned variable
-					if(conflict==False):
-						'''
-						Devo trovare l'appuntamento precedente a quello che sto provando ad assegnare.
-						'''
-						if n in assegnamento and assegnamento[n] != "notScheduled":
-							y = assegnamento[n]
-							isSameDay = v[0] == y[0]
-							
-							bothMorning = float(v[1]) <= 11.5 and float(y[1]) <= 11.5
-							bothAfternoon = float(v[1]) > 12.0 and float(y[1]) > 12.0
-							
-							isSamePeriod = bothMorning or bothAfternoon
-							if(isSameDay and isSamePeriod and float(v[1])-float(y[1]) < float(v[1])-float(previousAppointment[1])):
-								previousAppointment = y
-				#print("v ", v)
-				#print("prev ",previousAppointment)
-				#print("With distance = ", float(v[1])-float(previousAppointment[1]))
-				#print("previous appointment per attuale = ",previousAppointment)
-				# It does make sense to penalize the choice of a casual starting point if the current slot is free.
-				if previousAppointment[1] == '0' and (v[1] == "08.00" or v[1] == "14.00")  and bestValueCost > 0.5:
-					bestValueCost = 0.5
-					bestValue = v					
-				else:
-					if previousAppointment[1] == '0' and bestValueCost > 15:
-						bestValueCost = 15
-						bestValue = v					
-					else:
-						if(bestValueCost > ((float(v[1])-float(previousAppointment[1])-1)/0.5)*((float(v[1])-float(previousAppointment[1])-1)/0.5)):
-							bestValueCost = ((float(v[1])-float(previousAppointment[1])-1)/0.5)*((float(v[1])-float(previousAppointment[1])-1)/0.5)
-							bestValue = v
-				#print("Attuale best = ", bestValue, " Con costo " , bestValueCost)
-			else:
-				if (bestValueCost > 10):
-					bestValue = "notScheduled"
-					bestValueCost = 10
-		dom.remove(bestValue)
-	
-		
-		ordDomain.append((bestValue, bestValueCost))
-		#print("dom = ", dom)
-		#print("ordDomain = ", ordDomain)
-		#print("\n\n###Fine analisi per massimo locale\nOrdDom = ", ordDomain)
-		
-	#print("\n\n###Fine ordinamento per  = ",var, " ", ordDomain)
-	
-	return ordDomain
+	return dom
 
 
 """
@@ -134,11 +77,9 @@ def backtrackingSearchAllSolutions(csp, maxTime):
 		analyzed[n] = 0
 
 	print("Total number of possible solution = ", numTotalSolution)
-	"""
-	IDEA: forse posso passare a btas un vettore [a,b,c,d] dove vedo a che ciclo e a che profondità sto
-	"""
 	endTime = current_milli_time() + maxTime
 	return backtrackingAllSolutions([], {}, [], csp, csp, 0, analyzed, numTotalSolution, endTime)
+
 
 
 def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, updatedCSP, recDepth, analyzed, numTotalSolution, endTime):
@@ -154,7 +95,6 @@ def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, updatedCSP
 		return (solutions, "found")
 
 	var = varNonAssegnata(assegnamento, updatedCSP)
-	# voglio spostarlo dopo, all'uscita
 	analyzed[var] = 0
 	
 	#print("Variabile scelta ", var)
@@ -170,11 +110,11 @@ def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, updatedCSP
 		# sovrapposizione tra appuntamenti)
 		# Inoltre calcolo contemporaneamente se c'è qualche appuntamento che potrebbe essere pianificato nello slot 
 		# immediatamente successivo
-		keepGoing = deleteValues(v[0], var, assegnamento, newCSP)
+		keepGoing = deleteValues(v, var, assegnamento, newCSP)
 		#print(var," = ",v)
 		# aggiorno l'assegnamento corrente e la lista di variabili attualmente assegnate
 		#print("Assegno alla variabile " + str(var) + " il valore " + str(v))
-		assegnamento[var] = v[0]		
+		assegnamento[var] = v		
 		#print("Aggiungo ad assegnate la variabile ", var)
 		assegnate.append(var)
 		# Calcolo della funzione di costo per il valore della variabile scelto nella iterazione corrente
@@ -191,8 +131,6 @@ def backtrackingAllSolutions(solutions, assegnamento, assegnate, csp, updatedCSP
 				return (solutions, "END")
 			analyzed[var] += 1
 			if ris=="found":
-				#print("Ho appena trovato una soluzione")
-				#print("Analyzed= ", analyzed, "\nPercentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
 				print("Percentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100))
 				# se sono qui significa che ho finito di analizzare il sotto albero e devo sostituire la variabile che sto considerando.
 				del(assegnamento[assegnate[-1]])
