@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 import time
 import sys
 import json
+import math
+import os.path
+import csv
 from copy import deepcopy
 import pprint as pp
 
@@ -35,8 +38,8 @@ def initDomain():
     '''
     days = ["mon", "tue", "wed", "thu", "fri", "sat"]
     
-    hours = ["08.00", "08.50", "09.00", "09.50", "10.00", "10.50", "11.00", "11.50", #pausa pranzo dalle 12.30 alle 13.00
-             "14.00", "14.50", "15.00", "15.50", "16.00", "16.50", "17.00", "17.50"]
+    hours = [08.00, 08.50, 09.00, 09.50, 10.00, 10.50, 11.00, 11.50, #pausa pranzo dalle 12.30 alle 13.00
+             14.00, 14.50, 15.00, 15.50, 16.00, 16.50, 17.00, 17.50]
     
     locations = ["A", "B", "C", "D"]
 
@@ -55,18 +58,18 @@ def initDomain():
 
 
 def computeObjFunc(ordApp):
-    print(ordApp)
+    #print(ordApp)
     travelTime = 0
     for x in ordApp:
         for y in range(len(x)-1):
             if ((float(x[y][1][1]) > 12 and float(x[y+1][1][1]) > 12) or (float(x[y][1][1]) < 12 and float(x[y+1][1][1]) < 12)):
                 travelTime += float(x[y+1][1][1]) - float(x[y][1][1])-1
-    print("TravelTime = ",travelTime)        
+    #print("TravelTime = ",travelTime)        
     return travelTime
 
 
 # print function to print a solution in a clean way
-def printSolution(solution):
+def printSolution(solution, p):
     days = ["mon", "tue", "wed", "thu", "fri"]
 
     ordApp = [[], [], [], [], []]
@@ -91,18 +94,19 @@ def printSolution(solution):
         x.sort(key=takeSecond)
 
     index = 0
-    for x in ordApp:
-        print("\n\nGiorno: ", days[index])
-        print("\nMattina:")
-        cond = True
-        for y in x:
-            if (cond and float(y[1][1]) > 12):
-                print("\nPomeriggio:")
-                cond = False
-            print("Ore: ", y[1][1], "Casa: ", y[1][2], " Appuntamento con: ",
-                  appointments[y[0]]["Name"], " ", appointments[y[0]]["Surname"])
-        index += 1
-    print(notSched)
+    if p:
+        for x in ordApp:
+            print("\n\nGiorno: ", days[index])
+            print("\nMattina:")
+            cond = True
+            for y in x:
+                if (cond and float(y[1][1]) > 12):
+                    print("\nPomeriggio:")
+                    cond = False
+                print("Ore: ", y[1][1], "Casa: ", y[1][2], " Appuntamento con: ",
+                    appointments[y[0]]["Name"], " ", appointments[y[0]]["Surname"])
+            index += 1
+        print(notSched)
     return ordApp
 
 
@@ -124,7 +128,7 @@ for x in appointments:
     dom = []
     # check which elements of the generic domain are necessary for this appointment
     for y in domain:
-        hour , minutes = y[1].split(".")
+        minutes, hour = math.modf(y[1])
         hour = int(hour)
         #print(appointments[x])
         #print(appointments[x]["Day"])
@@ -192,20 +196,52 @@ printSolution(solution)
 
 
 start = current_milli_time()
-sol = backtrackingSearchAllSolutions(ConstraintGraph, 1000*60*0 + 1000*5 + 500 )# minutes * seconds * 1000
+sol = backtrackingSearchAllSolutions(ConstraintGraph, int(sys.argv[2]))#1000*60*0 + 1000*5 + 500 )# minutes * seconds * 1000
 end = current_milli_time()
 print("\n\n###########Time spent to find all solution = ", end-start," ms.\n\n")
-print(sol[0])
-oldObj=100
-for y in sol[0]:
-    ordApp = printSolution(y)
-    obj = computeObjFunc(ordApp)
-    if obj<oldObj:
-        oldObj = obj
-        bestSol = y
-print("\n\nBest solution:\n")
-ordBest=printSolution(bestSol)
-obj = computeObjFunc(ordBest)
-    
-print("With cost = ", sol[1])
+#print(sol[0])
 
+oldObj=100
+if len(sol[0])>0:
+    for y in sol[0]:
+        ordApp = printSolution(y, False)
+        obj = computeObjFunc(ordApp)
+        if obj<oldObj:
+            oldObj = obj
+            bestSol = y
+    print("\n\nBest solution:\n")
+    ordBest=printSolution(bestSol, True)
+    obj = computeObjFunc(ordBest)
+else:
+    obj = oldObj
+print(obj)
+print(sol[2])
+
+
+
+if os.path.exists(sys.argv[3]) == False:
+    length = sys.argv[1][-7:-5]
+    index = sys.argv[1][-8:-7]
+    print(sys.argv[1])
+    print(length, index)
+    row1 = ["Hardconstraint "+  length , index,1,10,30,60,180,600]
+    row2 = ["", "traveltime"]
+    row3 = ["", "percentage"]
+    
+    lines=[row1,row2,row3]
+    with open(sys.argv[3], 'w') as writeFile:
+        writer = csv.writer(writeFile)
+        writer.writerows(lines)
+    writeFile.close()
+
+with open(sys.argv[3], 'r') as readFile:
+    reader = csv.reader(readFile)
+    lines = list(reader)
+lines[1].append(obj)
+lines[2].append(sol[2])
+
+with open(sys.argv[3], 'w') as writeFile:
+    writer = csv.writer(writeFile)
+    writer.writerows(lines)
+readFile.close()
+writeFile.close()

@@ -15,43 +15,6 @@ def assCompleto(assegnamento,csp):
 	return len(assegnamento)==len(csp.nodes())
 
 
-def isSafe(v, var, assegnamento, csp):
-	'''
-	Verifico se l'assegnamento è consistente.
-	'''
-	#print("Verifico vincoli con i vicini alla variabile ", var, " con assegnato il valore ", v)
-	for n in csp.neighbors(var):
-		'''
-		Per ogni vicino di var, verifico se ha già un assegnamento uguale a quello testato
-		Qui è dove devo cercare di far rispettare i vincoli rispetto i vincoli con i vicini.
-		valore che ho appena dato alla variabile var
-		'''
-		if n in assegnamento:
-			y = assegnamento[n]
-
-			#print("stampa assegnamento corrente ", y)
-
-			isSameDay = v[0] == y[0]
-			# va ancora aggiustato
-			bothMorning = float(v[1]) <= 11.5 and float(y[1]) <= 11.5
-			bothAfternoon = float(v[1]) > 12.0 and float(y[1]) > 12.0
-			isSamePeriod = bothMorning or bothAfternoon
-			isSameHouse = v[2] == y[2]
-
-			timeBwAppointments = abs(float(v[1])-float(y[1]))
-			distanceBwHouses = (distance(v[2], y[2])*0.5 + 1)
-			cantReachInTime = (not isSameHouse and (timeBwAppointments < distanceBwHouses))
-			avoidSameHouse = (isSameHouse and timeBwAppointments != 1)
-
-			'''
-			TODO: Check the new condition.
-			'''
-			
-			if (isSameDay and isSamePeriod and (cantReachInTime or avoidSameHouse)):
-				return (False, n)
-	return (True, "-1")
-	
-
 def varNonAssegnata(assegnamento, csp, nearest):
 	'''
 	Restituisco la variabile del csp non assegnata che ha dominio più piccolo
@@ -71,81 +34,6 @@ def varNonAssegnata(assegnamento, csp, nearest):
 			minimumLength = len(csp.nodes[n]['domain'])
 	#print("variabile scelta con dominio di dimensione = ", minimumLength)
 	return chosenVar
-
-
-
-def ordinaValori(var, assegnamento, csp):
-	'''
-	Restituisco tutti i valori del dominio di var che non sono assegnati
-	'''
-	list = deepcopy(csp.nodes[var]['domain'])
-	# secondo me questo if non serve a nulla, non ci entro mai mi sembra
-	if var in assegnamento:
-		list.pop(list.index(assegnamento[var]))
-	return list
-
-
-
-"""
-Funzione solver che viene chiamata dal programma principale
-Per implementare il backjump è necessario tenere una lista delle variabili in
-ordine che sono state assegnate
-"""
-def backtrackingSearch(csp):
-	return backtracking({},[],csp,0)
-
-
-
-def backtracking(assegnamento, assegnate, csp, recDepth):
-	'''
-	Se l'assegnamento è completo mi fermo
-	'''
-	print("Iterazione numero = ", recDepth, "\nAssegnamento corrente = ", assegnamento)
-	recDepth += 1
-
-	if assCompleto(assegnamento, csp):
-		return assegnamento
-
-	var = varNonAssegnata(assegnamento, csp, [])
-	conflictSet = []
-	#print("Variabile scelta ", var)
-	for v in ordinaValori(var, assegnamento, csp):
-		(safe, conflict) = isSafe(v, var, assegnamento, csp)
-		if safe:
-			assegnamento[var] = v
-			assegnate.append(var)
-			assLength = len(assegnate)
-			ris = backtracking(assegnamento, assegnate, csp, recDepth)
-			#Significa che è successo un backjump e sta tagliando il ramo attuale
-			if assLength > len(assegnate)+1:
-				return None
-			if ris!=None:
-				return ris
-		else:
-			conflictSet.append(conflict)
-			# print("Conflict: " + conflict)
-			# Se arrivo a questo punto sono sicuro di essere tornato alla radice
-			# del sottoalbero che potevo analizzare e di non aver trovato una soluzione.
-
-	backjump(assegnamento, assegnate, conflictSet, csp)
-	return None
-
-def backjump(assegnamento, assegnate, conflictSet, csp):
-	assIndex = len(assegnate)-1
-	print("\n\n####BACKJUMP####\n")
-	print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
-	#l'unica cosa che posso fare è una stima di quante ne salto... dovrei passare a che punto dello scorrere del dominio sono arrivato
-	while( not(assegnate[assIndex] in conflictSet)):
-		del(assegnamento[assegnate[assIndex]])
-		del(assegnate[assIndex])
-		assIndex -= 1
-		#print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
-	
-	del(assegnamento[assegnate[assIndex]])
-	del(assegnate[assIndex])
-	#print("AssIndex = ", assIndex, "\nAssegnamento = ", assegnamento, "\nAssegnate = ", assegnate, "\nConflictSet = ", conflictSet)
-	#print("\n####BACKJUMP_FINE####\n")
-	
 
 # è possibile già qui identificare se c'è un successivo e azzerargli il dominio tranne quello da utilizzare?
 # per evitare il problema di avere appuntamenti che avrebbero potuto essere nella stessa casa, e nello stesso periodo,

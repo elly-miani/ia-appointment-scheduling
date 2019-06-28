@@ -1,0 +1,728 @@
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 1000 Times/30/HCA30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 10000 Times/30/HCA30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 30000 Times/30/HCA30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 60000 Times/30/HCA30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 180000 Times/30/HCA30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 600000 Times/30/HCA30.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 1000 Times/30/HCB30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 10000 Times/30/HCB30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 30000 Times/30/HCB30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 60000 Times/30/HCB30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 180000 Times/30/HCB30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 600000 Times/30/HCB30.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 1000 Times/30/HCC30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 10000 Times/30/HCC30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 30000 Times/30/HCC30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 60000 Times/30/HCC30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 180000 Times/30/HCC30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 600000 Times/30/HCC30.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 1000 Times/30/HCD30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 10000 Times/30/HCD30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 30000 Times/30/HCD30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 60000 Times/30/HCD30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 180000 Times/30/HCD30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 600000 Times/30/HCD30.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 1000 Times/30/HCE30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 10000 Times/30/HCE30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 30000 Times/30/HCE30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 60000 Times/30/HCE30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 180000 Times/30/HCE30.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 600000 Times/30/HCE30.csv
+
+
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 1000 Times/35/HCA35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 10000 Times/35/HCA35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 30000 Times/35/HCA35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 60000 Times/35/HCA35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 180000 Times/35/HCA35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 600000 Times/35/HCA35.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 1000 Times/35/HCB35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 10000 Times/35/HCB35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 30000 Times/35/HCB35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 60000 Times/35/HCB35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 180000 Times/35/HCB35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 600000 Times/35/HCB35.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 1000 Times/35/HCC35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 10000 Times/35/HCC35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 30000 Times/35/HCC35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 60000 Times/35/HCC35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 180000 Times/35/HCC35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 600000 Times/35/HCC35.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 1000 Times/35/HCD35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 10000 Times/35/HCD35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 30000 Times/35/HCD35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 60000 Times/35/HCD35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 180000 Times/35/HCD35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 600000 Times/35/HCD35.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 1000 Times/35/HCE35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 10000 Times/35/HCE35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 30000 Times/35/HCE35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 60000 Times/35/HCE35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 180000 Times/35/HCE35.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 600000 Times/35/HCE35.csv
+
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 1000 Times/30/FA30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 10000 Times/30/FA30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 30000 Times/30/FA30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 60000 Times/30/FA30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 180000 Times/30/FA30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 600000 Times/30/FA30.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 1000 Times/30/FB30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 10000 Times/30/FB30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 30000 Times/30/FB30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 60000 Times/30/FB30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 180000 Times/30/FB30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 600000 Times/30/FB30.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 1000 Times/30/FC30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 10000 Times/30/FC30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 30000 Times/30/FC30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 60000 Times/30/FC30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 180000 Times/30/FC30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 600000 Times/30/FC30.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 1000 Times/30/FD30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 10000 Times/30/FD30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 30000 Times/30/FD30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 60000 Times/30/FD30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 180000 Times/30/FD30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 600000 Times/30/FD30.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 1000 Times/30/FE30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 10000 Times/30/FE30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 30000 Times/30/FE30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 60000 Times/30/FE30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 180000 Times/30/FE30.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 600000 Times/30/FE30.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 1000 Times/35/FA35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 10000 Times/35/FA35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 30000 Times/35/FA35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 60000 Times/35/FA35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 180000 Times/35/FA35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 600000 Times/35/FA35.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 1000 Times/35/FB35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 10000 Times/35/FB35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 30000 Times/35/FB35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 60000 Times/35/FB35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 180000 Times/35/FB35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 600000 Times/35/FB35.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 1000 Times/35/FC35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 10000 Times/35/FC35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 30000 Times/35/FC35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 60000 Times/35/FC35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 180000 Times/35/FC35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 600000 Times/35/FC35.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 1000 Times/35/FD35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 10000 Times/35/FD35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 30000 Times/35/FD35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 60000 Times/35/FD35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 180000 Times/35/FD35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 600000 Times/35/FD35.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 1000 Times/35/FE35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 10000 Times/35/FE35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 30000 Times/35/FE35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 60000 Times/35/FE35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 180000 Times/35/FE35.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 600000 Times/35/FE35.csv
+
+
+
+
+
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 1000 Times/33/HCA33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 10000 Times/33/HCA33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 30000 Times/33/HCA33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 60000 Times/33/HCA33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 180000 Times/33/HCA33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 600000 Times/33/HCA33.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 1000 Times/33/HCB33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 10000 Times/33/HCB33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 30000 Times/33/HCB33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 60000 Times/33/HCB33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 180000 Times/33/HCB33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 600000 Times/33/HCB33.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 1000 Times/33/HCC33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 10000 Times/33/HCC33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 30000 Times/33/HCC33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 60000 Times/33/HCC33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 180000 Times/33/HCC33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 600000 Times/33/HCC33.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 1000 Times/33/HCD33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 10000 Times/33/HCD33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 30000 Times/33/HCD33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 60000 Times/33/HCD33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 180000 Times/33/HCD33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 600000 Times/33/HCD33.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 1000 Times/33/HCE33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 10000 Times/33/HCE33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 30000 Times/33/HCE33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 60000 Times/33/HCE33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 180000 Times/33/HCE33.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 600000 Times/33/HCE33.csv
+
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 1000 Times/33/FA33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 10000 Times/33/FA33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 30000 Times/33/FA33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 60000 Times/33/FA33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 180000 Times/33/FA33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 600000 Times/33/FA33.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 1000 Times/33/FB33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 10000 Times/33/FB33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 30000 Times/33/FB33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 60000 Times/33/FB33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 180000 Times/33/FB33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 600000 Times/33/FB33.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 1000 Times/33/FC33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 10000 Times/33/FC33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 30000 Times/33/FC33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 60000 Times/33/FC33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 180000 Times/33/FC33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 600000 Times/33/FC33.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 1000 Times/33/FD33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 10000 Times/33/FD33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 30000 Times/33/FD33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 60000 Times/33/FD33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 180000 Times/33/FD33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 600000 Times/33/FD33.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 1000 Times/33/FE33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 10000 Times/33/FE33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 30000 Times/33/FE33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 60000 Times/33/FE33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 180000 Times/33/FE33.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 600000 Times/33/FE33.csv
+
+
+
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 1000 Times/30/HSA30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 10000 Times/30/HSA30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 30000 Times/30/HSA30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 60000 Times/30/HSA30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 180000 Times/30/HSA30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsA30.json 600000 Times/30/HSA30.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 1000 Times/30/HSB30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 10000 Times/30/HSB30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 30000 Times/30/HSB30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 60000 Times/30/HSB30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 180000 Times/30/HSB30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsB30.json 600000 Times/30/HSB30.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 1000 Times/30/HSC30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 10000 Times/30/HSC30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 30000 Times/30/HSC30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 60000 Times/30/HSC30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 180000 Times/30/HSC30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsC30.json 600000 Times/30/HSC30.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 1000 Times/30/HSD30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 10000 Times/30/HSD30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 30000 Times/30/HSD30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 60000 Times/30/HSD30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 180000 Times/30/HSD30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsD30.json 600000 Times/30/HSD30.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 1000 Times/30/HSE30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 10000 Times/30/HSE30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 30000 Times/30/HSE30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 60000 Times/30/HSE30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 180000 Times/30/HSE30.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/30/RandomAppointmentsE30.json 600000 Times/30/HSE30.csv
+
+
+
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 1000 Times/35/HSA35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 10000 Times/35/HSA35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 30000 Times/35/HSA35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 60000 Times/35/HSA35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 180000 Times/35/HSA35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsA35.json 600000 Times/35/HSA35.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 1000 Times/35/HSB35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 10000 Times/35/HSB35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 30000 Times/35/HSB35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 60000 Times/35/HSB35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 180000 Times/35/HSB35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsB35.json 600000 Times/35/HSB35.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 1000 Times/35/HSC35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 10000 Times/35/HSC35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 30000 Times/35/HSC35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 60000 Times/35/HSC35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 180000 Times/35/HSC35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsC35.json 600000 Times/35/HSC35.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 1000 Times/35/HSD35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 10000 Times/35/HSD35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 30000 Times/35/HSD35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 60000 Times/35/HSD35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 180000 Times/35/HSD35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsD35.json 600000 Times/35/HSD35.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 1000 Times/35/HSE35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 10000 Times/35/HSE35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 30000 Times/35/HSE35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 60000 Times/35/HSE35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 180000 Times/35/HSE35.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/35/RandomAppointmentsE35.json 600000 Times/35/HSE35.csv
+
+
+
+QUESTA SERA
+
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 1000 Times/31/HCA31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 10000 Times/31/HCA31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 30000 Times/31/HCA31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 60000 Times/31/HCA31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 180000 Times/31/HCA31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 600000 Times/31/HCA31.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 1000 Times/31/HCB31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 10000 Times/31/HCB31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 30000 Times/31/HCB31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 60000 Times/31/HCB31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 180000 Times/31/HCB31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 600000 Times/31/HCB31.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 1000 Times/31/HCC31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 10000 Times/31/HCC31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 30000 Times/31/HCC31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 60000 Times/31/HCC31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 180000 Times/31/HCC31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 600000 Times/31/HCC31.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 1000 Times/31/HCD31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 10000 Times/31/HCD31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 30000 Times/31/HCD31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 60000 Times/31/HCD31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 180000 Times/31/HCD31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 600000 Times/31/HCD31.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 1000 Times/31/HCE31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 10000 Times/31/HCE31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 30000 Times/31/HCE31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 60000 Times/31/HCE31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 180000 Times/31/HCE31.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 600000 Times/31/HCE31.csv
+
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 1000 Times/31/HSA31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 10000 Times/31/HSA31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 30000 Times/31/HSA31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 60000 Times/31/HSA31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 180000 Times/31/HSA31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 600000 Times/31/HSA31.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 1000 Times/31/HSB31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 10000 Times/31/HSB31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 30000 Times/31/HSB31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 60000 Times/31/HSB31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 180000 Times/31/HSB31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 600000 Times/31/HSB31.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 1000 Times/31/HSC31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 10000 Times/31/HSC31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 30000 Times/31/HSC31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 60000 Times/31/HSC31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 180000 Times/31/HSC31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 600000 Times/31/HSC31.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 1000 Times/31/HSD31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 10000 Times/31/HSD31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 30000 Times/31/HSD31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 60000 Times/31/HSD31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 180000 Times/31/HSD31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 600000 Times/31/HSD31.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 1000 Times/31/HSE31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 10000 Times/31/HSE31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 30000 Times/31/HSE31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 60000 Times/31/HSE31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 180000 Times/31/HSE31.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 600000 Times/31/HSE31.csv
+
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 1000 Times/31/FA31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 10000 Times/31/FA31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 30000 Times/31/FA31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 60000 Times/31/FA31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 180000 Times/31/FA31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsA31.json 600000 Times/31/FA31.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 1000 Times/31/FB31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 10000 Times/31/FB31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 30000 Times/31/FB31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 60000 Times/31/FB31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 180000 Times/31/FB31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsB31.json 600000 Times/31/FB31.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 1000 Times/31/FC31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 10000 Times/31/FC31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 30000 Times/31/FC31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 60000 Times/31/FC31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 180000 Times/31/FC31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsC31.json 600000 Times/31/FC31.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 1000 Times/31/FD31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 10000 Times/31/FD31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 30000 Times/31/FD31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 60000 Times/31/FD31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 180000 Times/31/FD31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsD31.json 600000 Times/31/FD31.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 1000 Times/31/FE31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 10000 Times/31/FE31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 30000 Times/31/FE31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 60000 Times/31/FE31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 180000 Times/31/FE31.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/31/RandomAppointmentsE31.json 600000 Times/31/FE31.csv
+
+
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 1000 Times/32/HCA32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 10000 Times/32/HCA32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 30000 Times/32/HCA32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 60000 Times/32/HCA32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 180000 Times/32/HCA32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 600000 Times/32/HCA32.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 1000 Times/32/HCB32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 10000 Times/32/HCB32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 30000 Times/32/HCB32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 60000 Times/32/HCB32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 180000 Times/32/HCB32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 600000 Times/32/HCB32.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 1000 Times/32/HCC32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 10000 Times/32/HCC32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 30000 Times/32/HCC32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 60000 Times/32/HCC32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 180000 Times/32/HCC32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 600000 Times/32/HCC32.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 1000 Times/32/HCD32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 10000 Times/32/HCD32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 30000 Times/32/HCD32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 60000 Times/32/HCD32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 180000 Times/32/HCD32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 600000 Times/32/HCD32.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 1000 Times/32/HCE32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 10000 Times/32/HCE32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 30000 Times/32/HCE32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 60000 Times/32/HCE32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 180000 Times/32/HCE32.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 600000 Times/32/HCE32.csv
+
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 1000 Times/32/HSA32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 10000 Times/32/HSA32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 30000 Times/32/HSA32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 60000 Times/32/HSA32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 180000 Times/32/HSA32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 600000 Times/32/HSA32.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 1000 Times/32/HSB32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 10000 Times/32/HSB32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 30000 Times/32/HSB32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 60000 Times/32/HSB32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 180000 Times/32/HSB32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 600000 Times/32/HSB32.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 1000 Times/32/HSC32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 10000 Times/32/HSC32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 30000 Times/32/HSC32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 60000 Times/32/HSC32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 180000 Times/32/HSC32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 600000 Times/32/HSC32.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 1000 Times/32/HSD32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 10000 Times/32/HSD32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 30000 Times/32/HSD32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 60000 Times/32/HSD32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 180000 Times/32/HSD32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 600000 Times/32/HSD32.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 1000 Times/32/HSE32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 10000 Times/32/HSE32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 30000 Times/32/HSE32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 60000 Times/32/HSE32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 180000 Times/32/HSE32.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 600000 Times/32/HSE32.csv
+
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 1000 Times/32/FA32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 10000 Times/32/FA32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 30000 Times/32/FA32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 60000 Times/32/FA32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 180000 Times/32/FA32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsA32.json 600000 Times/32/FA32.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 1000 Times/32/FB32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 10000 Times/32/FB32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 30000 Times/32/FB32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 60000 Times/32/FB32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 180000 Times/32/FB32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsB32.json 600000 Times/32/FB32.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 1000 Times/32/FC32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 10000 Times/32/FC32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 30000 Times/32/FC32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 60000 Times/32/FC32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 180000 Times/32/FC32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsC32.json 600000 Times/32/FC32.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 1000 Times/32/FD32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 10000 Times/32/FD32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 30000 Times/32/FD32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 60000 Times/32/FD32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 180000 Times/32/FD32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsD32.json 600000 Times/32/FD32.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 1000 Times/32/FE32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 10000 Times/32/FE32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 30000 Times/32/FE32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 60000 Times/32/FE32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 180000 Times/32/FE32.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/32/RandomAppointmentsE32.json 600000 Times/32/FE32.csv
+
+
+
+
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 1000 Times/33/HSA33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 10000 Times/33/HSA33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 30000 Times/33/HSA33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 60000 Times/33/HSA33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 180000 Times/33/HSA33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsA33.json 600000 Times/33/HSA33.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 1000 Times/33/HSB33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 10000 Times/33/HSB33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 30000 Times/33/HSB33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 60000 Times/33/HSB33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 180000 Times/33/HSB33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsB33.json 600000 Times/33/HSB33.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 1000 Times/33/HSC33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 10000 Times/33/HSC33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 30000 Times/33/HSC33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 60000 Times/33/HSC33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 180000 Times/33/HSC33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsC33.json 600000 Times/33/HSC33.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 1000 Times/33/HSD33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 10000 Times/33/HSD33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 30000 Times/33/HSD33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 60000 Times/33/HSD33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 180000 Times/33/HSD33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsD33.json 600000 Times/33/HSD33.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 1000 Times/33/HSE33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 10000 Times/33/HSE33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 30000 Times/33/HSE33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 60000 Times/33/HSE33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 180000 Times/33/HSE33.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/33/RandomAppointmentsE33.json 600000 Times/33/HSE33.csv
+
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 1000 Times/34/HCA34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 10000 Times/34/HCA34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 30000 Times/34/HCA34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 60000 Times/34/HCA34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 180000 Times/34/HCA34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 600000 Times/34/HCA34.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 1000 Times/34/HCB34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 10000 Times/34/HCB34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 30000 Times/34/HCB34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 60000 Times/34/HCB34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 180000 Times/34/HCB34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 600000 Times/34/HCB34.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 1000 Times/34/HCC34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 10000 Times/34/HCC34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 30000 Times/34/HCC34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 60000 Times/34/HCC34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 180000 Times/34/HCC34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 600000 Times/34/HCC34.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 1000 Times/34/HCD34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 10000 Times/34/HCD34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 30000 Times/34/HCD34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 60000 Times/34/HCD34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 180000 Times/34/HCD34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 600000 Times/34/HCD34.csv
+
+
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 1000 Times/34/HCE34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 10000 Times/34/HCE34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 30000 Times/34/HCE34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 60000 Times/34/HCE34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 180000 Times/34/HCE34.csv
+python Solver/HardConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 600000 Times/34/HCE34.csv
+
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 1000 Times/34/HSA34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 10000 Times/34/HSA34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 30000 Times/34/HSA34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 60000 Times/34/HSA34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 180000 Times/34/HSA34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 600000 Times/34/HSA34.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 1000 Times/34/HSB34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 10000 Times/34/HSB34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 30000 Times/34/HSB34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 60000 Times/34/HSB34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 180000 Times/34/HSB34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 600000 Times/34/HSB34.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 1000 Times/34/HSC34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 10000 Times/34/HSC34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 30000 Times/34/HSC34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 60000 Times/34/HSC34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 180000 Times/34/HSC34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 600000 Times/34/HSC34.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 1000 Times/34/HSD34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 10000 Times/34/HSD34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 30000 Times/34/HSD34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 60000 Times/34/HSD34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 180000 Times/34/HSD34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 600000 Times/34/HSD34.csv
+
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 1000 Times/34/HSE34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 10000 Times/34/HSE34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 30000 Times/34/HSE34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 60000 Times/34/HSE34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 180000 Times/34/HSE34.csv
+python Solver/SoftConstraintSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 600000 Times/34/HSE34.csv
+
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 1000 Times/34/FA34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 10000 Times/34/FA34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 30000 Times/34/FA34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 60000 Times/34/FA34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 180000 Times/34/FA34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsA34.json 600000 Times/34/FA34.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 1000 Times/34/FB34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 10000 Times/34/FB34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 30000 Times/34/FB34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 60000 Times/34/FB34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 180000 Times/34/FB34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsB34.json 600000 Times/34/FB34.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 1000 Times/34/FC34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 10000 Times/34/FC34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 30000 Times/34/FC34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 60000 Times/34/FC34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 180000 Times/34/FC34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsC34.json 600000 Times/34/FC34.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 1000 Times/34/FD34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 10000 Times/34/FD34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 30000 Times/34/FD34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 60000 Times/34/FD34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 180000 Times/34/FD34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsD34.json 600000 Times/34/FD34.csv
+
+
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 1000 Times/34/FE34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 10000 Times/34/FE34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 30000 Times/34/FE34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 60000 Times/34/FE34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 180000 Times/34/FE34.csv
+python Solver/DifferentSolver/SolverWithBacktrack.py Solver/JSON_Datasets/34/RandomAppointmentsE34.json 600000 Times/34/FE34.csv
+
+
+
+
+
+
+

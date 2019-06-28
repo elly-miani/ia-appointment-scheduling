@@ -1,0 +1,326 @@
+{
+    "0": {
+        "Name": "Sofia",
+        "Surname": "Cooper",
+        "House": "C",
+        "Day": [
+            [
+                "mon",
+                "Morning"
+            ],
+            [
+                "wed",
+                "Morning"
+            ],
+            [
+                "wed",
+                "Afternoon"
+            ]
+        ]
+    },
+    "1": {
+        "Name": "Emily",
+        "Surname": "Johnson",
+        "House": "D",
+        "Day": [
+            [
+                "tue",
+                "Afternoon"
+            ],
+            [
+                "thu",
+                "Morning"
+            ],
+            [
+                "tue",
+                "Morning"
+            ]
+        ]
+    },
+    "2": {
+        "Name": "Sophia",
+        "Surname": "Brown",
+        "House": "A",
+        "Day": [
+            [
+                "thu",
+                "Morning"
+            ],
+            [
+                "mon",
+                "Morning"
+            ]
+        ]
+    },
+    "3": {
+        "Name": "Alexander",
+        "Surname": "Jackson",
+        "House": "C",
+        "Day": [
+            [
+                "wed",
+                "Morning"
+            ],
+            [
+                "thu",
+                "Afternoon"
+            ]
+        ]
+    },
+    "4": {
+        "Name": "William",
+        "Surname": "Wright",
+        "House": "A",
+        "Day": [
+            [
+                "wed",
+                "Morning"
+            ],
+            [
+                "fri",
+                "Morning"
+            ]
+        ]
+    },
+    "5": {
+        "Name": "Mason",
+        "Surname": "Watson",
+        "House": "C",
+        "Day": [
+            [
+                "wed",
+                "Morning"
+            ],
+            [
+                "fri",
+                "Afternoon"
+            ]
+        ]
+    },
+    "6": {
+        "Name": "Evelyn",
+        "Surname": "Wood",
+        "House": "D",
+        "Day": [
+            [
+                "thu",
+                "Morning"
+            ],
+            [
+                "mon",
+                "Afternoon"
+            ],
+            [
+                "fri",
+                "Afternoon"
+            ]
+        ]
+    },
+    "7": {
+        "Name": "Ethan",
+        "Surname": "Hughes",
+        "House": "B",
+        "Day": [
+            [
+                "fri",
+                "Morning"
+            ],
+            [
+                "wed",
+                "Afternoon"
+            ],
+            [
+                "thu",
+                "Afternoon"
+            ]
+        ]
+    },
+    "8": {
+        "Name": "Ethan",
+        "Surname": "Wright",
+        "House": "D",
+        "Day": [
+            [
+                "wed",
+                "Morning"
+            ],
+            [
+                "tue",
+                "Morning"
+            ]
+        ]
+    },
+    "9": {
+        "Name": "Ava",
+        "Surname": "King",
+        "House": "A",
+        "Day": [
+            [
+                "fri",
+                "Morning"
+            ],
+            [
+                "tue",
+                "Morning"
+            ],
+            [
+                "wed",
+                "Afternoon"
+            ]
+        ]
+    },
+    "10": {
+        "Name": "James",
+        "Surname": "King",
+        "House": "A",
+        "Day": [
+            [
+                "mon",
+                "Morning"
+            ],
+            [
+                "mon",
+                "Afternoon"
+            ]
+        ]
+    },
+    "11": {
+        "Name": "Elijah",
+        "Surname": "Lewis",
+        "House": "D",
+        "Day": [
+            [
+                "fri",
+                "Afternoon"
+            ],
+            [
+                "tue",
+                "Morning"
+            ]
+        ]
+    },
+    "12": {
+        "Name": "Ethan",
+        "Surname": "Cooper",
+        "House": "C",
+        "Day": [
+            [
+                "tue",
+                "Morning"
+            ],
+            [
+                "fri",
+                "Morning"
+            ],
+            [
+                "thu",
+                "Afternoon"
+            ]
+        ]
+    },
+    "13": {
+        "Name": "Alexander",
+        "Surname": "Taylor",
+        "House": "C",
+        "Day": [
+            [
+                "mon",
+                "Afternoon"
+            ],
+            [
+                "tue",
+                "Morning"
+            ]
+        ]
+    },
+    "14": {
+        "Name": "Isabella",
+        "Surname": "Lee",
+        "House": "D",
+        "Day": [
+            [
+                "thu",
+                "Afternoon"
+            ],
+            [
+                "wed",
+                "Morning"
+            ]
+        ]
+    },
+    "15": {
+        "Name": "Emily",
+        "Surname": "King",
+        "House": "A",
+        "Day": [
+            [
+                "wed",
+                "Afternoon"
+            ],
+            [
+                "tue",
+                "Morning"
+            ]
+        ]
+    },
+    "16": {
+        "Name": "Elijah",
+        "Surname": "Harris",
+        "House": "A",
+        "Day": [
+            [
+                "tue",
+                "Morning"
+            ],
+            [
+                "fri",
+                "Afternoon"
+            ],
+            [
+                "thu",
+                "Morning"
+            ]
+        ]
+    },
+    "17": {
+        "Name": "Lucas",
+        "Surname": "Hughes",
+        "House": "C",
+        "Day": [
+            [
+                "wed",
+                "Afternoon"
+            ]
+        ]
+    },
+    "18": {
+        "Name": "Alexander",
+        "Surname": "Walker",
+        "House": "C",
+        "Day": [
+            [
+                "thu",
+                "Afternoon"
+            ],
+            [
+                "wed",
+                "Morning"
+            ]
+        ]
+    },
+    "19": {
+        "Name": "Alexander",
+        "Surname": "Wright",
+        "House": "C",
+        "Day": [
+            [
+                "mon",
+                "Afternoon"
+            ],
+            [
+                "tue",
+                "Morning"
+            ]
+        ]
+    }
+}

@@ -12,7 +12,7 @@ import pprint as pp
 
 # sys.path.append('./Solver/DifferentSolver')
 # from Backtracking_Appointments import backtrackingSearch
-from Backtracking_Appointments2 import backtrackingSearchAllSolutions
+from Backtracking_Appointments import backtrackingSearchAllSolutions
 
 
 current_milli_time = lambda: int(round(time.time() * 1000))
@@ -102,8 +102,6 @@ def initDomain():
     return domain
 
     
-
-# print function to print a solution in a clean way
 def printSolution(solution, appointments):
     days = ["mon", "tue", "wed", "thu", "fri"]
 
@@ -145,51 +143,17 @@ def printSolution(solution, appointments):
     return ordApp, len(notSched)
 
 
+
 def computeObjFunc(ordApp):
-    print(ordApp)
+    #print(ordApp)
     travelTime = 0
     for x in ordApp:
         for y in range(len(x)-1):
             if ((float(x[y][1][1]) > 12 and float(x[y+1][1][1]) > 12) or (float(x[y][1][1]) < 12 and float(x[y+1][1][1]) < 12)):
                 travelTime += float(x[y+1][1][1]) - float(x[y][1][1])-1
+                #print("TravelTime = ",travelTime)        
     print("TravelTime = ",travelTime)        
     return travelTime
-
-
-# print function to print a solution in a clean way
-def printSolutionR(solution, appointments):
-    days = ["mon", "tue", "wed"]
-
-    ordApp = [[], [], []]
-    notSched = []
-
-    for x in solution:
-        if solution[x] != "notScheduled":
-            if solution[x][0] == days[0]:
-                ordApp[0].append([x, solution[x]])
-            if solution[x][0] == days[1]:
-                ordApp[1].append([x, solution[x]])
-            if solution[x][0] == days[2]:
-                ordApp[2].append([x, solution[x]])
-        else:
-            notSched.append([x, solution[x]])
-    # print(ordApp)
-    for x in ordApp:
-        x.sort(key=takeSecond)
-
-    index = 0
-    for x in ordApp:
-        print("\n\nGiorno: ", days[index])
-        print("\nMattina:")
-        cond = True
-        for y in x:
-            if (cond and float(y[1][1]) > 12):
-                print("\nPomeriggio:")
-                cond = False
-            print("Ore: ", y[1][1], "Casa: ", y[1][2], " Appuntamento con: ",
-                  appointments[y[0]]["Name"], " ", appointments[y[0]]["Surname"])
-        index += 1
-    print(notSched)
 
 
 def get_key(key):
@@ -373,34 +337,34 @@ if __name__ == "__main__":
     (ordBest, notsched) = printSolution(sol[0], appointments)
     obj = computeObjFunc(ordBest)
     print("With cost = ", sol[1])
-    print(sol[0])
 
-    if os.path.exists(sys.argv[3]) == False:
-        length = sys.argv[1][-7:-5]
-        index = sys.argv[1][-8:-7]
-        print(sys.argv[1])
-        print(length, index)
-        row1 = ["Final "+  length , index,1,10,30,60,180,600]
-        row2 = ["", "traveltime"]
-        row3 = ["", "percentage"]
-        row4 = ["", "notsched"]
-        
-        lines=[row1,row2,row3,row4]
-        with open(sys.argv[3], 'w') as writeFile:
-            writer = csv.writer(writeFile)
-            writer.writerows(lines)
-        writeFile.close()
-
-
-    with open(sys.argv[3], 'r') as readFile:
-        reader = csv.reader(readFile)
-        lines = list(reader)
-    lines[1].append(obj)
-    lines[2].append(sol[3])
-    lines[3].append(notsched)
-
+if os.path.exists(sys.argv[3]) == False:
+    length = sys.argv[1][-7:-5]
+    index = sys.argv[1][-8:-7]
+    print(sys.argv[1])
+    print(length, index)
+    row1 = ["SoftConstraints "+  length , index,1,10,30,60,180,600]
+    row2 = ["", "traveltime"]
+    row3 = ["", "percentage"]
+    row4 = ["", "notsched"]
+     
+    lines=[row1,row2,row3,row4]
     with open(sys.argv[3], 'w') as writeFile:
         writer = csv.writer(writeFile)
         writer.writerows(lines)
-    readFile.close()
     writeFile.close()
+
+with open(sys.argv[3], 'r') as readFile:
+    reader = csv.reader(readFile)
+    lines = list(reader)
+lines[1].append(obj)
+lines[2].append(sol[3])
+lines[3].append(notsched)
+
+with open(sys.argv[3], 'w') as writeFile:
+    writer = csv.writer(writeFile)
+    writer.writerows(lines)
+readFile.close()
+writeFile.close()
+
+

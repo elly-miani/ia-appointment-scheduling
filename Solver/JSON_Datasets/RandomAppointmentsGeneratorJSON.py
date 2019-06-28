@@ -31,29 +31,34 @@ names = ["Liam", "Emma", "Noah", "Olivia", "William", "Ava", "James",
 
 prefs = ["Morning", "Afternoon"]
 # qui si usava una lista, ma è più comodo passare la dimensione da terminale
-datasetDimensions=[int(sys.argv[1])]#, 10, 15, 20, 25, 30]
+datasetDimensions=[34, 34, 34, 34, 34]#int(sys.argv[1])]#, 10, 15, 20, 25, 30]
+indexes=['A', 'B', 'C', 'D', 'E']
+x = 0
 for k in datasetDimensions:
     for i in range(k):
         # y = 2
         y = random.randint(2, 3)
         d = sample(days, y)
         app = []
+        
         for a in range(y):
           newApp = (days[random.randint(0, len(days)-1)], prefs[random.randint(0, len(prefs)-1)])
           if newApp not in app:
             app.append(newApp)
+          else:
+            a-=1
         appointment = {
           "Name": names[random.randint(0, len(names)-1)],
           "Surname": surnames[random.randint(0, len(surnames)-1)],
           "House" : locations[random.randint(0, len(locations)-1)],
           "Day" : app,
-          #"Pref" : [prefs[random.randint(0, len(prefs)-1)]]
         }
         appointments[str(i)] = appointment
 
     # print(appointments)
     print("Creating JSON file with " + str(k) + " appointments.")
 
-    with open('Solver/JSON_Datasets/RandomAppointmentsR'+str(k)+'.json', 'w') as json_file:
+    with open('Solver/JSON_Datasets/'+str(k)+'/RandomAppointments'+ indexes[x]+str(k)+'.json', 'w') as json_file:
       json.dump(appointments, json_file, indent=4)
       # json.dump(appointments, json_file)
+    x+=1

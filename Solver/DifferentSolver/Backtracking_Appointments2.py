@@ -4,7 +4,6 @@
 	variabili non ancora assegnate vado a togliere.
 '''	
 
-
 from copy import deepcopy
 import pprint as pp
 import time
@@ -22,6 +21,8 @@ def assCompleto(assegnamento,csp):
 	return len(assegnamento)==len(csp.nodes())
 
 
+#TODO: aggiungere che a parità di numero dimensione dominio si sceglie prima quelli che hanno possibilità di essere 
+# messi in sequenza (neighbor con stessa casa e stesso giorno/ fascia oraria)
 def varNonAssegnata(assegnamento, csp, nearest):
 	'''
 	Restituisco la variabile del csp non assegnata che ha dominio più piccolo
@@ -29,43 +30,54 @@ def varNonAssegnata(assegnamento, csp, nearest):
 	'''
 	minimumLength = 10000
 	# mattina e pomeriggio per i 5 giorni
-	minimumSlot = 10
 	chosenVar = "-1"
 
 	nodelist = list(csp)
 	#print(type(nodelist))
 	#random.shuffle(nodelist)
-	if len(nearest)==0:
-		for n in nodelist:
-			if n not in assegnamento and computeSlot(n, csp) < minimumSlot and len(csp.nodes[n]['domain']) < minimumLength:
+	motivo=0
+	if len(nearest)!=0:	
+		for n in nearest:
+			if n not in assegnamento and len(csp.nodes[n]['domain']) < minimumLength:
 				chosenVar = n
 				minimumLength = len(csp.nodes[n]['domain'])
-	#print("variabile scelta con dominio di dimensione = ", minimumLength)
+		for n in nodelist:
+			if n not in assegnamento and n not in nearest and len(csp.nodes[n]['domain']) < minimumLength and len(csp.nodes[n]['domain']) <= 6:
+				chosenVar = n
+				minimumLength = len(csp.nodes[n]['domain'])
+				motivo=1
+		#print("variabile scelta con dominio di dimensione = ", minimumLength)
 	else:
 		for n in nodelist:
-			if n not in assegnamento and computeSlot(n, csp) < minimumSlot and  len(csp.nodes[n]['domain']) < minimumLength and (n in nearest or len(csp.nodes[n]['domain'])==2):
+			if n not in assegnamento and len(csp.nodes[n]['domain']) < minimumLength:
 				chosenVar = n
 				minimumLength = len(csp.nodes[n]['domain'])
+				motivo=2
+		
+	#print("\n\n\nvariabile = ", chosenVar)	
 	#print("variabile scelta con dominio di dimensione = ", minimumLength)
+	#print("motivo ", motivo) 
 	return chosenVar
 
+	
 
 ##Useless here
 def computeSlot(var, csp):
 	prevDay = ''
 	numSlot = 0
 	for n in csp.nodes[var]['domain']:
-		print(n)
-		print("prevDay: ", prevDay)
+		#print(n)
+		#print("prevDay: ", prevDay)
 		if n[0] != prevDay:
 			numSlot += 1
 			prevDay = n[0]
-	print("numSlot= ", numSlot)
+	#print("numSlot= ", numSlot)
 	return numSlot
 
-# bisognerebbe anche usare constraint propagation
+
 def computeSmallestDomain(v, var, assegnamento, newCSP):
 	minDom = 10000
+	countDom = 0
 	if v != "notScheduled":
 		for n in newCSP.neighbors(var):
 			if n not in assegnamento:
@@ -87,7 +99,11 @@ def computeSmallestDomain(v, var, assegnamento, newCSP):
 				#print("dominio rimanente = ", newDom,"\n")
 				if minDom > len(newDom):
 					minDom = len(newDom)
-	return minDom
+					countDom = 1
+				else:
+					if minDom==len(newDom):
+						countDom+=1
+	return (minDom, countDom)
 
 
 
@@ -181,8 +197,17 @@ def ordinaValoriCost(var, assegnamento, csp):
 						currValueCost = ((float(v[1])-float(previousAppointment[1])-1)/0.5)*((float(v[1])-float(previousAppointment[1])-1)/0.5)
 				##Qui va aggiunto il controllo sul dominio se diventa troppo piccolo si sceglie un'altro valore
 				if currValueCost <= 4 and bestValueCost <= 4:
+					#print("bestValue ",bestValue, ", v ", v)
 					old = computeSmallestDomain(bestValue, var, assegnamento, csp)
 					new = computeSmallestDomain(v, var, assegnamento, csp)
+					#print("old ", old, ", new ", new)
+					if bestValueCost >= currValueCost:
+						if old[0] < new[0] or new[0] >= 2.5*new[1]:
+							bestValue = v
+							bestValueCost = currValueCost
+						#else:
+							#print("Scelgo ", v, )
+					'''
 					#print(old, ' ', new)
 					if old < new:
 						bestValue = v
@@ -190,7 +215,8 @@ def ordinaValoriCost(var, assegnamento, csp):
 					if old == new and bestValueCost > currValueCost:
 						bestValue = v
 						bestValueCost = currValueCost
-					#print('Scelgo ', bestValue)
+					#print('Scelgo ', bestValue)ordinaValori
+					'''
 				else:
 					if currValueCost < bestValueCost:
 						bestValue = v
@@ -240,9 +266,10 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 	#print("\n\n\nRecursion Depth = ", recDepth)
 	recDepth += 1
 	if(current_milli_time() > endTime):
+		percentage = (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100)
 		print("HELLOOOOOOOOOOOOOOOOO")
-		print("\n\n######TEMPO SCADUTO!!!#####\n\nIterazione numero = ", recDepth,"\nAnalyzed= ", analyzed, "\nPercentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
-		return (solution, bestSolCost, "END")
+		print("\n\n######TEMPO SCADUTO!!!#####\n\nIterazione numero = ", recDepth,"\nAnalyzed= ", analyzed, "\nPercentuale albero analizzata = ", percentage, " \nAssegnamento corrente = ", assegnamento)
+		return (solution, bestSolCost, "END", percentage)
 
 	if assCompleto(assegnamento, updatedCSP):
 		#Devo anche fare in modo di visitare la vicina soluzione probabilmente
@@ -254,7 +281,7 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 			print(solution)
 			print("Che ha costo = ", currCost)
 			# anche in questo caso devo eliminare le variabili assegnate, devo riprendere nel ciclo e devo risettare la stessa variabile!
-		return (solution, bestSolCost, "found")
+		return (solution, bestSolCost, "found", 0)
 
 	var = varNonAssegnata(assegnamento, updatedCSP, nearest)
 	# voglio spostarlo dopo, all'uscita
@@ -287,17 +314,19 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 		# è più alto della soluzione precedentemente trovata non ha senso proseguire.
 		# Se è possibile trovare una soluzione migliore chiamo ricorsivamente la stessa
 		# funzione che assegnerà una nuova variabile
+		#printSolution(assegnamento)
+		#printDoms(assegnamento, newCSP)
 		if (iterationCost < bestSolCost):
-			(solution, bestSolCost, ris) = backtrackingAllSolutions(solution, bestSolCost, assegnamento, iterationCost, assegnate, csp, newCSP, nearest, recDepth, analyzed, numTotalSolution, endTime)
+			(solution, bestSolCost, ris, per) = backtrackingAllSolutions(solution, bestSolCost, assegnamento, iterationCost, assegnate, csp, newCSP, nearest, recDepth, analyzed, numTotalSolution, endTime)
 
 			#print("\n##### Riprendo, Profondità ricorsione = ", recDepth-1, " Ciclo numero: ", ciclo, " Sto considerando la variabile ", var)
 			if ris=="END":
-				return (solution, bestSolCost, "END")
+				return (solution, bestSolCost, "END", per)
 			analyzed[var] += 1
 			if ris=="found":
 				#print("Ho appena trovato una soluzione")
 				#print("Analyzed= ", analyzed, "\nPercentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
-				print("Percentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100))
+				#print("Percentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100))
 				#print(printOrderedAnalyzed(analyzed, assegnate))
 				# se sono qui significa che ho finito di analizzare il sotto albero e devo sostituire la variabile che sto considerando.
 				del(assegnamento[assegnate[-1]])
@@ -305,7 +334,7 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 				# qui potrei anche uscire direttamente, tanto andando avanti troverei solo soluzioni peggiori...
 			if ris == "finished":
 				#print("Ho appena finito di controllare le soluzioni del sottoalbero", "\nAnalyzed= ", analyzed, "\nPercentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
-				print("Percentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100))
+				#print("Percentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100))
 				#print(printOrderedAnalyzed(analyzed, assegnate))
 				if len(assegnate) > 0:
 					del(assegnamento[assegnate[-1]])
@@ -315,7 +344,7 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 			#print("Tutti i possibili valori successivi peggiorano la funzione di costo.")
 			analyzed[var] = len(csp.nodes[var]['domain'])
 			#print("Esco da albero", "\nAnalyzed= ", analyzed, "\nPercentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento, "\nAssegnate = ", assegnate)
-			print("Percentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100))
+			#print("Percentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100))
 			#print(printOrderedAnalyzed(analyzed, assegnate))
 			if len(assegnate) > 0:
 				del(assegnamento[assegnate[-1]])
@@ -324,7 +353,7 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 
 # esco da qui solo se tutti i cicli del for sono finiti e ho trovato almeno una soluzione nel frattempo
 	analyzed[var] = 0
-	return (solution, bestSolCost, "finished")
+	return (solution, bestSolCost, "finished", 0)
 
 
 def computeVisited(analyzed, assegnate, csp):
@@ -420,6 +449,10 @@ def printOrderedAnalyzed(analyzed, assigned):
 		result +='{' + str(x) +', '+ str(analyzed[x]) + '} '
 	return result
 
+def printDoms(assegnate, csp):
+	for n in csp.nodes():
+		if n not in assegnate:
+			print(n, " ",  len(csp.nodes[n]['domain']))
 '''
 def computeUB(assegnamento, assegnate, csp, nearest):
 	boundedCost = 0
