@@ -30,10 +30,10 @@ def ordinaValoriCost(var, assegnamento, csp):
 		for v in dom:
 			if v != "notScheduled":
 				conflict = False
+				usable = True
 				previousAppointment = ['', '0', '']
 				for n in csp.neighbors(var):
 					# skip the following iterations because the value is in conflict with at least one assigned variable
-					usable = True
 					if(conflict==False):
 						'''
 						Devo trovare l'appuntamento precedente a quello che sto provando ad assegnare.
@@ -59,11 +59,11 @@ def ordinaValoriCost(var, assegnamento, csp):
 				if usable:
 					if previousAppointment[1] == '0' and (v[1] == "08.00" or v[1] == "14.00")  and bestValueCost > 0.5:
 						bestValueCost = 0.5
-						bestValue = v					
+						bestValue = v
 					else:
 						if previousAppointment[1] == '0' and bestValueCost > 15:
 							bestValueCost = 15
-							bestValue = v					
+							bestValue = v
 						else:
 							if(bestValueCost > ((float(v[1])-float(previousAppointment[1])-1)/0.5)*((float(v[1])-float(previousAppointment[1])-1)/0.5)):
 								bestValueCost = ((float(v[1])-float(previousAppointment[1])-1)/0.5)*((float(v[1])-float(previousAppointment[1])-1)/0.5)
@@ -76,7 +76,7 @@ def ordinaValoriCost(var, assegnamento, csp):
 		#print(bestValue)
 		dom.remove(bestValue)
 		ordDomain.append((bestValue, bestValueCost))
-	#print("ordDomain = ", ordDomain)
+	print("ordDomain = ", ordDomain)
 	return ordDomain
 
 
@@ -111,7 +111,7 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 		percentage = (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100)
 		print("\n\n######TEMPO SCADUTO!!!#####\n\nIterazione numero = ", recDepth,"\nAnalyzed= ", analyzed, "\nPercentuale albero analizzata = ", (computeVisited(analyzed, assegnate, csp)/numTotalSolution*100), " \nAssegnamento corrente = ", assegnamento)
 		return (solution, bestSolCost, "END", percentage)
-	
+
 	if assCompleto(assegnamento, csp):
 		#Devo anche fare in modo di visitare la vicina soluzione probabilmente
 		#basta cancellare il valore dell'ultima variabile dall'assegnamento
@@ -127,18 +127,18 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 	var = varNonAssegnata(assegnamento, csp, nearest)
 	# voglio spostarlo dopo, all'uscita
 	analyzed[var] = 0
-	
+
 	#print("Variabile scelta ", var)
 	orderedDomain = ordinaValoriCost(var, assegnamento, csp)
 	ciclo = 0
 	for v in orderedDomain:
 		ciclo+=1
-		assegnamento[var] = v[0]		
+		assegnamento[var] = v[0]
 		assegnate.append(var)
 		iterationCost = currCost + v[1]
 		if iterationCost < bestSolCost:
 			(solution, bestSolCost, ris, per) = backtrackingAllSolutions(solution, bestSolCost, assegnamento, iterationCost, assegnate, csp, nearest, recDepth, analyzed, numTotalSolution, endTime)
-			
+
 			#print("\n##### Riprendo, Profondità ricorsione = ", recDepth-1, " Ciclo numero: ", ciclo, " Sto considerando la variabile ", var)
 			if ris=="END":
 				return (solution, bestSolCost, "END", per)
@@ -158,6 +158,9 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 					del(assegnamento[assegnate[-1]])
 					del(assegnate[-1])
 		else:
+			print(assegnamento)
+			printSolution(assegnamento)
+			print("With iteration cost = ", iterationCost)
 			# qui potrei anche fare un break tanto i valori del dominio sono già organizzati in base alla funzione di costo: se non va il primo non vanno neanche quelli dopo...
 			#print("Tutti i possibili valori successivi peggiorano la funzione di costo.")
 			analyzed[var] = len(csp.nodes[var]['domain'])
@@ -170,7 +173,7 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 
 # esco da qui solo se tutti i cicli del for sono finiti e ho trovato almeno una soluzione nel frattempo
 	analyzed[var] = 0
-	return (solution, bestSolCost, "finished", 0)
+	return (solution, bestSolCost, "finished", 100)
 
 
 
@@ -185,7 +188,7 @@ def computeVisited(analyzed, assegnate, csp):
 		for k in csp.nodes():
 			if k not in passed:
 				partial *= len(csp.nodes[k]['domain'])
-		
+
 		#print("variabile ", i, "Contributo = ", partial)
 		total += partial
 		'''

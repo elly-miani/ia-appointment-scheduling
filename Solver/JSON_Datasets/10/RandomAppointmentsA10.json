@@ -1,0 +1,144 @@
+{
+    "0": {
+        "Name": "Isabella",
+        "Surname": "Robinson",
+        "House": "C",
+        "Day": [
+            [
+                "fri",
+                "Afternoon"
+            ]
+        ]
+    },
+    "1": {
+        "Name": "Benjamin",
+        "Surname": "Johnson",
+        "House": "C",
+        "Day": [
+            [
+                "fri",
+                "Afternoon"
+            ]
+        ]
+    },
+    "2": {
+        "Name": "Elijah",
+        "Surname": "Walker",
+        "House": "B",
+        "Day": [
+            [
+                "fri",
+                "Morning"
+            ]
+        ]
+    },
+    "3": {
+        "Name": "Lucas",
+        "Surname": "Brown",
+        "House": "A",
+        "Day": [
+            [
+                "mon",
+                "Afternoon"
+            ],
+            [
+                "tue",
+                "Morning"
+            ]
+        ]
+    },
+    "4": {
+        "Name": "Olivia",
+        "Surname": "Thomas",
+        "House": "C",
+        "Day": [
+            [
+                "thu",
+                "Afternoon"
+            ],
+            [
+                "thu",
+                "Morning"
+            ]
+        ]
+    },
+    "5": {
+        "Name": "Liam",
+        "Surname": "Johnson",
+        "House": "A",
+        "Day": [
+            [
+                "wed",
+                "Afternoon"
+            ],
+            [
+                "fri",
+                "Afternoon"
+            ]
+        ]
+    },
+    "6": {
+        "Name": "Mason",
+        "Surname": "Robinson",
+        "House": "B",
+        "Day": [
+            [
+                "tue",
+                "Afternoon"
+            ],
+            [
+                "mon",
+                "Morning"
+            ]
+        ]
+    },
+    "7": {
+        "Name": "Harper",
+        "Surname": "Jackson",
+        "House": "D",
+        "Day": [
+            [
+                "fri",
+                "Afternoon"
+            ],
+            [
+                "thu",
+                "Morning"
+            ],
+            [
+                "tue",
+                "Afternoon"
+            ]
+        ]
+    },
+    "8": {
+        "Name": "Lucas",
+        "Surname": "Wilson",
+        "House": "B",
+        "Day": [
+            [
+                "tue",
+                "Afternoon"
+            ],
+            [
+                "mon",
+                "Morning"
+            ]
+        ]
+    },
+    "9": {
+        "Name": "William",
+        "Surname": "Lee",
+        "House": "D",
+        "Day": [
+            [
+                "wed",
+                "Morning"
+            ],
+            [
+                "tue",
+                "Morning"
+            ]
+        ]
+    }
+}

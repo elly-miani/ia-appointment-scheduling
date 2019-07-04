@@ -60,46 +60,7 @@ def ordinaValoriCost(var, assegnamento, csp):
 	dom = deepcopy(csp.nodes[var]['domain'])
 	#Bad idea!
 	#random.shuffle(dom)
-	for i in range(1, len(dom)):
-		key = computeSmallestDomain(dom[i], var, assegnamento, csp)
-		j = i-1
-		while j >=0 and key > computeSmallestDomain(dom[j], var, assegnamento, csp):
-			temp = dom[j+1]
-			dom[j+1] = dom[j]
-			j -= 1
-			dom[j+1] = temp
-
-	if computeSmallestDomain(dom[0], var, assegnamento, csp)[0] == 0:
-		print('skip')
-		return []
 	return dom
-
-def computeSmallestDomain(v, var, assegnamento, newCSP):
-	minDom = 10000
-	countDom = 0
-	for n in newCSP.neighbors(var):
-		if n not in assegnamento:
-			newDom = []
-			for y in newCSP.nodes[n]['domain']:
-				isSameDay = v[0] == y[0]
-				bothMorning = float(v[1]) <= 11.5 and float(y[1]) <= 11.5
-				bothAfternoon = float(v[1]) > 12.0 and float(y[1]) > 12.0
-				isSamePeriod = bothMorning or bothAfternoon
-				timeBwAppointments = abs(float(v[1])-float(y[1]))
-				distanceBwHouses = (distance(v[2], y[2])*0.5 + 1)
-				cantReachInTime = timeBwAppointments < distanceBwHouses
-				if not (isSameDay and isSamePeriod and (cantReachInTime)):
-					newDom.append(y)
-				#else:
-					#print("rimuovo ", y, " dal dominio di", n)
-			#print("dominio rimanente = ", newDom,"\n")
-			countDom += len(newDom)
-			if minDom > len(newDom):
-				minDom = len(newDom)
-				countDom = 1
-	print(minDom, v)
-	return (countDom, minDom)
-
 
 """
 Funzione solver che viene chiamata dal programma principale

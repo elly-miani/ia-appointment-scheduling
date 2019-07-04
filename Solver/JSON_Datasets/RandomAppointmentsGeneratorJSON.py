@@ -31,7 +31,7 @@ names = ["Liam", "Emma", "Noah", "Olivia", "William", "Ava", "James",
 
 prefs = ["Morning", "Afternoon"]
 # qui si usava una lista, ma è più comodo passare la dimensione da terminale
-datasetDimensions=[34, 34, 34, 34, 34]#int(sys.argv[1])]#, 10, 15, 20, 25, 30]
+datasetDimensions=[20]#int(sys.argv[1])]#, 10, 15, 20, 25, 30]
 indexes=['A', 'B', 'C', 'D', 'E']
 x = 0
 for k in datasetDimensions:
