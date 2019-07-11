@@ -10,7 +10,7 @@ import pprint as pp
 
 # sys.path.append('./Solver/DifferentSolver')
 # from Backtracking_Appointments import backtrackingSearch
-from Backtracking_Appointments import backtrackingSearchAllSolutions
+from Backtracking_Appointments import branchAndBoundSearch
 
 
 current_milli_time = lambda: int(round(time.time() * 1000))
@@ -215,7 +215,7 @@ def solver(appointments, domain, timeout):
                         
                     
 
-    ConstraintGraph.add_edges_from(itertools.combinations(variablesName, 2))
+    #ConstraintGraph.add_edges_from(itertools.combinations(variablesName, 2))
 
     #ConstraintGraphCost.add_edges_from(itertools.combinations(variablesName, 2))
 
@@ -252,7 +252,7 @@ def solver(appointments, domain, timeout):
 
     start = current_milli_time()
     # sol = backtrackingSearchAllSolutions(ConstraintGraphCost, 1000*60*0 + 1000*0 + 500 )# minutes * seconds * 1000
-    sol = backtrackingSearchAllSolutions(ConstraintGraphCost, timeout)  # minutes * seconds * 1000
+    sol = branchAndBoundSearch(ConstraintGraphCost, timeout)  # minutes * seconds * 1000
     end = current_milli_time()
     print("\n\n###########Time spent to find all solution = ", end-start," ms.\n\n")
     # print(sol[0])
