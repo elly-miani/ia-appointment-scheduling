@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import time
 import sys
 import json
+import os.path
+import csv
 from copy import deepcopy
 import pprint as pp
 
@@ -29,6 +31,50 @@ def loadAppointments(filePath):
     
     return appointments
 
+# def loadAppointments(filePath):
+#     appointments = {}
+
+#     with open(filePath, 'r') as f:
+#         reader = csv.reader(f)
+#         for row in reader:
+#             a = iter(row[1:])
+#             appointments[row[0]] = dict(zip(a, a))
+
+#     return appointments
+
+
+# intialize a generic domain with all possible combinations of days, hours and locations
+def initDomainR():
+    '''
+    Data per il dominio
+    '''
+    #days = ["mon", "tue", "wed", "thu", "fri", "sat"]
+    days = ["mon", "tue", "wed"]
+
+    #hours = ["08.00", "08.50", "09.00", "09.50", "10.00", "10.50", "11.00", "11.50",
+    #"13.00", "13.50", "14.00", "14.50", "15.00", "15.50", "16.00", "16.50", "17.00",
+    #"17.50"]
+    #hours = ["08.00", "08.50", "09.00", "09.50", "10.00", "10.50", "11.00", "11.50",
+    #"13.00", "13.50", "14.00", "14.50", "15.00", "15.50", "16.00", "16.50"]
+
+
+    hours = ["08.00", "08.50", "09.00", "09.50",
+             "14.00", "14.50", "15.00", "15.50"]
+
+    locations = ["A", "B", "C", "D"]
+
+    domain = []
+    count = 0
+
+    for i in days:
+        for y in hours:
+            for loc in locations:
+                domain.append([i])
+                domain[count].append(y)
+                domain[count].append(loc)
+                count += 1
+
+    return domain
 
 # intialize a generic domain with all possible combinations of days, hours and locations
 def initDomain():
@@ -82,6 +128,7 @@ def printSolution(solution, appointments):
     for x in ordApp:
         x.sort(key=takeSecond)
 
+    print(ordApp)
     index = 0
     for x in ordApp:
         print("\n\nGiorno: ", days[index])
@@ -95,7 +142,7 @@ def printSolution(solution, appointments):
                   appointments[y[0]]["Name"], " ", appointments[y[0]]["Surname"])
         index += 1
     print(notSched)
-    return ordApp
+    return ordApp, len(notSched)
 
 
 def computeObjFunc(ordApp):
@@ -107,6 +154,43 @@ def computeObjFunc(ordApp):
                 travelTime += float(x[y+1][1][1]) - float(x[y][1][1])-1
     print("TravelTime = ",travelTime)        
     return travelTime
+
+
+# print function to print a solution in a clean way
+def printSolutionR(solution, appointments):
+    days = ["mon", "tue", "wed"]
+
+    ordApp = [[], [], []]
+    notSched = []
+
+    for x in solution:
+        if solution[x] != "notScheduled":
+            if solution[x][0] == days[0]:
+                ordApp[0].append([x, solution[x]])
+            if solution[x][0] == days[1]:
+                ordApp[1].append([x, solution[x]])
+            if solution[x][0] == days[2]:
+                ordApp[2].append([x, solution[x]])
+        else:
+            notSched.append([x, solution[x]])
+    # print(ordApp)
+    for x in ordApp:
+        x.sort(key=takeSecond)
+
+    index = 0
+    for x in ordApp:
+        print("\n\nGiorno: ", days[index])
+        print("\nMattina:")
+        cond = True
+        for y in x:
+            if (cond and float(y[1][1]) > 12):
+                print("\nPomeriggio:")
+                cond = False
+            print("Ore: ", y[1][1], "Casa: ", y[1][2], " Appuntamento con: ",
+                  appointments[y[0]]["Name"], " ", appointments[y[0]]["Surname"])
+        index += 1
+    print(notSched)
+
 
 def get_key(key):
     try:
@@ -262,6 +346,13 @@ def solver(appointments, domain, timeout):
     return sol
 
 
+# appointments = loadAppointments(sys.argv[1])
+# #print(appointments)
+# domain = initDomain()
+# # print(domain)
+# solution = solver(appointments, domain)
+# readyForJSON(solution, appointments)
+
 def scheduler(requestsPath, timeout):
 
     domain = initDomain()
@@ -279,6 +370,37 @@ def scheduler(requestsPath, timeout):
 if __name__ == "__main__":
     (sol, appointments) = scheduler(sys.argv[1], int(sys.argv[2]))
     print(sol[0])
-    ordBest = printSolution(sol[0], appointments)
+    (ordBest, notsched) = printSolution(sol[0], appointments)
     obj = computeObjFunc(ordBest)
     print("With cost = ", sol[1])
+    print(sol[0])
+
+    if os.path.exists(sys.argv[3]) == False:
+        length = sys.argv[1][-7:-5]
+        index = sys.argv[1][-8:-7]
+        print(sys.argv[1])
+        print(length, index)
+        row1 = ["Final "+  length , index,1,10,30,60,180,600]
+        row2 = ["", "traveltime"]
+        row3 = ["", "percentage"]
+        row4 = ["", "notsched"]
+        
+        lines=[row1,row2,row3,row4]
+        with open(sys.argv[3], 'w') as writeFile:
+            writer = csv.writer(writeFile)
+            writer.writerows(lines)
+        writeFile.close()
+
+
+    with open(sys.argv[3], 'r') as readFile:
+        reader = csv.reader(readFile)
+        lines = list(reader)
+    lines[1].append(obj)
+    lines[2].append("")
+    lines[3].append(notsched)
+
+    with open(sys.argv[3], 'w') as writeFile:
+        writer = csv.writer(writeFile)
+        writer.writerows(lines)
+    readFile.close()
+    writeFile.close()

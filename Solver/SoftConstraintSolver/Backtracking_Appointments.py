@@ -98,10 +98,10 @@ def backtrackingSearchAllSolutions(csp, maxTime):
 	IDEA: forse posso passare a btas un vettore [a,b,c,d] dove vedo a che ciclo e a che profondità sto
 	"""
 	endTime = current_milli_time() + maxTime
-	return backtrackingAllSolutions({}, 1000000000, {}, 0, [], csp, [], 0, analyzed, numTotalSolution, endTime)
+	return backtrackingAllSolutions({}, 1000000000, 100, {}, 0, [], csp, [], 0, analyzed, numTotalSolution, endTime)
 
 
-def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, assegnate, csp, nearest, recDepth, analyzed, numTotalSolution, endTime):
+def backtrackingAllSolutions(solution, bestSolCost, unsched, assegnamento, currCost, currUnsched, assegnate, csp, nearest, recDepth, analyzed, numTotalSolution, endTime):
 	'''
 	Se l'assegnamento è completo mi fermo
 	'''
@@ -115,9 +115,10 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 	if assCompleto(assegnamento, csp):
 		#Devo anche fare in modo di visitare la vicina soluzione probabilmente
 		#basta cancellare il valore dell'ultima variabile dall'assegnamento
-		if currCost <= bestSolCost:
+		if currUnsched<unsched or (currUnsched == unsched and currCost <= bestSolCost):
 			solution = (deepcopy(assegnamento))
 			bestSolCost = currCost
+			unsched = currUnsched
 			print("\n\n######################### Cambio soluzione #########################\n\n")
 			print(solution)
 			print("Che ha costo = ", currCost)
@@ -136,6 +137,7 @@ def backtrackingAllSolutions(solution, bestSolCost , assegnamento, currCost, ass
 		assegnamento[var] = v[0]
 		assegnate.append(var)
 		iterationCost = currCost + v[1]
+		iterationUnsched = currUnsched + v[2]
 		if iterationCost < bestSolCost:
 			(solution, bestSolCost, ris, per) = backtrackingAllSolutions(solution, bestSolCost, assegnamento, iterationCost, assegnate, csp, nearest, recDepth, analyzed, numTotalSolution, endTime)
 
